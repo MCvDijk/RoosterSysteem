@@ -23,11 +23,12 @@
     "paper-time-input": "ryanburns23/paper-time-input",
     "paper-toast": "PolymerElements/paper-toast#^1.3.0",
     "iron-icons": "PolymerElements/iron-icons#^1.2.0",
-    "vaadin-grid": "^2.0.3",
+    "vaadin-grid": "vaadin/vaadin-grid#^2.0.0",
     "paper-dropdown-menu":"PolymerElements/paper-dropdown-menu",
     "paper-listbox": "PolymerElements/paper-listbox",
     "paper-item": "PolymerElements/paper-item",
-    "vaadin-combo-box": ""
+    "vaadin-combo-box": "vaadin/vaadin-combo-box#^1.3.0"
+
   },
   "variants": {
     "1.x": {
