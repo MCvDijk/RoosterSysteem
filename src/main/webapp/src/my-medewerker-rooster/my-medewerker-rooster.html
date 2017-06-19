@@ -1,0 +1,261 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid-column.html">
+<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid-column-group.html">
+
+
+
+<dom-module id="my-medewerker-rooster">
+    <template>
+        <style>
+            :host {
+                display: block;
+                padding: 10px 20px;
+            }
+            .my-title {
+                font-size: 20px;
+                color: #1a9fd9;
+                font-weight: bold;
+                border-bottom: 1px solid #E62F2B;
+                padding-bottom: 2px;
+            }
+        </style>
+
+        <input type="week" id="date" value="[[DateToday]]"/>
+        <div class="my-title">Week Overzicht</div>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+            <vaadin-grid-column-group>
+                <template class="header" style="text-align: center"> Maandag</template>
+
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Begintijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Eindtijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Pauze</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Ziek</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+
+        </vaadin-grid>
+
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+            <vaadin-grid-column-group>
+                <template class="header">Dinsdag</template>
+
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Begintijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Eindtijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Pauze</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Ziek</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+
+        </vaadin-grid>
+
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+            <vaadin-grid-column-group>
+                <template class="header">Woensdag</template>
+
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Begintijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Eindtijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Pauze</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Ziek</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+
+        </vaadin-grid>
+
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+            <vaadin-grid-column-group>
+                <template class="header">Donderdag</template>
+
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Begintijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Eindtijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Pauze</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Ziek</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+
+        </vaadin-grid>
+
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+            <vaadin-grid-column-group>
+                <template class="header">Vrijdag</template>
+
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Begintijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Eindtijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Pauze</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Ziek</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+        </vaadin-grid>
+
+
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+            <vaadin-grid-column-group>
+                <template class="header">Zaterdag</template>
+
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Begintijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Eindtijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Pauze</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Ziek</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+
+        </vaadin-grid>
+
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+            <vaadin-grid-column-group>
+                <template class="header">Zondag</template>
+
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Begintijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Eindtijd</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Pauze</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Ziek</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+
+        </vaadin-grid>
+    </template>
+    <script>
+        Polymer({
+            is: 'my-medewerker-rooster',
+            properties:{
+                c_visible: {
+                    type: Boolean, /* true when element is the active visible item */
+                    value: false,
+                    observer: '_initializing', /* wordt ook aangeroepen bijwisseling van true naar false.
+                     regel in de functie dat er niets gebeurd
+                     als c_visible false is */
+                },
+                DateToday:{
+                    type: String,
+                    value:"2017-W23"
+                }
+            },
+
+            _initializing: function() {
+                if (this.c_visible) {
+                    this.getDateToday();
+                }
+            },
+            getDateToday: function () {
+                d = new Date();
+                d.setHours(0, 0, 0, 0);
+                // Set to nearest Thursday: current date + 4 - current day number
+                // Make Sunday's day number 7
+                d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+                // Get first day of year
+                var yearStart = new Date(d.getFullYear(), 0, 1);
+                // Calculate full weeks to nearest Thursday
+                var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
+                // Return array of year and week number
+                this.DateToday = d.getFullYear()+'-W'+weekNo;
+                console.log(d.getFullYear()+"-W"+weekNo);
+            }
+        });
+    </script>
+</dom-module>

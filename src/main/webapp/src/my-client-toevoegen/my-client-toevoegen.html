@@ -1,0 +1,109 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<dom-module id="my-client-toevoegen">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            paper-button{
+                background-color: #fff;
+                color: #404040;
+            }
+            paper-input{
+             text-align: center;
+            }
+            gold-phone-input{
+                text-align: center;
+            }
+            gold-email-input {
+                text-align: center;
+            }
+
+
+        </style>
+        <div class="card">
+            <paper-input label="Voornaam" value="{{voorNaam}}"></paper-input>
+            <paper-input label="Achternaam" value="{{achternaam}}"></paper-input>
+            <paper-input label="Adres" value="{{adres}}"></paper-input>
+            <paper-input label="Plaats" value="{{plaats}}"></paper-input>
+            <paper-input label="Medicijnen" value="{{medicijn}}"></paper-input>
+            <paper-input label="Verzorger" value="{{verzorger}}"></paper-input>
+            <paper-input label="Telefoonnummer" value="{{telnummer}}"></paper-input>
+            <paper-input label="Email" value="{{email}}"></paper-input>
+            <paper-input label="School" value="{{school}}"></paper-input>
+
+
+            <paper-button on-tap="Client_toevoegen">Cliënt Registeren</paper-button>
+
+
+            <iron-ajax id="client-toevoegen"
+                       method="POST"
+                       url="/cgi-bin/gerecht-toevoegen.py"
+                       handle-as="json"
+                       on-response="gerechtToevoegen_ResponseHandler">
+            </iron-ajax>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "my-client-toevoegen",
+            properties: {
+                voornaam: {
+                    type: String
+                },
+                achternaam: {
+                    type: String
+                },
+                adres: {
+                    type: String
+                },
+                plaats:{
+                    type: String
+                },
+                medicijnen: {
+                    type: String
+                },
+                verzorger: {
+                    type: String
+                },
+                telnummer: {
+                    type: String
+                },
+                email:{
+                    type: String
+                },
+                school:{
+                    type:String
+                }
+            },
+
+            client_toeveogen: function () {
+                this.$['client-toevoegen'].contentType = "application/json";
+                this.$['client-toevoegen'].body = {
+                    voornaam: this.voornaam,
+                    achternaam: this.achternaam,
+                    adres: this.adres,
+                    plaats: this.plaats,
+                    medicijnen: this.medicijnen,
+                    verzorger: this.verzorger,
+                    telnummer: this.telnummer,
+                    email: this.email,
+                    school: this.school,
+                };
+                this.$['gerecht-toevoegen'].generateRequest();
+            },
+
+            gerechtToevoegen_ResponseHandler: function (request_confirm) {
+                console.log("Response: " + request_confirm.detail.response.errorCode);
+            }
+        });
+    </script>
+</dom-module>

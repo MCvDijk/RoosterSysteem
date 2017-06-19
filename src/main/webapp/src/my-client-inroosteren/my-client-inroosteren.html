@@ -1,0 +1,334 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-time-input/paper-time-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+
+
+
+<dom-module id="my-client-inroosteren">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            paper-button{
+                background-color: #fff;
+                color: #404040;
+            }
+            paper-input{
+             text-align: center;
+            }
+            td, th{
+                padding:2px;
+            }
+
+            .dag{
+                width: 150px;
+                text-align: center;
+            }
+            .aankomst{
+                width: 110px;
+                text-align: center;
+            }
+
+            .aankomsttijd{
+                width: 150px;
+                text-align: center;
+            }
+            .vertrek{
+                width: 110px;
+                text-align: center;
+            }
+            .vertrektijd {
+                width: 150px;
+                text-align: center;
+            }
+
+            .vast{
+                width: 50px;
+                text-align: center;
+            }
+            .slapen{
+                width: 50px;
+                text-align: center;
+            }
+            .space{
+               padding: 5px;
+            }
+            paper-time-input{
+                max-width: 100px;
+                margin: 0 auto;
+                padding: 10px;
+            }
+
+        </style>
+        <table>
+            <tr>
+                <td class="space">
+                    <vaadin-combo-box id="medewerker" label="medewerker"></vaadin-combo-box>
+                </td>
+                <td class="space"></td>
+                <td class="space">
+                    <input type="week" id="date" value="[[DateToday]]"/>
+                </td>
+            </tr>
+        </table>
+
+        <div class="my-title">rooster medewerker</div>
+        <br>
+        <table>
+            <tr>
+                <th class="dag">Dag</th>
+                <th class="aankomst">Aankomst</th>
+                <th class="aankomsttijd">Aankomsttijd</th>
+                <th class="vertrek">Vertrek</th>
+                <th class="vertrektijd">Vertrektijd</th>
+                <th class="slapen">Slapen</th>
+                <th class="vast">Vast</th>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="dag">
+                    <label >Maandag</label>
+                </td>
+                <td class="aankomst">
+                    <vaadin-combo-box id="aankomst" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="aankomsttijd">
+                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="vertrek">
+                    <vaadin-combo-box id="vertrek" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="vertrektijd" >
+                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="slapen">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                <td class="vast">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="dag">
+                    <label >Dinsdag</label>
+                </td>
+                <td class="aankomst">
+                    <vaadin-combo-box id="aankomst" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="aankomsttijd">
+                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="vertrek">
+                    <vaadin-combo-box id="vertrek" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="vertrektijd" >
+                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="slapen">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                <td class="vast">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="dag">
+                    <label >Woensdag</label>
+                </td>
+                <td class="aankomst">
+                    <vaadin-combo-box id="aankomst" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="aankomsttijd">
+                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="vertrek">
+                    <vaadin-combo-box id="vertrek" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="vertrektijd" >
+                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="slapen">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                <td class="vast">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="dag">
+                    <label >Donderdag</label>
+                </td>
+                <td class="aankomst">
+                    <vaadin-combo-box id="aankomst" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="aankomsttijd">
+                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="vertrek">
+                    <vaadin-combo-box id="vertrek" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="vertrektijd" >
+                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="slapen">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                <td class="vast">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="dag">
+                    <label >Vrijdag</label>
+                </td>
+                <td class="aankomst">
+                    <vaadin-combo-box id="aankomst" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="aankomsttijd">
+                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="vertrek">
+                    <vaadin-combo-box id="vertrek" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="vertrektijd" >
+                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="slapen">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                <td class="vast">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="dag">
+                    <label >Zaterdag</label>
+                </td>
+                <td class="aankomst">
+                    <vaadin-combo-box id="aankomst" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="aankomsttijd">
+                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="vertrek">
+                    <vaadin-combo-box id="vertrek" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="vertrektijd" >
+                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="slapen">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                <td class="vast">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="dag">
+                    <label >Zondag</label>
+                </td>
+                <td class="aankomst">
+                    <vaadin-combo-box id="aankomst" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="aankomsttijd">
+                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="vertrek">
+                    <vaadin-combo-box id="vertrek" value="[[]]"></vaadin-combo-box>
+                </td>
+                <td class="vertrektijd" >
+                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                </td>
+                <td class="slapen">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+                <td class="vast">
+                    <paper-checkbox></paper-checkbox>
+                </td>
+            </tr>
+        </table>
+        <br>
+            <paper-button on-tap="">Inroosteren</paper-button>
+
+
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "my-client-inroosteren",
+            properties: {
+                voornaam: {
+                    type: String
+                },
+                achternaam: {
+                    type: String
+                },
+                adres: {
+                    type: String
+                },
+                plaats:{
+                    type: String
+                },
+                telnummer: {
+                    type: String
+                },
+                email:{
+                    type: String
+                },
+                c_visible: {
+                    type: Boolean, /* true when element is the active visible item */
+                    value: false,
+                    observer: '_initializing', /* wordt ook aangeroepen bijwisseling van true naar false.
+                     regel in de functie dat er niets gebeurd
+                     als c_visible false is */
+                },
+                DateToday:{
+                    type: String,
+                    value:"2017-W23"
+                }
+            },
+
+            _initializing: function() {
+                if (this.c_visible) {
+                    this.getDateToday();
+                }
+            },
+            getDateToday: function () {
+                d = new Date();
+                d.setHours(0, 0, 0, 0);
+                // Set to nearest Thursday: current date + 4 - current day number
+                // Make Sunday's day number 7
+                d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+                // Get first day of year
+                var yearStart = new Date(d.getFullYear(), 0, 1);
+                // Calculate full weeks to nearest Thursday
+                var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
+                // Return array of year and week number
+                this.DateToday = d.getFullYear()+'-W'+weekNo;
+                console.log(d.getFullYear()+"-W"+weekNo);
+            }
+        });
+    </script>
+</dom-module>
