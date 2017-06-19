@@ -37,7 +37,7 @@
       },
       "resolutions": {
         "polymer": "^1.9",
-        "webcomponentsjs": "^0.7"
+        "webcomponentsjs": "~0.7"
       }
     }
   }
