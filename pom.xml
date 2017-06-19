@@ -52,7 +52,7 @@
   </dependencies>
 
   <build>
-    <finalName>ROOT</finalName>
+    <finalName>RoosterSysteem</finalName>
 
     <resources>
       <resource>
