@@ -16,8 +16,10 @@ public class MRooster {
     private LocalTime eindTijd;
     private LocalTime pauze;
     private boolean ziek;
+    private String voornaam;
+    private String achternaam;
 
-    public MRooster(Medewerker medewerker, int weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek) {
+    public MRooster(Medewerker medewerker, int weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek, String voornaam, String achternaam) {
         this.medewerker = medewerker;
         this.weekNummer = weekNummer;
         this.dag = dag;
@@ -25,6 +27,24 @@ public class MRooster {
         this.eindTijd = eindTijd;
         this.pauze = pauze;
         this.ziek = ziek;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
+
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
     }
 
     public Medewerker getMedewerker() {

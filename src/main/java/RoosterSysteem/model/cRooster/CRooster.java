@@ -19,8 +19,10 @@ public class CRooster {
     private boolean slapen;
     private String medicijn;
     private boolean afwezig;
+    private String voornaam;
+    private String achternaam;
 
-    public CRooster(Client client, int weekNummer, String dag, String aankomst, LocalTime aankomstTijd, String vertrek, LocalTime vertrekTijd, boolean slapen, String medicijn, boolean afwezig) {
+    public CRooster(Client client, int weekNummer, String dag, String aankomst, LocalTime aankomstTijd, String vertrek, LocalTime vertrekTijd, boolean slapen, String medicijn, boolean afwezig, String voornaam, String achternaam) {
         this.client = client;
         this.weekNummer = weekNummer;
         this.dag = dag;
@@ -31,6 +33,24 @@ public class CRooster {
         this.slapen = slapen;
         this.medicijn = medicijn;
         this.afwezig = afwezig;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
+
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
     }
 
     public Client getClient() {
