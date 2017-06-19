@@ -1,7 +1,7 @@
 package RoosterSysteem.sql;
 
 import RoosterSysteem.HibernateUtil;
-import RoosterSysteem.model.persoon.Client;
+import RoosterSysteem.model.mRooster.MRooster;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -14,11 +14,11 @@ import java.util.List;
 public class MRoosterDAO {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    public ArrayList<Client> getClienten(){
-        ArrayList<Client> results = new ArrayList<Client>();
+    public ArrayList<MRooster> getMedewerkerRooster(){
+        ArrayList<MRooster> results = new ArrayList<MRooster>();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List result = session.createQuery("from Client ").list();
+        List result = session.createQuery("from MRooster ").list();
         results.addAll(result);
         session.getTransaction().commit();
         session.close();

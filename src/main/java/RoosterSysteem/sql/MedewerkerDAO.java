@@ -18,7 +18,7 @@ public class MedewerkerDAO {
         ArrayList<Medewerker> results = new ArrayList<Medewerker>();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List result = session.createQuery("from ").list();
+        List result = session.createQuery("from Medewerker ").list();
         results.addAll(result);
         session.getTransaction().commit();
         session.close();

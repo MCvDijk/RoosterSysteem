@@ -1,6 +1,8 @@
 package RoosterSysteem.model.persoon;
 
-public abstract class Persoon {
+import java.io.Serializable;
+
+public abstract class Persoon implements Serializable {
 
     private String voornaam;
     private String achternaam;
@@ -67,5 +69,31 @@ public abstract class Persoon {
 
     public void setTelefoonNummer(int telefoonNummer) {
         this.telefoonNummer = telefoonNummer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Persoon persoon = (Persoon) o;
+
+        if (telefoonNummer != persoon.telefoonNummer) return false;
+        if (voornaam != null ? !voornaam.equals(persoon.voornaam) : persoon.voornaam != null) return false;
+        if (achternaam != null ? !achternaam.equals(persoon.achternaam) : persoon.achternaam != null) return false;
+        if (adres != null ? !adres.equals(persoon.adres) : persoon.adres != null) return false;
+        if (plaats != null ? !plaats.equals(persoon.plaats) : persoon.plaats != null) return false;
+        return email != null ? email.equals(persoon.email) : persoon.email == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = voornaam != null ? voornaam.hashCode() : 0;
+        result = 31 * result + (achternaam != null ? achternaam.hashCode() : 0);
+        result = 31 * result + (adres != null ? adres.hashCode() : 0);
+        result = 31 * result + (plaats != null ? plaats.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + telefoonNummer;
+        return result;
     }
 }

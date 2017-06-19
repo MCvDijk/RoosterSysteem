@@ -13,11 +13,12 @@
     <session-factory>
 
         <!-- Database connection settings -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-247-177-33.eu-west-1.compute.amazonaws.com/d5096ttdat6vg6</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-247-177-33.eu-west-1.compute.amazonaws.com:5432/d5096ttdat6vg6?sslmode=require</property>
         <property name="hibernate.connection.username">kgzbtxumsamlub</property>
         <property name="hibernate.connection.password">ad9103ad898355173316a95d1e80174169eb51c09be30747f64ddc90ded63f1a</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+
 
         <!-- c3p0 connection pool settings -->
         <property name="hibernate.c3p0.min_size">1</property>
@@ -33,7 +34,7 @@
         <property name="max_fetch_depth">3</property>
 
         <!-- Print SQL to stout -->
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
         <!-- Update schema as needed -->

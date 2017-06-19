@@ -37,7 +37,10 @@ public class RS {
         SchoolDAO scholen = new SchoolDAO();
 
         deClienten = clienten.getClienten();
-
+        deMedewerkers = medewerkers.getMedewerkers();
+        deScholen = scholen.getScholen();
+        cRoosters = clientrooster.getClientRooster();
+        mRoosters = medewerkerrooster.getMedewerkerRooster();
     }
 
 

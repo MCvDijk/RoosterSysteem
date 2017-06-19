@@ -2,10 +2,12 @@ package RoosterSysteem.model.persoon;
 
 import RoosterSysteem.model.school.School;
 
+import java.io.Serializable;
+
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class Client extends Persoon{
+public class Client extends Persoon implements Serializable {
     private String medicijn;
     private String verzorger;
     private School school;
@@ -42,5 +44,25 @@ public class Client extends Persoon{
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+
+        if (medicijn != null ? !medicijn.equals(client.medicijn) : client.medicijn != null) return false;
+        if (verzorger != null ? !verzorger.equals(client.verzorger) : client.verzorger != null) return false;
+        return school != null ? school.equals(client.school) : client.school == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = medicijn != null ? medicijn.hashCode() : 0;
+        result = 31 * result + (verzorger != null ? verzorger.hashCode() : 0);
+        result = 31 * result + (school != null ? school.hashCode() : 0);
+        return result;
     }
 }
