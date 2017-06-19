@@ -52,58 +52,58 @@
   </dependencies>
 
   <build>
-    <finalName>ROOT</finalName>
+    <finalName>RoosterSysteem</finalName>
 
     <resources>
       <resource>
         <directory>src/main/resources</directory>
       </resource>
     </resources>
-    
+
     <plugins>
       <plugin>
-          <groupId>com.github.eirslett</groupId>
-          <artifactId>frontend-maven-plugin</artifactId>
-          <version>1.3</version>
-          <configuration>
-            <installDirectory>target</installDirectory>
-          </configuration>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>1.3</version>
+        <configuration>
+          <installDirectory>target</installDirectory>
+        </configuration>
 
-          <executions>
+        <executions>
 
-            <execution>
-              <id>install node and npm</id>
-              <goals>
-                <goal>install-node-and-npm</goal>
-              </goals>
-              <configuration>
-                <nodeVersion>v6.9.1</nodeVersion>
-                <npmVersion>3.10.8</npmVersion>
-              </configuration>
-            </execution>
+          <execution>
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>v6.9.1</nodeVersion>
+              <npmVersion>3.10.8</npmVersion>
+            </configuration>
+          </execution>
 
-            <execution>
-              <id>npm install</id>
-              <goals>
-                <goal>npm</goal>
-              </goals>
-              <configuration>
-                <arguments>install</arguments>
-              </configuration>
-            </execution>
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
 
-            <execution>
-              <id>bower install</id>
-              <goals>
-                <goal>bower</goal>
-              </goals>
-              <configuration>
-                <arguments>install</arguments>
-              </configuration>
-            </execution>
+          <execution>
+            <id>bower install</id>
+            <goals>
+              <goal>bower</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
 
-          </executions>
-        </plugin>
+        </executions>
+      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -120,18 +120,8 @@
                 <artifactItem>
                   <groupId>com.github.jsimone</groupId>
                   <artifactId>webapp-runner</artifactId>
-                  <version>8.5.11.3</version>
+                  <version>8.5.11.2</version>
                   <destFileName>webapp-runner.jar</destFileName>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.tomcat</groupId>
-                  <artifactId>tomcat-dbcp</artifactId>
-                  <version>8.0.33</version>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.postgresql</groupId>
-                  <artifactId>postgresql</artifactId>
-                  <version>9.4.1212</version>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -140,5 +130,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
