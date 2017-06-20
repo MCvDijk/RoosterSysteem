@@ -27,7 +27,7 @@ public abstract class Persoon implements Serializable {
         return this.voornaam;
     }
 
-    protected String getAchternaam() {
+    public String getAchternaam() {
         return this.achternaam;
     }
 

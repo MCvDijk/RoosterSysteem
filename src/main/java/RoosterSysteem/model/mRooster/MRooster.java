@@ -11,7 +11,7 @@ import java.time.LocalTime;
  */
 public class MRooster implements Serializable {
     private Medewerker medewerker;
-    private int weekNummer;
+    private String weekNummer;
     private String dag;
     private LocalTime beginTijd;
     private LocalTime eindTijd;
@@ -19,8 +19,12 @@ public class MRooster implements Serializable {
     private boolean ziek;
     private String voornaam;
     private String achternaam;
+    private boolean vast;
 
-    public MRooster(Medewerker medewerker, int weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek, String voornaam, String achternaam) {
+    public MRooster() {
+    }
+
+    public MRooster(Medewerker medewerker, String weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek, String voornaam, String achternaam, boolean vast) {
         this.medewerker = medewerker;
         this.weekNummer = weekNummer;
         this.dag = dag;
@@ -30,9 +34,7 @@ public class MRooster implements Serializable {
         this.ziek = ziek;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
-    }
-
-    public MRooster() {
+        this.vast = vast;
     }
 
     public String getVoornaam() {
@@ -59,11 +61,11 @@ public class MRooster implements Serializable {
         this.medewerker = medewerker;
     }
 
-    public int getWeekNummer() {
+    public String getWeekNummer() {
         return weekNummer;
     }
 
-    public void setWeekNummer(int weekNummer) {
+    public void setWeekNummer(String weekNummer) {
         this.weekNummer = weekNummer;
     }
 
@@ -107,6 +109,14 @@ public class MRooster implements Serializable {
         this.ziek = ziek;
     }
 
+    public boolean isVast() {
+        return vast;
+    }
+
+    public void setVast(boolean vast) {
+        this.vast = vast;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,9 +124,10 @@ public class MRooster implements Serializable {
 
         MRooster mRooster = (MRooster) o;
 
-        if (weekNummer != mRooster.weekNummer) return false;
         if (ziek != mRooster.ziek) return false;
+        if (vast != mRooster.vast) return false;
         if (medewerker != null ? !medewerker.equals(mRooster.medewerker) : mRooster.medewerker != null) return false;
+        if (weekNummer != null ? !weekNummer.equals(mRooster.weekNummer) : mRooster.weekNummer != null) return false;
         if (dag != null ? !dag.equals(mRooster.dag) : mRooster.dag != null) return false;
         if (beginTijd != null ? !beginTijd.equals(mRooster.beginTijd) : mRooster.beginTijd != null) return false;
         if (eindTijd != null ? !eindTijd.equals(mRooster.eindTijd) : mRooster.eindTijd != null) return false;
@@ -128,7 +139,7 @@ public class MRooster implements Serializable {
     @Override
     public int hashCode() {
         int result = medewerker != null ? medewerker.hashCode() : 0;
-        result = 31 * result + weekNummer;
+        result = 31 * result + (weekNummer != null ? weekNummer.hashCode() : 0);
         result = 31 * result + (dag != null ? dag.hashCode() : 0);
         result = 31 * result + (beginTijd != null ? beginTijd.hashCode() : 0);
         result = 31 * result + (eindTijd != null ? eindTijd.hashCode() : 0);
@@ -136,6 +147,7 @@ public class MRooster implements Serializable {
         result = 31 * result + (ziek ? 1 : 0);
         result = 31 * result + (voornaam != null ? voornaam.hashCode() : 0);
         result = 31 * result + (achternaam != null ? achternaam.hashCode() : 0);
+        result = 31 * result + (vast ? 1 : 0);
         return result;
     }
 }

@@ -38,6 +38,11 @@
                 text-align: center;
 
             }
+            .pauze{
+                width:100px;
+                text-align: center;
+            }
+
             .eindtijd{
                 width: 100px;
                 text-align: center;
@@ -60,42 +65,51 @@
         <table>
             <tr>
                 <td>
-                    <vaadin-combo-box id="medewerker" label="medewerker"></vaadin-combo-box>
+                    <vaadin-combo-box id="medewerker" label="medewerker" items="[[_c_medewerkers]]" item-value-path="naam" item-label-path="naam">
+                        <template>
+                            [[item.naam]]
+                        </template>
+                    </vaadin-combo-box>
                 </td>
                 <td class="space"></td>
                 <td>
-                    <input type="week" id="date" value="[[DateToday]]"/>
+                    <input type="week" id="date" />
                 </td>
+                <td><button on-click="medewerker_rooster_ophalen"></button></td>
             </tr>
-        </table>
+        </table>on-change="medewerker_rooster_ophalen"
 
         <div class="my-title">rooster medewerker</div>
         <br>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <th class="dag">Dag</th>
                 <th class="begintijd">Begintijd</th>
+                <th class="pauze">Pauze</th>
                 <th class="eindtijd">Eindtijd</th>
                 <th class="vast">Vast</th>
             </tr>
         </table>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <td class="dag">
                     <label >Maandag</label>
                 </td>
                 <td class="begintijd">
-                    <paper-time-input  format="24" autoValidate="true"></paper-time-input>
+                    <paper-time-input format="24" autoValidate="true" hour="[[_result.mabegintijdh]]" min="[[_result.mabegintijdm]]"></paper-time-input>
+                </td>
+                <td class="pauze" >
+                    <paper-time-input items="[[_result]]" format="24" autoValidate="true"hour="[[item.mapauzeh]]" min="[[item.mapauzem]]"></paper-time-input>
                 </td>
                 <td class="eindtijd" >
-                    <paper-time-input format="24" autoValidate="true"></paper-time-input>
+                    <paper-time-input format="24" autoValidate="true"hour="[[item.maeindtijdh]]" min="[[item.maeindtijdm]]"></paper-time-input>
                 </td>
                 <td class="vast">
-                    <paper-checkbox></paper-checkbox>
+                    <paper-checkbox checked="[[item.mavast]]"></paper-checkbox>
                 </td>
             </tr>
         </table>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <td class="dag">
                     <label >Dinsdag</label>
@@ -111,7 +125,7 @@
                 </td>
             </tr>
         </table>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <td class="dag">
                     <label >Woensdag</label>
@@ -127,7 +141,7 @@
                 </td>
             </tr>
         </table>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <td class="dag">
                     <label >Donderdag</label>
@@ -143,7 +157,7 @@
                 </td>
             </tr>
         </table>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <td class="dag">
                     <label >Vrijdag</label>
@@ -159,7 +173,7 @@
                 </td>
             </tr>
         </table>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <td class="dag">
                     <label >Zaterdag</label>
@@ -175,7 +189,7 @@
                 </td>
             </tr>
         </table>
-        <table>
+        <table hidden$="{{hide}}">
             <tr>
                 <td class="dag">
                     <label >Zondag</label>
@@ -190,15 +204,41 @@
                     <paper-checkbox></paper-checkbox>
                 </td>
             </tr>
-        </table>
+        </table >
         <br>
-            <paper-button on-tap="">inroosteren</paper-button>
+
+            <paper-button hidden$="{{hide}}" on-tap="">inroosteren</paper-button>
+
         </div>
+
+        <iron-ajax
+                id="ajax_medewerkers_ophalen"
+                method="POST"
+                url="/services/persoon/medewerkers/ophalen"
+                handle-as="json"
+                on-response="_medewerkers_ophalen_response_handler">
+        </iron-ajax>
+
+        <iron-ajax
+                id="ajax_rooster_ophalen"
+                method="POST"
+                url="/services/rooster/medewerkers/ophalen"
+                handle-as="json"
+                on-response="_rooster_medewerker_ophalen_response_handler">
+        </iron-ajax>
+
     </template>
+
     <script>
         Polymer({
             is: "my-medewerker-inroosteren",
             properties: {
+                _c_medewerkers:{
+                  type: Array,
+                },
+                _result:{
+                    type: Array
+                },
                 voornaam: {
                     type: String
                 },
@@ -217,6 +257,16 @@
                 email:{
                     type: String
                 },
+                datum:{
+                    type: String
+                },
+                naam:{
+                    type: String
+                },
+                hide: {
+                    type: Boolean,
+                    value: true // init the value to true so it will be hidden on page load
+                },
                 c_visible: {
                     type: Boolean, /* true when element is the active visible item */
                     value: false,
@@ -224,31 +274,47 @@
                      regel in de functie dat er niets gebeurd
                      als c_visible false is */
                 },
-                DateToday:{
-                    type: String,
-                    value:"2017-W23"
-                }
             },
 
             _initializing: function() {
                 if (this.c_visible) {
-                    this.getDateToday();
+                    this._medewerkers_ophalen_request_handler();
                 }
             },
-            getDateToday: function () {
-                d = new Date();
-                d.setHours(0, 0, 0, 0);
-                // Set to nearest Thursday: current date + 4 - current day number
-                // Make Sunday's day number 7
-                d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-                // Get first day of year
-                var yearStart = new Date(d.getFullYear(), 0, 1);
-                // Calculate full weeks to nearest Thursday
-                var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
-                // Return array of year and week number
-                this.DateToday = d.getFullYear()+'-W'+weekNo;
-                console.log(d.getFullYear()+"-W"+weekNo);
+
+            _medewerkers_ophalen_request_handler: function () {
+                this.$.ajax_medewerkers_ophalen.generateRequest();
+            },
+            _medewerkers_ophalen_response_handler: function (request) {
+                this._c_medewerkers = request.detail.response;
+            },
+
+            _rooster_medewerker_ophalen_request_handler: function () {
+                this.$['ajax_rooster_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_ophalen'].body = {
+                    "naam": this.naam,
+                    "datum": this.datum,
+                    "data": this._c_medewerkers,
+                };
+                this.$['ajax_rooster_ophalen'].generateRequest();
+                this.hide = false;
+
+            },
+            _rooster_medewerker_ophalen_response_handler: function (request) {
+                this._result = request.detail.response;
+                console.log(this._result)
+            },
+
+            medewerker_rooster_ophalen: function () {
+                var combobox = document.body.querySelectorAll('#medewerker');
+                var datepicker = document.body.querySelectorAll('#date');
+                var volnaam = combobox[1].value;
+                var datum = datepicker[3].value;
+                this.naam = volnaam;
+                this.datum = datum;
+                this._rooster_medewerker_ophalen_request_handler()
             }
+
         });
     </script>
 </dom-module>

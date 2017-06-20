@@ -41,7 +41,45 @@ public class RS {
         deScholen = scholen.getScholen();
         cRoosters = clientrooster.getClientRooster();
         mRoosters = medewerkerrooster.getMedewerkerRooster();
+
+        for(MRooster mr : mRoosters){
+            for(Medewerker m : deMedewerkers ){
+                if(mr.getVoornaam().equals(m.getVoornaam()) && (mr.getAchternaam().equals(m.getAchternaam()))){
+                    mr.setMedewerker(m);
+                }
+            }
+        }
     }
 
+    public ArrayList<Medewerker> getDeMedewerkers() {
+        return deMedewerkers;
+    }
 
+    public ArrayList<Client> getDeClienten() {
+        return deClienten;
+    }
+
+    public ArrayList<School> getDeScholen() {
+        return deScholen;
+    }
+
+    public ArrayList<CRooster> getcRoosters() {
+        return cRoosters;
+    }
+
+    public ArrayList<MRooster> getmRoosters() {
+        return mRoosters;
+    }
+
+    public Medewerker getMedewerker(String voornaam, String achternaam){
+        Medewerker resultaat = null;
+
+        for(Medewerker m : deMedewerkers){
+            if(m.getVoornaam().equals(voornaam) && m.getAchternaam().equals(achternaam)){
+                resultaat = m;
+                break;
+            }
+        }
+        return resultaat;
+    }
 }
