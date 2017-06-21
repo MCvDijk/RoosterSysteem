@@ -24,4 +24,20 @@ public class MRoosterDAO {
         session.close();
         return results;
     }
+    public void writeMedewerkerRooster(MRooster mRooster){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(mRooster);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void updateMedewerkerRooster(MRooster mRooster){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(mRooster);
+        session.getTransaction().commit();
+        session.close();
+    }
 }
+

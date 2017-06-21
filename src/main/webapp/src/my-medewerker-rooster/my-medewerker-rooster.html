@@ -1,8 +1,15 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-time-input/paper-time-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
 <link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid-column.html">
-<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid-column-group.html">
+
 
 
 
@@ -21,27 +28,36 @@
                 padding-bottom: 2px;
             }
         </style>
-
-        <input type="week" id="date" value="[[DateToday]]"/>
+        <table>
+            <tr>
+                <td>
+                    <input type="week" id="dateMrooster" value="2017-W26" on-change="_rooster_ophalen"/>
+                </td>
+            </tr>
+        </table>
         <div class="my-title">Week Overzicht</div>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
             <vaadin-grid-column-group>
                 <template class="header" style="text-align: center"> Maandag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.mavoornaam]] [[item.maachternaam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
+                    <template>[[item.mabegintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
+                    <template>[[item.maeindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
+                    <template>[[item.mapauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -51,25 +67,29 @@
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
             <vaadin-grid-column-group>
                 <template class="header">Dinsdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.divoornaam]] [[item.diachternaam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
+                    <template>[[item.dibegintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
+                    <template>[[item.dieindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
+                    <template>[[item.dipauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -79,25 +99,29 @@
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
             <vaadin-grid-column-group>
                 <template class="header">Woensdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.wovoornaam]] [[item.woachternaam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
+                    <template>[[item.wobegintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
+                    <template>[[item.woeindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
+                    <template>[[item.wopauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -107,25 +131,29 @@
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
             <vaadin-grid-column-group>
                 <template class="header">Donderdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.dovoornaam]] [[item.doachternaam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
+                    <template>[[item.dobegintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
+                    <template>[[item.doeindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
+                    <template>[[item.dopauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -135,25 +163,29 @@
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
             <vaadin-grid-column-group>
                 <template class="header">Vrijdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.vrvoornaam]] [[item.vrachternaam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
+                    <template>[[item.vrbegintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
+                    <template>[[item.vreindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
+                    <template>[[item.vrpauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -162,26 +194,29 @@
 
             </vaadin-grid-column-group>
         </vaadin-grid>
-
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
             <vaadin-grid-column-group>
                 <template class="header">Zaterdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.zavoornaam]] [[item.zaachternaam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
+                    <template>[[item.zabegintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
+                    <template>[[item.zaeindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
+                    <template>[[item.zapauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -191,25 +226,29 @@
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
             <vaadin-grid-column-group>
                 <template class="header">Zondag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.zovoornaam]] [[item.zoachternaam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
+                    <template>[[item.zobegintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
+                    <template>[[item.zoeindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
+                    <template>[[item.zopauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -219,6 +258,15 @@
             </vaadin-grid-column-group>
 
         </vaadin-grid>
+
+        <iron-ajax
+                id="ajax_rooster_ophalen"
+                method="POST"
+                url="/services/rooster/rooster/ophalen"
+                handle-as="json"
+                on-response="_rooster_ophalen_response_handler">
+        </iron-ajax>
+
     </template>
     <script>
         Polymer({
@@ -231,31 +279,40 @@
                      regel in de functie dat er niets gebeurd
                      als c_visible false is */
                 },
-                DateToday:{
-                    type: String,
-                    value:"2017-W23"
+                datum:{
+                    type: String
+                },
+                _rooster:{
+                    type:Array
+                }
+            },
+            _initializing: function() {
+                if (this.c_visible) {
+                    this._rooster_ophalen();
                 }
             },
 
-            _initializing: function() {
-                if (this.c_visible) {
-                    this.getDateToday();
-                }
+            _rooster_ophalen_request_handler: function () {
+                this.$['ajax_rooster_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_ophalen'].body = {
+                    "datum": this.datum,
+                };
+                console.log(this.datum);
+                this.$['ajax_rooster_ophalen'].generateRequest();
             },
-            getDateToday: function () {
-                d = new Date();
-                d.setHours(0, 0, 0, 0);
-                // Set to nearest Thursday: current date + 4 - current day number
-                // Make Sunday's day number 7
-                d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-                // Get first day of year
-                var yearStart = new Date(d.getFullYear(), 0, 1);
-                // Calculate full weeks to nearest Thursday
-                var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
-                // Return array of year and week number
-                this.DateToday = d.getFullYear()+'-W'+weekNo;
-                console.log(d.getFullYear()+"-W"+weekNo);
+            _rooster_ophalen_response_handler: function (request) {
+                this._rooster = request.detail.response;
+                console.log(this._rooster)
+
+            },
+
+            _rooster_ophalen : function () {
+                var date = document.querySelector("#dateMrooster").value;
+                this.datum = date ;
+                console.log("blabla");
+                this._rooster_ophalen_request_handler()
             }
+
         });
     </script>
 </dom-module>

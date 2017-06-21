@@ -2,6 +2,7 @@ package RoosterSysteem.sql;
 
 import RoosterSysteem.HibernateUtil;
 import RoosterSysteem.model.cRooster.CRooster;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -23,5 +24,21 @@ public class CRoosterDAO {
         session.getTransaction().commit();
         session.close();
         return results;
+    }
+
+    public void writeClientRooster(CRooster CRooster){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(CRooster);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void updateClientRooster(CRooster CRooster){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(CRooster);
+        session.getTransaction().commit();
+        session.close();
     }
 }

@@ -31,16 +31,21 @@ public class RS {
         mRoosters = new ArrayList<MRooster>();
 
         ClientDAO clienten = new ClientDAO();
-        MedewerkerDAO medewerkers = new MedewerkerDAO();
-        CRoosterDAO clientrooster = new CRoosterDAO();
-        MRoosterDAO medewerkerrooster = new MRoosterDAO();
-        SchoolDAO scholen = new SchoolDAO();
-
         deClienten = clienten.getClienten();
+
+        MedewerkerDAO medewerkers = new MedewerkerDAO();
         deMedewerkers = medewerkers.getMedewerkers();
-        deScholen = scholen.getScholen();
+
+        CRoosterDAO clientrooster = new CRoosterDAO();
         cRoosters = clientrooster.getClientRooster();
+
+        MRoosterDAO medewerkerrooster = new MRoosterDAO();
         mRoosters = medewerkerrooster.getMedewerkerRooster();
+
+        SchoolDAO scholen = new SchoolDAO();
+        deScholen = scholen.getScholen();
+
+
 
         for(MRooster mr : mRoosters){
             for(Medewerker m : deMedewerkers ){
@@ -73,8 +78,9 @@ public class RS {
 
     public Medewerker getMedewerker(String voornaam, String achternaam){
         Medewerker resultaat = null;
+        MedewerkerDAO medewerkers = new MedewerkerDAO();
 
-        for(Medewerker m : deMedewerkers){
+        for(Medewerker m : medewerkers.getMedewerkers()){
             if(m.getVoornaam().equals(voornaam) && m.getAchternaam().equals(achternaam)){
                 resultaat = m;
                 break;
@@ -82,4 +88,16 @@ public class RS {
         }
         return resultaat;
     }
+
+    public ArrayList<MRooster> getMRoosterMedewerker(Medewerker medewerker){
+        ArrayList<MRooster> mRoosters = getmRoosters();
+        ArrayList<MRooster> rooster = new ArrayList<>();
+        for(MRooster m : mRoosters){
+            if (m.getMedewerker().equals(medewerker)){
+                rooster.add(m);
+            }
+        }
+        return rooster;
+    }
+
 }
