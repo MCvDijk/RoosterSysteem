@@ -2,22 +2,29 @@ package RoosterSysteem.model.mRooster;
 
 import RoosterSysteem.model.persoon.Medewerker;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class MRooster {
+public class MRooster implements Serializable {
     private Medewerker medewerker;
-    private int weekNummer;
+    private String weekNummer;
     private String dag;
     private LocalTime beginTijd;
     private LocalTime eindTijd;
     private LocalTime pauze;
     private boolean ziek;
+    private String voornaam;
+    private String achternaam;
+    private boolean vast;
 
-    public MRooster(Medewerker medewerker, int weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek) {
+    public MRooster() {
+    }
+
+    public MRooster(Medewerker medewerker, String weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek, String voornaam, String achternaam, boolean vast) {
         this.medewerker = medewerker;
         this.weekNummer = weekNummer;
         this.dag = dag;
@@ -25,6 +32,25 @@ public class MRooster {
         this.eindTijd = eindTijd;
         this.pauze = pauze;
         this.ziek = ziek;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+        this.vast = vast;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
+
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
     }
 
     public Medewerker getMedewerker() {
@@ -35,11 +61,11 @@ public class MRooster {
         this.medewerker = medewerker;
     }
 
-    public int getWeekNummer() {
+    public String getWeekNummer() {
         return weekNummer;
     }
 
-    public void setWeekNummer(int weekNummer) {
+    public void setWeekNummer(String weekNummer) {
         this.weekNummer = weekNummer;
     }
 
@@ -81,5 +107,47 @@ public class MRooster {
 
     public void setZiek(boolean ziek) {
         this.ziek = ziek;
+    }
+
+    public boolean isVast() {
+        return vast;
+    }
+
+    public void setVast(boolean vast) {
+        this.vast = vast;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MRooster mRooster = (MRooster) o;
+
+        if (ziek != mRooster.ziek) return false;
+        if (vast != mRooster.vast) return false;
+        if (medewerker != null ? !medewerker.equals(mRooster.medewerker) : mRooster.medewerker != null) return false;
+        if (weekNummer != null ? !weekNummer.equals(mRooster.weekNummer) : mRooster.weekNummer != null) return false;
+        if (dag != null ? !dag.equals(mRooster.dag) : mRooster.dag != null) return false;
+        if (beginTijd != null ? !beginTijd.equals(mRooster.beginTijd) : mRooster.beginTijd != null) return false;
+        if (eindTijd != null ? !eindTijd.equals(mRooster.eindTijd) : mRooster.eindTijd != null) return false;
+        if (pauze != null ? !pauze.equals(mRooster.pauze) : mRooster.pauze != null) return false;
+        if (voornaam != null ? !voornaam.equals(mRooster.voornaam) : mRooster.voornaam != null) return false;
+        return achternaam != null ? achternaam.equals(mRooster.achternaam) : mRooster.achternaam == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = medewerker != null ? medewerker.hashCode() : 0;
+        result = 31 * result + (weekNummer != null ? weekNummer.hashCode() : 0);
+        result = 31 * result + (dag != null ? dag.hashCode() : 0);
+        result = 31 * result + (beginTijd != null ? beginTijd.hashCode() : 0);
+        result = 31 * result + (eindTijd != null ? eindTijd.hashCode() : 0);
+        result = 31 * result + (pauze != null ? pauze.hashCode() : 0);
+        result = 31 * result + (ziek ? 1 : 0);
+        result = 31 * result + (voornaam != null ? voornaam.hashCode() : 0);
+        result = 31 * result + (achternaam != null ? achternaam.hashCode() : 0);
+        result = 31 * result + (vast ? 1 : 0);
+        return result;
     }
 }

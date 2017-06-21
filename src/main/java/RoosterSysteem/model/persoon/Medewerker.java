@@ -1,9 +1,16 @@
 package RoosterSysteem.model.persoon;
 
+import RoosterSysteem.model.mRooster.MRooster;
+import RoosterSysteem.sql.MRoosterDAO;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class Medewerker extends Persoon {
+public class Medewerker extends Persoon implements Serializable {
+    private ArrayList<MRooster> mRoosters;
     public Medewerker() {
     }
 

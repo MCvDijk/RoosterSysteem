@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="RoosterSysteem.model.persoon.Client" table="client">
+        <composite-id>
+            <key-property name="voornaam" column="voornaam"/>
+            <key-property name="achternaam" column="achternaam"/>
+        </composite-id>
+        <property name="adres" column="adres"/>
+        <property name="plaats" column="plaats"/>
+        <property name="email" column="email"/>
+        <property name="telefoonNummer" column="telefoonnummer"/>
+        <property name="medicijn" column="medicijn"/>
+        <property name="verzorger" column="verzorger"/>
+    </class>
+
+    <class name="RoosterSysteem.model.persoon.Medewerker" table="medewerker">
+        <composite-id>
+            <key-property name="voornaam" column="voornaam"/>
+            <key-property name="achternaam" column="achternaam"/>
+        </composite-id>
+        <property name="adres" column="adres"/>
+        <property name="plaats" column="plaats"/>
+        <property name="email" column="email"/>
+        <property name="telefoonNummer" column="telefoonnummer"/>
+    </class>
+
+    <class name="RoosterSysteem.model.school.School" table="school">
+        <id name="naam" column="naam"/>
+        <property name="adres" column="adres"/>
+        <property name="plaats" column="plaats"/>
+        <property name="telefoonNummer" column="telefoonnummer"/>
+    </class>
+
+    <class name="RoosterSysteem.model.mRooster.MRooster" table="medewerkerrooster">
+        <composite-id>
+            <key-property name="voornaam" column="voornaam"/>
+            <key-property name="achternaam" column="achternaam"/>
+            <key-property name="weekNummer" column="weeknummer"/>
+            <key-property name="dag" column="dag"/>
+        </composite-id>
+        <property name="beginTijd" column="begintijd"/>
+        <property name="pauze" column="pauze"/>
+        <property name="eindTijd" column="eindtijd"/>
+        <property name="ziek" column="ziek"/>
+    </class>
+
+    <class name="RoosterSysteem.model.cRooster.CRooster" table="clientrooster">
+        <composite-id>
+            <key-property name="voornaam" column="voornaam"/>
+            <key-property name="achternaam" column="achternaam"/>
+            <key-property name="weekNummer" column="weeknummer"/>
+            <key-property name="dag" column="dag"/>
+        </composite-id>
+        <property name="aankomst" column="aankomst"/>
+        <property name="aankomstTijd" column="aankomsttijd"/>
+        <property name="vertrek" column="vertrek"/>
+        <property name="vertrekTijd" column="vertrektijd"/>
+        <property name="slapen" column="slapen"/>
+        <property name="afwezig" column="afwezig"/>
+    </class>
+
+</hibernate-mapping>

@@ -2,13 +2,14 @@ package RoosterSysteem.model.cRooster;
 
 import RoosterSysteem.model.persoon.Client;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class CRooster {
+public class CRooster implements Serializable {
     private Client client;
     private int weekNummer;
     private String dag;
@@ -19,8 +20,10 @@ public class CRooster {
     private boolean slapen;
     private String medicijn;
     private boolean afwezig;
+    private String voornaam;
+    private String achternaam;
 
-    public CRooster(Client client, int weekNummer, String dag, String aankomst, LocalTime aankomstTijd, String vertrek, LocalTime vertrekTijd, boolean slapen, String medicijn, boolean afwezig) {
+    public CRooster(Client client, int weekNummer, String dag, String aankomst, LocalTime aankomstTijd, String vertrek, LocalTime vertrekTijd, boolean slapen, String medicijn, boolean afwezig, String voornaam, String achternaam) {
         this.client = client;
         this.weekNummer = weekNummer;
         this.dag = dag;
@@ -31,6 +34,27 @@ public class CRooster {
         this.slapen = slapen;
         this.medicijn = medicijn;
         this.afwezig = afwezig;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+
+    public CRooster() {
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
+
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
     }
 
     public Client getClient() {
@@ -111,5 +135,45 @@ public class CRooster {
 
     public void setAfwezig(boolean afwezig) {
         this.afwezig = afwezig;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CRooster cRooster = (CRooster) o;
+
+        if (weekNummer != cRooster.weekNummer) return false;
+        if (slapen != cRooster.slapen) return false;
+        if (afwezig != cRooster.afwezig) return false;
+        if (client != null ? !client.equals(cRooster.client) : cRooster.client != null) return false;
+        if (dag != null ? !dag.equals(cRooster.dag) : cRooster.dag != null) return false;
+        if (aankomst != null ? !aankomst.equals(cRooster.aankomst) : cRooster.aankomst != null) return false;
+        if (aankomstTijd != null ? !aankomstTijd.equals(cRooster.aankomstTijd) : cRooster.aankomstTijd != null)
+            return false;
+        if (vertrek != null ? !vertrek.equals(cRooster.vertrek) : cRooster.vertrek != null) return false;
+        if (vertrekTijd != null ? !vertrekTijd.equals(cRooster.vertrekTijd) : cRooster.vertrekTijd != null)
+            return false;
+        if (medicijn != null ? !medicijn.equals(cRooster.medicijn) : cRooster.medicijn != null) return false;
+        if (voornaam != null ? !voornaam.equals(cRooster.voornaam) : cRooster.voornaam != null) return false;
+        return achternaam != null ? achternaam.equals(cRooster.achternaam) : cRooster.achternaam == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = client != null ? client.hashCode() : 0;
+        result = 31 * result + weekNummer;
+        result = 31 * result + (dag != null ? dag.hashCode() : 0);
+        result = 31 * result + (aankomst != null ? aankomst.hashCode() : 0);
+        result = 31 * result + (aankomstTijd != null ? aankomstTijd.hashCode() : 0);
+        result = 31 * result + (vertrek != null ? vertrek.hashCode() : 0);
+        result = 31 * result + (vertrekTijd != null ? vertrekTijd.hashCode() : 0);
+        result = 31 * result + (slapen ? 1 : 0);
+        result = 31 * result + (medicijn != null ? medicijn.hashCode() : 0);
+        result = 31 * result + (afwezig ? 1 : 0);
+        result = 31 * result + (voornaam != null ? voornaam.hashCode() : 0);
+        result = 31 * result + (achternaam != null ? achternaam.hashCode() : 0);
+        return result;
     }
 }

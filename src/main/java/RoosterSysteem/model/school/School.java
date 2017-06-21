@@ -4,34 +4,24 @@ package RoosterSysteem.model.school;
  * Created by slettebak on 19-Jun-17.
  */
 public class School {
-    private String voornaam;
-    private String achternaam;
+    private String naam;
     private String adres;
     private String plaats;
     private int telefoonNummer;
 
-    public School(String voornaam, String achternaam, String adres, String plaats, int telefoonNummer) {
-        this.voornaam = voornaam;
-        this.achternaam = achternaam;
+    public School(String naam, String adres, String plaats, int telefoonNummer) {
+        this.naam = naam;
         this.adres = adres;
         this.plaats = plaats;
         this.telefoonNummer = telefoonNummer;
     }
 
-    public String getVoornaam() {
-        return voornaam;
+    public String getNaam() {
+        return naam;
     }
 
-    public void setVoornaam(String voornaam) {
-        this.voornaam = voornaam;
-    }
-
-    public String getAchternaam() {
-        return achternaam;
-    }
-
-    public void setAchternaam(String achternaam) {
-        this.achternaam = achternaam;
+    public void setNaam(String naam) {
+        this.naam = naam;
     }
 
     public String getAdres() {

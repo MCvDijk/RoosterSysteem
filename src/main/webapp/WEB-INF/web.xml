@@ -10,13 +10,17 @@
 
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>RoosterSysteem.webservices</param-value>
+            <param-value>RoosterSysteem.controller</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Jersey REST Service</servlet-name>
-        <url-pattern>/restservices/*</url-pattern>
+        <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>RoosterSysteem.HibernateListener</listener-class>
+    </listener>
 </web-app>
