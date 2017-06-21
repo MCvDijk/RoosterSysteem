@@ -1,8 +1,7 @@
 package RoosterSysteem.controller;
 
-import RoosterSysteem.model.RS;
-import RoosterSysteem.model.mRooster.MRooster;
-import RoosterSysteem.model.persoon.Medewerker;
+import RoosterSysteem.Model.RS;
+import RoosterSysteem.Model.mRooster.MRooster;
 
 
 import javax.json.*;

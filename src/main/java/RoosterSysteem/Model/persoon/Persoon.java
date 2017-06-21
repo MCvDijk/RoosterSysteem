@@ -1,4 +1,4 @@
-package RoosterSysteem.model.persoon;
+package RoosterSysteem.Model.persoon;
 
 import java.io.Serializable;
 

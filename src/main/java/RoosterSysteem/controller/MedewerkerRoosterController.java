@@ -1,19 +1,15 @@
 package RoosterSysteem.controller;
 
-import RoosterSysteem.model.RS;
-import RoosterSysteem.model.mRooster.MRooster;
-import RoosterSysteem.model.persoon.Medewerker;
-import RoosterSysteem.sql.CRoosterDAO;
-import RoosterSysteem.sql.MRoosterDAO;
-import RoosterSysteem.sql.MedewerkerDAO;
+import RoosterSysteem.Model.RS;
+import RoosterSysteem.Model.mRooster.MRooster;
+import RoosterSysteem.Model.persoon.Medewerker;
+import RoosterSysteem.Persistence.sql.MRoosterDAO;
 
 
 import javax.json.*;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.time.LocalTime;
 import java.util.ArrayList;

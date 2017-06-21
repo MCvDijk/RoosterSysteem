@@ -1,9 +1,8 @@
-package RoosterSysteem.model.mRooster;
+package RoosterSysteem.Model.mRooster;
 
-import RoosterSysteem.model.persoon.Medewerker;
+import RoosterSysteem.Model.persoon.Medewerker;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**

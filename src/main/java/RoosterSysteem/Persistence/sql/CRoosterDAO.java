@@ -1,9 +1,9 @@
-package RoosterSysteem.sql;
+package RoosterSysteem.Persistence.sql;
 
-import RoosterSysteem.HibernateUtil;
+import RoosterSysteem.Persistence.HibernateUtil;
+import RoosterSysteem.Model.cRooster.CRooster;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import RoosterSysteem.model.persoon.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,19 +11,17 @@ import java.util.List;
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class ClientDAO {
+public class CRoosterDAO extends BaseDAO {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    public ArrayList<Client> getClienten(){
-        ArrayList<Client> results = new ArrayList<Client>();
+    public ArrayList<CRooster> getClientRooster() {
+        ArrayList<CRooster> results = new ArrayList<CRooster>();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List result = session.createQuery("from Client ").list();
+        List result = session.createQuery("from CRooster ").list();
         results.addAll(result);
-        session.getTransaction().commit();
         session.close();
         return results;
     }
-
 
 }
