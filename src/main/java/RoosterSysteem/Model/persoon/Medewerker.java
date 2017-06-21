@@ -1,7 +1,6 @@
-package RoosterSysteem.model.persoon;
+package RoosterSysteem.Model.persoon;
 
-import RoosterSysteem.model.mRooster.MRooster;
-import RoosterSysteem.sql.MRoosterDAO;
+import RoosterSysteem.Model.mRooster.MRooster;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package RoosterSysteem.controller;
 
-import RoosterSysteem.model.RS;
-import RoosterSysteem.model.persoon.Medewerker;
+import RoosterSysteem.Model.persoon.Medewerker;
 
 
 import javax.json.*;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 
 @Path("/persoon")
 public class MedewerkerInroosterController {
-    private RS informatieSysteem = RS.getInstance();
 
     @POST
     @Path("/medewerkers/ophalen")

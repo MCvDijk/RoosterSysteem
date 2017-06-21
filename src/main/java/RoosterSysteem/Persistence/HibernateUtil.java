@@ -1,4 +1,4 @@
-package RoosterSysteem;
+package RoosterSysteem.Persistence;
 
 
 import org.hibernate.SessionFactory;

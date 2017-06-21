@@ -1,4 +1,4 @@
-package RoosterSysteem.model.school;
+package RoosterSysteem.Model.school;
 
 /**
  * Created by slettebak on 19-Jun-17.

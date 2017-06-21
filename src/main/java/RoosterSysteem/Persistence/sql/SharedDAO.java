@@ -1,41 +1,35 @@
-package RoosterSysteem.sql;
+package RoosterSysteem.Persistence.sql;
 
-import RoosterSysteem.HibernateUtil;
-import RoosterSysteem.model.mRooster.MRooster;
+import RoosterSysteem.Persistence.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by slettebak on 19-Jun-17.
+ * Created by Silvermage on 21-6-2017.
  */
-public class MRoosterDAO {
+public class SharedDAO {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    public ArrayList<MRooster> getMedewerkerRooster(){
-        ArrayList<MRooster> results = new ArrayList<MRooster>();
+    public void writeDAO(Object o){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List result = session.createQuery("from MRooster ").list();
-        results.addAll(result);
-        session.getTransaction().commit();
-        session.close();
-        return results;
-    }
-    public void writeMedewerkerRooster(MRooster mRooster){
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.save(mRooster);
+        session.save(o);
         session.getTransaction().commit();
         session.close();
     }
 
-    public void updateMedewerkerRooster(MRooster mRooster){
+    public void updateDAO(Object o){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(mRooster);
+        session.update(o);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void deleteDAO(Object o){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.delete(o);
         session.getTransaction().commit();
         session.close();
     }

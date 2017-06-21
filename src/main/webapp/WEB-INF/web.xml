@@ -21,6 +21,6 @@
     </servlet-mapping>
 
     <listener>
-        <listener-class>RoosterSysteem.HibernateListener</listener-class>
+        <listener-class>RoosterSysteem.Persistence.HibernateListener</listener-class>
     </listener>
 </web-app>

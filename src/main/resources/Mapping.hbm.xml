@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="RoosterSysteem.model.persoon.Client" table="client">
+    <class name="RoosterSysteem.Model.persoon.Client" table="client">
         <composite-id>
             <key-property name="voornaam" column="voornaam"/>
             <key-property name="achternaam" column="achternaam"/>
@@ -18,7 +18,7 @@
         <property name="verzorger" column="verzorger"/>
     </class>
 
-    <class name="RoosterSysteem.model.persoon.Medewerker" table="medewerker">
+    <class name="RoosterSysteem.Model.persoon.Medewerker" table="medewerker">
         <composite-id>
             <key-property name="voornaam" column="voornaam"/>
             <key-property name="achternaam" column="achternaam"/>
@@ -29,14 +29,14 @@
         <property name="telefoonNummer" column="telefoonnummer"/>
     </class>
 
-    <class name="RoosterSysteem.model.school.School" table="school">
+    <class name="RoosterSysteem.Model.school.School" table="school">
         <id name="naam" column="naam"/>
         <property name="adres" column="adres"/>
         <property name="plaats" column="plaats"/>
         <property name="telefoonNummer" column="telefoonnummer"/>
     </class>
 
-    <class name="RoosterSysteem.model.mRooster.MRooster" table="medewerkerrooster">
+    <class name="RoosterSysteem.Model.mRooster.MRooster" table="medewerkerrooster">
         <composite-id>
             <key-property name="voornaam" column="voornaam"/>
             <key-property name="achternaam" column="achternaam"/>
@@ -49,7 +49,7 @@
         <property name="ziek" column="ziek"/>
     </class>
 
-    <class name="RoosterSysteem.model.cRooster.CRooster" table="clientrooster">
+    <class name="RoosterSysteem.Model.cRooster.CRooster" table="clientrooster">
         <composite-id>
             <key-property name="voornaam" column="voornaam"/>
             <key-property name="achternaam" column="achternaam"/>

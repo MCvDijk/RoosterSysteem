@@ -1,6 +1,6 @@
-package RoosterSysteem.model.persoon;
+package RoosterSysteem.Model.persoon;
 
-import RoosterSysteem.model.school.School;
+import RoosterSysteem.Model.school.School;
 
 import java.io.Serializable;
 
