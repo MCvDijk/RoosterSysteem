@@ -173,6 +173,7 @@ public class MedewerkerRoosterController {
                 String begintijd = data_jsonobject.getString("begintijd");
                 String pauze = "00:30";
                 String eindtijd = data_jsonobject.getString("eindtijd");
+
                 if (!begintijd.equals("") || !eindtijd.equals("")) {
                     System.out.println("ja kom op");
                     if (rooster.size() == 0) {
@@ -182,7 +183,7 @@ public class MedewerkerRoosterController {
                     } else {
                         for (MRooster mr : rooster) {
                             if (!mr.getWeekNummer().equals(weeknummer)
-                                    || !mr.getDag().equals(dag)) {
+                                    && !mr.getDag().equals(dag)) {
                                 System.out.println("ik ben hier");
 
                                 MRooster mRooster = new MRooster(
