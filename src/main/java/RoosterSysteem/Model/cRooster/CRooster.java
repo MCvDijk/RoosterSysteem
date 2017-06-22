@@ -5,9 +5,6 @@ import RoosterSysteem.Model.persoon.Client;
 import java.io.Serializable;
 import java.time.LocalTime;
 
-/**
- * Created by slettebak on 19-Jun-17.
- */
 public class CRooster implements Serializable {
     private Client client;
     private int weekNummer;

@@ -8,11 +8,9 @@ import RoosterSysteem.Service.ServiceProvider;
 
 import javax.json.*;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
 
 /**
  * Created by slettebak on 22-Jun-17.

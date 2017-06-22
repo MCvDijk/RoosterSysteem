@@ -1,8 +1,8 @@
 package RoosterSysteem.Model.persoon;
-
 import RoosterSysteem.Model.school.School;
 
 import java.io.Serializable;
+
 
 public class Client extends Persoon implements Serializable {
     private String medicijn;

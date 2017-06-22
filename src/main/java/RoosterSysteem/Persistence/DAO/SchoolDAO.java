@@ -1,9 +1,9 @@
-package RoosterSysteem.Persistence.sql;
+package RoosterSysteem.Persistence.DAO;
 
 import RoosterSysteem.Persistence.HibernateUtil;
+import RoosterSysteem.Model.school.School;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import RoosterSysteem.Model.persoon.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +11,16 @@ import java.util.List;
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class ClientDAO extends SharedDAO {
+public class SchoolDAO extends SharedDAO{
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    public ArrayList<Client> getClienten(){
-        ArrayList<Client> results = new ArrayList<Client>();
+    public ArrayList<School> getScholen(){
+        ArrayList<School> results = new ArrayList<School>();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List result = session.createQuery("from Client ").list();
+        List result = session.createQuery("from School ").list();
         results.addAll(result);
         session.close();
         return results;
     }
-
-
 }

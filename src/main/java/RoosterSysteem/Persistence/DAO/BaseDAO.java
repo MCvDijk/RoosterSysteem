@@ -1,4 +1,4 @@
-package RoosterSysteem.Persistence.sql;
+package RoosterSysteem.Persistence.DAO;
 
 
 public class BaseDAO {

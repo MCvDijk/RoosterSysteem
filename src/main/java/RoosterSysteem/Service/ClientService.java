@@ -1,8 +1,8 @@
 package RoosterSysteem.Service;
 
 import RoosterSysteem.Model.persoon.Client;
-import RoosterSysteem.Persistence.sql.BaseDAO;
-import RoosterSysteem.Persistence.sql.ClientDAO;
+import RoosterSysteem.Persistence.DAO.BaseDAO;
+import RoosterSysteem.Persistence.DAO.ClientDAO;
 
 
 import java.util.List;

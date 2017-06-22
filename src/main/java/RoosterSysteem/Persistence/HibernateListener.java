@@ -13,3 +13,4 @@ public class HibernateListener implements ServletContextListener {
         HibernateUtil.getSessionFactory().close(); // Free all resources
     }
 }
+

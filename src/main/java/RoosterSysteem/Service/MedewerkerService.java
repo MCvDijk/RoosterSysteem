@@ -1,8 +1,8 @@
 package RoosterSysteem.Service;
 
 import RoosterSysteem.Model.persoon.Medewerker;
-import RoosterSysteem.Persistence.sql.BaseDAO;
-import RoosterSysteem.Persistence.sql.MedewerkerDAO;
+import RoosterSysteem.Persistence.DAO.BaseDAO;
+import RoosterSysteem.Persistence.DAO.MedewerkerDAO;
 
 import java.util.List;
 

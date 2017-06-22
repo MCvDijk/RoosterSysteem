@@ -5,7 +5,6 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
     <class name="RoosterSysteem.Model.school.School" table="school">
         <id name="naam" column="naam"/>
         <property name="adres" column="adres"/>

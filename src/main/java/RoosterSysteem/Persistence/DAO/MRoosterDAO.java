@@ -1,4 +1,4 @@
-package RoosterSysteem.Persistence.sql;
+package RoosterSysteem.Persistence.DAO;
 
 import RoosterSysteem.Persistence.HibernateUtil;
 import RoosterSysteem.Model.mRooster.MRooster;
