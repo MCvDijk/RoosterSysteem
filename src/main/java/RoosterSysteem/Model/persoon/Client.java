@@ -4,9 +4,6 @@ import RoosterSysteem.Model.school.School;
 
 import java.io.Serializable;
 
-/**
- * Created by slettebak on 19-Jun-17.
- */
 public class Client extends Persoon implements Serializable {
     private String medicijn;
     private String verzorger;

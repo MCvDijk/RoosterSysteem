@@ -1,3 +1,4 @@
+/*
 package RoosterSysteem.controller;
 
 import RoosterSysteem.Model.persoon.Medewerker;
@@ -37,7 +38,8 @@ public class MedewerkerInroosterController {
     }
 }
 
-  /*  @POST
+  */
+/*  @POST
     @Path("/medestudenten/opslaan")
     @Produces("application/json")
     public String opslaan(String jsonBody) {
@@ -79,3 +81,4 @@ public class MedewerkerInroosterController {
     }
 }
 */
+

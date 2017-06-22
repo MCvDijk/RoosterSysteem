@@ -7,20 +7,20 @@ import RoosterSysteem.Persistence.sql.MRoosterDAO;
 
 import java.util.List;
 
-public class mRoosterService {
+public class MRoosterService {
     private MRoosterDAO dao = BaseDAO.getMRoosterDAO();
 
     public List<MRooster> getAllMRooster(){
         return dao.getMedewerkerRooster();
     }
 
-    public void writeMRooster(MRooster m){dao.WriteDAO(m);}
+    public void writeMRooster(MRooster m){dao.writeDAO(m);}
 
-    public void updateVereniging(MRooster m){
-        dao.updateEntity(v);
+    public void updateMRooster(MRooster m){
+        dao.updateDAO(m);
     }
 
-    public void deleteVereniging(MRooster m){
-        dao.deleteEntity(v);
+    public void deleteMRooster(MRooster m){
+        dao.deleteDAO(m);
     }
 }

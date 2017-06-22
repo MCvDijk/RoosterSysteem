@@ -1,9 +1,11 @@
 package RoosterSysteem.Model.school;
 
+import java.io.Serializable;
+
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class School {
+public class School implements Serializable {
     private String naam;
     private String adres;
     private String plaats;
@@ -14,6 +16,9 @@ public class School {
         this.adres = adres;
         this.plaats = plaats;
         this.telefoonNummer = telefoonNummer;
+    }
+
+    public School() {
     }
 
     public String getNaam() {

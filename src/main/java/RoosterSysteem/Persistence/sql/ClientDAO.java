@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class ClientDAO extends BaseDAO {
+public class ClientDAO extends SharedDAO {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public ArrayList<Client> getClienten(){

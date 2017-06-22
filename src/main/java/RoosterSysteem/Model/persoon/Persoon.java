@@ -23,6 +23,10 @@ public abstract class Persoon implements Serializable {
         this.telefoonNummer = telefoonNummer;
     }
 
+    public String getVolledigeNaam(String voornaam,String achternaam){
+        return voornaam + " " + achternaam;
+    }
+
     public String getVoornaam() {
         return this.voornaam;
     }

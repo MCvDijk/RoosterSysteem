@@ -5,6 +5,14 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
+
+    <class name="RoosterSysteem.Model.school.School" table="school">
+        <id name="naam" column="naam"/>
+        <property name="adres" column="adres"/>
+        <property name="plaats" column="plaats"/>
+        <property name="telefoonNummer" column="telefoonnummer"/>
+    </class>
+
     <class name="RoosterSysteem.Model.persoon.Client" table="client">
         <composite-id>
             <key-property name="voornaam" column="voornaam"/>
@@ -26,13 +34,6 @@
         <property name="adres" column="adres"/>
         <property name="plaats" column="plaats"/>
         <property name="email" column="email"/>
-        <property name="telefoonNummer" column="telefoonnummer"/>
-    </class>
-
-    <class name="RoosterSysteem.Model.school.School" table="school">
-        <id name="naam" column="naam"/>
-        <property name="adres" column="adres"/>
-        <property name="plaats" column="plaats"/>
         <property name="telefoonNummer" column="telefoonnummer"/>
     </class>
 

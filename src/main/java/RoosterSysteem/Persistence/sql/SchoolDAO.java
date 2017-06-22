@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class SchoolDAO extends BaseDAO{
+public class SchoolDAO extends SharedDAO{
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public ArrayList<School> getScholen(){

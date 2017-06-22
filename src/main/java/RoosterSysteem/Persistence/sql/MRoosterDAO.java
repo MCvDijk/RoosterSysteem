@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by slettebak on 19-Jun-17.
  */
-public class MRoosterDAO extends BaseDAO {
+public class MRoosterDAO extends SharedDAO {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public ArrayList<MRooster> getMedewerkerRooster() {
