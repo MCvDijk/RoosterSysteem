@@ -57,32 +57,18 @@
       }
     </style>
 
-    <paper-toast id="toast_reeds_aangelogd" duration="0" text="U bent al ingelogd!">
-      <paper-button on-click="_toast_clicked" class="toast-button">Sluiten</paper-button>
-    </paper-toast>
+    <form is="iron-form" id="login_form" method="post" action="/services/authentication"
+          on-iron-form-response="responseHandler">
+      <paper-input id="username" on-keydown="_checkForEnter" type="gebruikersnaam" required label="Gebrukersnaam" name="username"
+                   value="{{_username}}"></paper-input>
+      <paper-input id="password" on-keydown="_checkForEnter" required label="Wachtwoord" type="password"
+                   name="password"
+                   value="{{_password}}"></paper-input>
+      <p id="message">{{message}}</p>
+      <br/>
+      <paper-button id="login" class="login_button color-button" on-click="_login_handler" raised>Inloggen</paper-button>
+    </form>
 
-    <div class="usericondiv">
-      <iron-icon icon="icons:perm-identity" class="my-icon"></iron-icon>
-    </div>
-    <div class="my-input">
-      <paper-input id="email_element" on-keydown="_checkForEnter" label="gebruikersnaam" value="{{username}}"></paper-input>
-      <paper-input id="wachtwoord_element" on-keydown="_checkForEnter" label="wachtwoord" type="password" value="{{_password}}"></paper-input>
-    </div>
-    <paper-button
-      id="login_button_element"
-      class="my-button"
-      on-click="_ophalen_login_request_handler"
-      raised>
-        Inloggen
-    </paper-button>
-
-    <iron-ajax
-      id="ajax_login"
-      method="POST"
-      url="/services/login"
-      handle-as="json"
-      on-response="_ophalen_login_response_handler">
-    </iron-ajax>
 
   </template>
 
@@ -157,7 +143,7 @@
           this.rol = request.detail.response.rol;
           /* this._password = ""; /* om snel te kunnen testen is dit verwijderd */
           if (this.rol == "undefined") {                    //als aanloggen mislukt
-            this.$.email_element.invalid = true;                // markeer email-element
+            this.$.email_element.invalid = true;                // markeer gebruikersnaam-element
             this.$.wachtwoord_element.invalid = true;           // markeer wachtwoord-element
 
           } else {                                            // als aanloggen ok

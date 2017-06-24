@@ -28,7 +28,7 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
         <!-- Disable second-level cache -->
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
         <property name="cache.use_query_cache">false</property>
         <property name="cache.use_minimal_puts">false</property>
         <property name="max_fetch_depth">3</property>
@@ -38,10 +38,10 @@
         <property name="format_sql">true</property>
 
         <!-- Update schema as needed -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">validate</property>
 
         <!-- Bind the getCurrentSession() method to the thread. -->
-        <!--<property name="current_session_context_class">thread</property>-->
+        <property name="current_session_context_class">thread</property>
 
         <!-- Hibernate mapping file -->
         <mapping resource="Mapping.hbm.xml"/>

@@ -5,6 +5,9 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+
+
 
 <dom-module id="my-client-toevoegen">
     <template>
@@ -13,97 +16,88 @@
                 display: block;
             }
 
-            paper-button{
+            paper-button {
                 background-color: #fff;
                 color: #404040;
             }
-            paper-input{
-             text-align: center;
-            }
-            gold-phone-input{
+
+            paper-input {
                 text-align: center;
             }
-            gold-email-input {
+
+            paper-dropdown-menu {
                 text-align: center;
+                width: 100%;
+            }
+
+            paper-button {
+                text-align: center;
+                width: 100%;
             }
 
 
         </style>
-        <div class="card">
-            <paper-input label="Voornaam" value="{{voorNaam}}"></paper-input>
-            <paper-input label="Achternaam" value="{{achternaam}}"></paper-input>
-            <paper-input label="Adres" value="{{adres}}"></paper-input>
-            <paper-input label="Plaats" value="{{plaats}}"></paper-input>
-            <paper-input label="Medicijnen" value="{{medicijn}}"></paper-input>
-            <paper-input label="Verzorger" value="{{verzorger}}"></paper-input>
-            <paper-input label="Telefoonnummer" value="{{telnummer}}"></paper-input>
-            <paper-input label="Email" value="{{email}}"></paper-input>
-            <paper-input label="School" value="{{school}}"></paper-input>
+        <form is="iron-form" id="client_registreren" method="post" action="/services/client/registreren">
+            <div class="card">
+                <paper-input required label="Voornaam" id="voornaam" name="voornaam"></paper-input>
+                <paper-input required label="Achternaam" id="achternaam" name="achternaam"></paper-input>
+                <paper-input required label="Adres" id="adres" name="adres"></paper-input>
+                <paper-input required label="Plaats" id="plaats" name="plaats"></paper-input>
+                <paper-input required label="Medicijnen" id="medicijnen" name="medicijnen"></paper-input>
+                <paper-input required label="Verzorger" id="verzorger" name="verzorger"></paper-input>
+                <paper-input required label="Telefoonnummer" id="telefoonnummer" name="telefoonnummer"></paper-input>
+                <paper-input required label="Email" id="email" name="email"></paper-input>
+                <paper-dropdown-menu id="scholen" label="scholen" name="scholen">
+                    <paper-listbox slot="dropdown-content" selected="0">
+                        <template is="dom-repeat" items="{{scholen}}">
+                            <paper-item>{{item.naam}}</paper-item>
+                        </template>
+                    </paper-listbox>
+                </paper-dropdown-menu>
+                <br>
 
+                <paper-button id="registreren" on-click="_registreren_handler" raised>
+                    Client Registreren
+                </paper-button>
 
-            <paper-button on-tap="Client_toevoegen">Cliënt Registeren</paper-button>
-
-
-            <iron-ajax id="client-toevoegen"
-                       method="POST"
-                       url="/cgi-bin/gerecht-toevoegen.py"
-                       handle-as="json"
-                       on-response="gerechtToevoegen_ResponseHandler">
-            </iron-ajax>
-        </div>
+            </div>
+        </form>
+        <iron-ajax
+                id="ajax_scholen_ophalen"
+                url="/services/school/scholen/ophalen"
+                last-response="{{scholen}}">
+        </iron-ajax>
     </template>
     <script>
         Polymer({
             is: "my-client-toevoegen",
             properties: {
-                voornaam: {
-                    type: String
+                scholen: Object,
+                c_visible: {
+                    type: Boolean, /* true when element is the active visible item */
+                    value: false,
+                    observer: '_initializing', /* wordt ook aangeroepen bijwisseling van true naar false.
+                     regel in de functie dat er niets gebeurd
+                     als c_visible false is */
                 },
-                achternaam: {
-                    type: String
-                },
-                adres: {
-                    type: String
-                },
-                plaats:{
-                    type: String
-                },
-                medicijnen: {
-                    type: String
-                },
-                verzorger: {
-                    type: String
-                },
-                telnummer: {
-                    type: String
-                },
-                email:{
-                    type: String
-                },
-                school:{
-                    type:String
+            },
+
+            _initializing: function () {
+                if (this.c_visible) {
+                    this._scholen_ophalen_request_handler();
+
                 }
             },
-
-            client_toeveogen: function () {
-                this.$['client-toevoegen'].contentType = "application/json";
-                this.$['client-toevoegen'].body = {
-                    voornaam: this.voornaam,
-                    achternaam: this.achternaam,
-                    adres: this.adres,
-                    plaats: this.plaats,
-                    medicijnen: this.medicijnen,
-                    verzorger: this.verzorger,
-                    telnummer: this.telnummer,
-                    email: this.email,
-                    school: this.school,
-                };
-                this.$['gerecht-toevoegen'].generateRequest();
+            _scholen_ophalen_request_handler: function () {
+                this.$.ajax_scholen_ophalen.generateRequest();
             },
 
-            gerechtToevoegen_ResponseHandler: function (request_confirm) {
-                console.log("Response: " + request_confirm.detail.response.errorCode);
+            _registreren_handler() {
+                if (this.$.client_registreren.validate()) {
+                    this.$.client_registreren.submit();
+                }
             }
+
         });
     </script>
 </dom-module>

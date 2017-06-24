@@ -10,7 +10,11 @@
 
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>RoosterSysteem.controller</param-value>
+            <param-value>RoosterSysteem.WebServices</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -21,6 +25,6 @@
     </servlet-mapping>
 
     <listener>
-        <listener-class>RoosterSysteem.HibernateListener</listener-class>
+        <listener-class>RoosterSysteem.Persistence.HibernateListener</listener-class>
     </listener>
 </web-app>

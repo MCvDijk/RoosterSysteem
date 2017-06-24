@@ -6,9 +6,6 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
-<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
-<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid-column.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 
@@ -21,18 +18,23 @@
             :host {
                 display: block;
             }
+            .medewerker_box{
+                width:200px;
 
-            paper-button{
+            }
+
+            paper-button {
                 background-color: #fff;
                 color: #404040;
             }
-            paper-input{
-             text-align: center;
-            }
-            vaadin-combo-box{
-                width: 300px;
+
+            paper-input {
+                text-align: center;
             }
 
+            td, th {
+                padding: 2px;
+            }
             .dag{
                 width: 150px;
                 text-align: center;
@@ -42,11 +44,6 @@
                 text-align: center;
 
             }
-            .pauze{
-                width:100px;
-                text-align: center;
-            }
-
             .eindtijd{
                 width: 100px;
                 text-align: center;
@@ -59,224 +56,96 @@
             .space{
                 width:10px;
             }
-            paper-time-input{
-                max-width: 100px;
-                margin: 0 auto;
-                padding: 10px;
-            }
 
         </style>
-        <table>
-            <tr>
-                <td>
-                    <vaadin-combo-box id="medewerker" label="medewerker" items="[[_c_medewerkers]]" item-value-path="naam" item-label-path="naam" on-change="medewerker_rooster_ophalen">
-                        <template>
-                            [[item.naam]]
-                        </template>
-                    </vaadin-combo-box>
-                </td>
-                <td class="space"></td>
-                <td>
-                    <input type="week" id="datemedewerker" value="2017-W26" on-change="medewerker_rooster_ophalen"/>
-                </td>
-            </tr>
-        </table>
-            <vaadin-grid items="[[_result]]" style="height:800px;">
-                <vaadin-grid-column>
-                    <template class="header">Rooster van [[item.naam]]</template>
-                    <template>
-                        <table>
-                            <tr>
-                                <th class="dag">Dag</th>
-                                <th class="begintijd">Begintijd</th>
-                                <!--<th class="pauze">Pauze</th>-->
-                                <th class="eindtijd">Eindtijd</th>
-                                <th class="vast">Vast</th>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <td class="dag" >
-                                    <label >Maandag</label>
-                                </td>
-                                <td class="begintijd">
-                                    <paper-time-input id="mabegintijd"  format="24" autoValidate="true" hour="[[item.mabegintijdh]]" min="[[item.mabegintijdm]]"></paper-time-input>
-                                </td>
-                                <!--<td class="pauze" >
-                                    <paper-time-input id="mapauze" format="24" autoValidate="true" hour="[[item.mapauzeh]]" min="[[item.mapauzem]]"></paper-time-input>
-                                </td>-->
-                                <td class="eindtijd" >
-                                    <paper-time-input id="maeindtijd" format="24" autoValidate="true" hour="[[item.maeindtijdh]]" min="[[item.maeindtijdm]]"></paper-time-input>
-                                </td>
-                                <td class="vast">
-                                    <paper-checkbox id="mavast"></paper-checkbox>
-                                </td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <td class="dag" >
-                                    <label >Dinsdag</label>
-                                </td>
-                                <td class="begintijd">
-                                    <paper-time-input id="dibegintijd" format="24" autoValidate="true" hour="[[item.dibegintijdh]]" min="[[item.dibegintijdm]]"></paper-time-input>
-                                </td>
-                                <!--<td class="pauze" >
-                                    <paper-time-input id="dipauze" format="24" autoValidate="true" hour="[[item.dipauzeh]]" min="[[item.dipauzem]]"></paper-time-input>
-                                </td>-->
-                                <td class="eindtijd" >
-                                    <paper-time-input id="dieindtijd" format="24" autoValidate="true" hour="[[item.dieindtijdh]]" min="[[item.dieindtijdm]]"></paper-time-input>
-                                </td>
-                                <td class="vast">
-                                    <paper-checkbox id="divast"></paper-checkbox>
-                                </td>
-                            </tr>
-                        </table><table>
-                        <tr>
-                            <td class="dag" >
-                                <label >Woensdag</label>
-                            </td>
-                            <td class="begintijd">
-                                <paper-time-input id="wobegintijd" format="24" autoValidate="true" hour="[[item.wobegintijdh]]" min="[[item.wobegintijdm]]"></paper-time-input>
-                            </td>
-                            <!--<td class="pauze" >
-                                <paper-time-input id="wopauze" format="24" autoValidate="true" hour="[[item.wopauzeh]]" min="[[item.wopauzem]]"></paper-time-input>
-                            </td>-->
-                            <td class="eindtijd" >
-                                <paper-time-input id="woeindtijd" format="24" autoValidate="true" hour="[[item.woeindtijdh]]" min="[[item.woeindtijdm]]"></paper-time-input>
-                            </td>
-                            <td class="vast">
-                                <paper-checkbox id="wovast"></paper-checkbox>
-                            </td>
-                        </tr>
-                    </table><table>
-                        <tr>
-                            <td class="dag" >
-                                <label >Donderdag</label>
-                            </td>
-                            <td class="begintijd">
-                                <paper-time-input id="dobegintijd" format="24" autoValidate="true" hour="[[item.dobegintijdh]]" min="[[item.dobegintijdm]]"></paper-time-input>
-                            </td>
-                            <!--<td class="pauze" >
-                                <paper-time-input id="dopauze" format="24" autoValidate="true" hour="[[item.dopauzeh]]" min="[[item.dopauzem]]"></paper-time-input>
-                            </td>-->
-                            <td class="eindtijd" >
-                                <paper-time-input id="doeindtijd" format="24" autoValidate="true" hour="[[item.doeindtijdh]]" min="[[item.doeindtijdm]]"></paper-time-input>
-                            </td>
-                            <td class="vast">
-                                <paper-checkbox id="dovast"></paper-checkbox>
-                            </td>
-                        </tr>
-                    </table><table>
-                        <tr>
-                            <td class="dag" >
-                                <label >Vrijdag</label>
-                            </td>
-                            <td class="begintijd">
-                                <paper-time-input id="vrbegintijd" format="24" autoValidate="true" hour="[[item.vrbegintijdh]]" min="[[item.vrbegintijdm]]"></paper-time-input>
-                            </td>
-                            <!--<td class="pauze" >
-                                <paper-time-input id="vrpauze" format="24" autoValidate="true" hour="[[item.vrpauzeh]]" min="[[item.vrpauzem]]"></paper-time-input>
-                            </td>-->
-                            <td class="eindtijd" >
-                                <paper-time-input id="vreindtijd" format="24" autoValidate="true" hour="[[item.vreindtijdh]]" min="[[item.vreindtijdm]]"></paper-time-input>
-                            </td>
-                            <td class="vast">
-                                <paper-checkbox id="vrvast"></paper-checkbox>
-                            </td>
-                        </tr>
-                    </table><table>
-                        <tr>
-                            <td class="dag" >
-                                <label >Zaterdag</label>
-                            </td>
-                            <td class="begintijd">
-                                <paper-time-input id="zabegintijd" format="24" autoValidate="true" hour="[[item.zabegintijdh]]" min="[[item.zabegintijdm]]"></paper-time-input>
-                            </td>
-                            <!--<td class="pauze" >
-                                <paper-time-input id="zapauze" format="24" autoValidate="true" hour="[[item.zapauzeh]]" min="[[item.zapauzem]]"></paper-time-input>
-                            </td>-->
-                            <td class="eindtijd" >
-                                <paper-time-input id="zaeindtijd" format="24" autoValidate="true" hour="[[item.zaeindtijdh]]" min="[[item.zaeindtijdm]]"></paper-time-input>
-                            </td>
-                            <td class="vast">
-                                <paper-checkbox id="zavast"></paper-checkbox>
-                            </td>
-                        </tr>
-                    </table><table>
-                        <tr>
-                            <td class="dag" >
-                                <label >Zondag</label>
-                            </td>
-                            <td class="begintijd">
-                                <paper-time-input id="zobegintijd" format="24" autoValidate="true" hour="[[item.zobegintijdh]]" min="[[item.zobegintijdm]]"></paper-time-input>
-                            </td>
-                            <!--<td class="pauze" >
-                                <paper-time-input id="zopauze" format="24" autoValidate="true" hour="[[item.zopauzeh]]" min="[[item.zopauzem]]"></paper-time-input>
-                            </td>-->
-                            <td class="eindtijd" >
-                                <paper-time-input id="zoeindtijd" format="24" autoValidate="true" hour="[[item.zoeindtijdh]]" min="[[item.zoeindtijdm]]"></paper-time-input>
-                            </td>
-                            <td class="vast">
-                                <paper-checkbox id="zovast"></paper-checkbox>
-                            </td>
-                        </tr>
-                    </table>
-                        <br>
-                        <paper-button raised on-click="inroosteren">Submit</paper-button>
-
-                    </template>
-                </vaadin-grid-column>
-
-            </vaadin-grid>
+        <form is="iron-form" id="medewerker_inroosteren" method="post" action="/services/rooster/medewerker/opslaan">
+            <table>
+                <tr>
+                    <td class="space">
+                        <paper-dropdown-menu class="medewerker_box" id="mederwerkers" label="Mederwerkers" name="medewerkers">
+                            <paper-listbox slot="dropdown-content" selected="0">
+                                <template is="dom-repeat" items="{{medewerkers}}">
+                                    <paper-item>{{item.naam}}</paper-item>
+                                </template>
+                            </paper-listbox>
+                        </paper-dropdown-menu>
+                    </td>
+                    <td class="space"></td>
+                    <td class="space">
+                        <input type="week" id="date" name="date" value="{{date}}"/>
+                    </td>
+                </tr>
+            </table>
+            <div class="card">
+                <h1>Medewerker Inroosteren</h1>
+                <table>
+                    <tr>
+                        <th class="dag">Dag</th>
+                        <th class="begintijd">Begintijd</th>
+                        <th class="eindtijd">Eindtijd</th>
+                        <th class="vast">Vast</th>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="dag">
+                            <paper-dropdown-menu label="dag" name="dag" label="dag">
+                                <paper-listbox slot="dropdown-content" selected="0">
+                                    <paper-item>Maandag</paper-item>
+                                    <paper-item>Dinsdag</paper-item>
+                                    <paper-item>Woensdag</paper-item>
+                                    <paper-item>Donderdag</paper-item>
+                                    <paper-item>Vrijdag</paper-item>
+                                    <paper-item>Zaterdag</paper-item>
+                                    <paper-item>Zondag</paper-item>
+                                </paper-listbox>
+                            </paper-dropdown-menu>
+                        </td>
+                        <td class="begintijd">
+                            <paper-input required
+                                         prevent-invalid-input
+                                         allowed-pattern="[\d:]"
+                                         pattern="^([0-9]|0[0-9]|1[0-9]|2[0-3])[0-5][0-9]$"
+                                         placeholder="00:00"
+                                         error-message="24 hour formatted HH:MM"
+                                         maxlength="4"
+                                         minlength="4"
+                                         id="begintijd" name="begintijd" label="begintijd"></paper-input>
+                        </td>
+                        <td class="eindtijd">
+                            <paper-input required
+                                         prevent-invalid-input
+                                         allowed-pattern="[\d:]"
+                                         pattern="([0-9]|0[0-9]|1[0-9]|2[0-3])[0-5][0-9]"
+                                         placeholder="00:00"
+                                         error-message="24 hour formatted HH:MM"
+                                         maxlength="4"
+                                         minlength="4"
+                                         id="eindtijd" name="eindtijd" label="eindtijd"></paper-input>
+                        <td class="vast">
+                            <paper-checkbox id="vast" name="vast" label="vast"></paper-checkbox>
+                        </td>
+                    </tr>
+                </table>
+                <paper-button id="inroosteren" on-click="_inroosteren_handler" raised>
+                    Inroosteren
+                </paper-button>
+            </div>
+        </form>
 
 
         <iron-ajax
                 id="ajax_medewerkers_ophalen"
-                method="POST"
-                url="/services/persoon/medewerkers/ophalen"
-                handle-as="json"
-                on-response="_medewerkers_ophalen_response_handler">
+                url="/services/medewerker/medewerkers/ophalen"
+                last-response="{{medewerkers}}">
         </iron-ajax>
-
-        <iron-ajax
-                id="ajax_rooster_ophalen"
-                method="POST"
-                url="/services/rooster/medewerkers/ophalen"
-                handle-as="json"
-                on-response="_rooster_medewerker_ophalen_response_handler">
-        </iron-ajax>
-
-        <iron-ajax
-                id="pietje"
-                method="POST"
-                url="/services/rooster/medewerkers/opslaan"
-                handle-as="json"
-                on-response="_rooster_opslaan_response_handler">
-        </iron-ajax>
-
     </template>
-
     <script>
         Polymer({
             is: "my-medewerker-inroosteren",
             properties: {
-                _c_medewerkers:{
-                  type: Array
-                },
-                _result:{
-                    type: Array
-                },
-                _rooster:{
-                    type:Array
-                },
-                naam:{
-                    type: String
-                },
-                hide: {
-                    type: Boolean,
-                    value: true // init the value to true so it will be hidden on page load
-                },
+                medewerkers:Object,
+                date:String,
                 c_visible: {
                     type: Boolean, /* true when element is the active visible item */
                     value: false,
@@ -286,84 +155,33 @@
                 },
             },
 
-            _initializing: function() {
+            _initializing: function () {
                 if (this.c_visible) {
-                    this._medewerkers_ophalen_request_handler();
+                    this.getDateToday();
+                    this.$.ajax_medewerkers_ophalen.generateRequest();
                 }
             },
 
-            _medewerkers_ophalen_request_handler: function () {
-                this.$.ajax_medewerkers_ophalen.generateRequest();
-            },
-            _medewerkers_ophalen_response_handler: function (request) {
-                this._c_medewerkers = request.detail.response;
-                console.log(this._c_medewerkers);
-            },
-
-            _rooster_opslaan_response_handler: function (request) {
-                this._roooster = request.detail.response;
-            },
-
-            _rooster_opslaan_request_handler: function () {
-                this.$['pietje'].contentType = "application/json";
-                this.$['pietje'].body = {
-                    "naam": this.naam,
-                    "rooster": this._rooster,
-                };
-                this.$['pietje'].generateRequest();
-
-            },
-            _rooster_medewerker_ophalen_request_handler: function () {
-                this.$['ajax_rooster_ophalen'].contentType = "application/json";
-                this.$['ajax_rooster_ophalen'].body = {
-                    "naam": this.naam,
-                    "datum": this.datum,
-                    "data": this._c_medewerkers,
-                };
-                this.$['ajax_rooster_ophalen'].generateRequest();
-                this.hide = false;
-
-            },
-            _rooster_medewerker_ophalen_response_handler: function (request) {
-                this._result = request.detail.response;
-                console.log(this._result);
-            },
-
-            medewerker_rooster_ophalen: function () {
-                var combobox = document.body.querySelectorAll('#medewerker');
-                var datepicker = document.body.querySelectorAll('#date');
-                var volnaam = combobox[1].value;
-                var datum = document.querySelector("#datemedewerker").value;
-                this.naam = volnaam;
-                this.datum = datum;
-                this._rooster_medewerker_ophalen_request_handler()
-            },
-
-
-            inroosteren: function () {
-                var list = ["ma","di","wo","do","vr","za","zo"];
-                var listdagen = ["maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag","zondag"];
-                jsonObj = [];
-                for(var i = 0; i< 7;i++){
-                     begintijd = document.querySelector("#"+list[i]+"begintijd").value;
-                   /*  pauze     = document.querySelector("#"+list[i]+"pauze").value;*/
-                     eindtijd  = document.querySelector("#"+list[i]+"eindtijd").value;
-                     vast      = document.querySelector("#"+list[i]+"vast").value;
-                     weeknummer= document.querySelector("#datemedewerker").value;
-                     day       = listdagen[i];
-
-                    item = {};
-                    item ["dag"] = day;
-                    item ["weeknr"] = weeknummer;
-                    item ["begintijd"] = begintijd;
-                    /*item ["pauze"] = pauze;*/
-                    item ["eindtijd"] = eindtijd;
-                    item ["vast"] = vast;
-                    jsonObj.push(item);
+            _inroosteren_handler() {
+                if (this.$.medewerker_inroosteren.validate()) {
+                    this.$.medewerker_inroosteren.submit();
                 }
-                this._rooster = jsonObj;
-                this._rooster_opslaan_request_handler();
+            },
+            getDateToday: function () {
+                d = new Date();
+                d.setHours(0, 0, 0, 0);
+                // Set to nearest Thursday: current date + 4 - current day number
+                // Make Sunday's day number 7
+                d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+                // Get first day of year
+                var yearStart = new Date(d.getFullYear(), 0, 1);
+                // Calculate full weeks to nearest Thursday
+                var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
+                // Return array of year and week number
+                this.date = d.getFullYear()+'-W'+weekNo;
+                console.log(d.getFullYear()+"-W"+weekNo);
             }
+
         });
     </script>
 </dom-module>
