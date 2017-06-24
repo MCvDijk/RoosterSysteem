@@ -7,12 +7,12 @@ public class School implements Serializable {
     private String naam;
     private String adres;
     private String plaats;
-    private int telefoonNummer;
+    private long telefoonNummer;
 
     public School() {
     }
 
-    public School(String naam, String adres, String plaats, int telefoonNummer) {
+    public School(String naam, String adres, String plaats, long telefoonNummer) {
         this.naam = naam;
         this.adres = adres;
         this.plaats = plaats;
@@ -45,11 +45,33 @@ public class School implements Serializable {
         this.plaats = plaats;
     }
 
-    public int getTelefoonNummer() {
+    public long getTelefoonNummer() {
         return telefoonNummer;
     }
 
-    public void setTelefoonNummer(int telefoonNummer) {
+    public void setTelefoonNummer(long telefoonNummer) {
         this.telefoonNummer = telefoonNummer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        School school = (School) o;
+
+        if (telefoonNummer != school.telefoonNummer) return false;
+        if (naam != null ? !naam.equals(school.naam) : school.naam != null) return false;
+        if (adres != null ? !adres.equals(school.adres) : school.adres != null) return false;
+        return plaats != null ? plaats.equals(school.plaats) : school.plaats == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = naam != null ? naam.hashCode() : 0;
+        result = 31 * result + (adres != null ? adres.hashCode() : 0);
+        result = 31 * result + (plaats != null ? plaats.hashCode() : 0);
+        result = 31 * result + (int) (telefoonNummer ^ (telefoonNummer >>> 32));
+        return result;
     }
 }

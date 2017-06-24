@@ -156,6 +156,9 @@ public class MRoosterResource {
                     match = true;
                 }
             }
+            if(service.getMedewerkerRooster(medewerker).size() == 0){
+                match = true;
+            }
             if (match) {
                 service.writeMRooster(m);
             }
@@ -177,19 +180,22 @@ public class MRoosterResource {
                 }
                 if (weeknummer < 10) {
                     datum = jaartal + "-W" + 0 + weeknummer;
-                } else if (weeknummer < 10) {
+                } else if (weeknummer > 9) {
                     datum = jaartal + "-W" + weeknummer;
                 }
                 MRooster m = new MRooster(medewerker, datum, dag.toLowerCase(), LocalTime.parse(begintijd), LocalTime.parse(eindtijd), LocalTime.parse("00:30"), false, medewerker.getVoornaam(), medewerker.getAchternaam());
                 for (MRooster mr : service.getMedewerkerRooster(medewerker)) {
                     if (mr.getWeekNummer().equals(datum)
-                            && mr.getDag().equals(dag)) {
+                            && mr.getDag().equals(dag.toLowerCase())) {
                         service.updateMRooster(m);
                         match = false;
                         break;
                     } else {
                         match = true;
                     }
+                }
+                if(service.getMedewerkerRooster(medewerker).size() == 0){
+                    match = true;
                 }
                 if (match) {
                     service.writeMRooster(m);

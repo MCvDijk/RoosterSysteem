@@ -9,12 +9,12 @@ public abstract class Persoon implements Serializable {
     private String adres;
     private String plaats;
     private String email;
-    private int telefoonNummer;
+    private long telefoonNummer;
 
     public Persoon() {
     }
 
-    public Persoon(String voornaam, String achternaam, String adres, String plaats, String email, int telefoonNummer) {
+    public Persoon(String voornaam, String achternaam, String adres, String plaats, String email, long telefoonNummer) {
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.adres = adres;
@@ -47,7 +47,7 @@ public abstract class Persoon implements Serializable {
         return email;
     }
 
-    public int getTelefoonNummer() {
+    public long getTelefoonNummer() {
         return telefoonNummer;
     }
 
@@ -71,7 +71,7 @@ public abstract class Persoon implements Serializable {
         this.email = email;
     }
 
-    public void setTelefoonNummer(int telefoonNummer) {
+    public void setTelefoonNummer(long telefoonNummer) {
         this.telefoonNummer = telefoonNummer;
     }
 
@@ -97,7 +97,7 @@ public abstract class Persoon implements Serializable {
         result = 31 * result + (adres != null ? adres.hashCode() : 0);
         result = 31 * result + (plaats != null ? plaats.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + telefoonNummer;
+        result = 31 * result + (int) (telefoonNummer ^ (telefoonNummer >>> 32));
         return result;
     }
 }

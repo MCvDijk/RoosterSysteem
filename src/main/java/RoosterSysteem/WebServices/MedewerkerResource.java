@@ -22,7 +22,7 @@ public class MedewerkerResource {
                                       @FormParam("achternaam") String achternaam,
                                       @FormParam("adres") String adres,
                                       @FormParam("plaats") String plaats,
-                                      @FormParam("telefoonnummer") int telefoonnummer,
+                                      @FormParam("telefoonnummer") long telefoonnummer,
                                       @FormParam("email") String email){
         try {
 

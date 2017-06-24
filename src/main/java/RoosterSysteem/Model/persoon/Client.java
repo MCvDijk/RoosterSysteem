@@ -12,7 +12,7 @@ public class Client extends Persoon implements Serializable {
     public Client() {
     }
 
-    public Client(String voornaam, String achternaam, String adres, String plaats, String email, int telefoonNummer, String medicijn, String verzorger, School school) {
+    public Client(String voornaam, String achternaam, String adres, String plaats, String email, long telefoonNummer, String medicijn, String verzorger, School school) {
         super(voornaam, achternaam, adres, plaats, email, telefoonNummer);
         this.medicijn = medicijn;
         this.verzorger = verzorger;
@@ -47,6 +47,7 @@ public class Client extends Persoon implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Client client = (Client) o;
 
@@ -57,7 +58,8 @@ public class Client extends Persoon implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = medicijn != null ? medicijn.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (medicijn != null ? medicijn.hashCode() : 0);
         result = 31 * result + (verzorger != null ? verzorger.hashCode() : 0);
         result = 31 * result + (school != null ? school.hashCode() : 0);
         return result;

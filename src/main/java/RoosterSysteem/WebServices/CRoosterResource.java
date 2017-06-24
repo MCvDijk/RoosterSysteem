@@ -41,8 +41,8 @@ public class CRoosterResource {
         String parvertrektijd1 = vertrektijd1.substring(0,2);
         String partvertrektijd2 = vertrektijd1.substring(2);
         String vertrektijd = parvertrektijd1 + ":" + partvertrektijd2;
-        System.out.println(vertrektijd);
-        System.out.println(aankomsttijd);
+        Client client = cservice.getClient(voornaam, achternaam);
+
 
 
         boolean slapen = false;
@@ -50,11 +50,70 @@ public class CRoosterResource {
             slapen = true;
         }
 
-        Client client = cservice.getClient(voornaam, achternaam);
-        CRooster c = new CRooster(client, date, dag.toLowerCase(), aankomst, LocalTime.parse(aankomsttijd), vertrek, LocalTime.parse(vertrektijd), slapen, false, client.getVoornaam(), client.getAchternaam());
-        service.writeCRooster(c);
+        boolean match = false;
+        if (vast == null) {
+            CRooster c = new CRooster(client, date, dag.toLowerCase(), aankomst, LocalTime.parse(aankomsttijd), vertrek, LocalTime.parse(vertrektijd), slapen, false, client.getVoornaam(), client.getAchternaam());
+            for (CRooster cr : service.getClientRooster(client)) {
+                if (cr.getWeekNummer().equals(date)
+                        && cr.getDag().equals(dag.toLowerCase())) {
+                    service.updateCRooster(c);
+                    match = false;
+                    break;
+                } else {
+                    match = true;
+                }
+            }
+            if(service.getClientRooster(client).size() == 0){
+                match = true;
+            }
+            if (match) {
+                service.writeCRooster(c);
+            }
+
+        } else if (vast.equals("on")) {
+            String[] delen = date.split("-");
+            String jaar = delen[0];
+            String weeknr = delen[1];
+            weeknr = weeknr.replace("W", "");
+            int weeknummer = Integer.parseInt(weeknr);
+            weeknummer = weeknummer - 1;
+            String datum = "";
+            int jaartal = Integer.parseInt(jaar);
+            for (int i = 0; i < 52; i++) {
+                weeknummer = weeknummer + 1;
+                if (weeknummer > 52) {
+                    jaartal = jaartal + 1;
+                    weeknummer = 1;
+                }
+                if (weeknummer < 10) {
+                    datum = jaartal + "-W" + 0 + weeknummer;
+                } else if (weeknummer > 9) {
+                    datum = jaartal + "-W" + weeknummer;
+                }
+                CRooster c = new CRooster(client, datum, dag.toLowerCase(), aankomst, LocalTime.parse(aankomsttijd), vertrek, LocalTime.parse(vertrektijd), slapen, false, client.getVoornaam(), client.getAchternaam());
+                for (CRooster cr : service.getClientRooster(client)) {
+                    if (cr.getWeekNummer().equals(datum)
+                            && cr.getDag().equals(dag.toLowerCase())) {
+                        service.updateCRooster(c);
+                        match = false;
+                        break;
+                    } else {
+                        match = true;
+                    }
+                }
+                if(service.getClientRooster(client).size() == 0){
+                    match = true;
+                }
+                if (match) {
+                    service.writeCRooster(c);
+                    match = false;
+                }
+
+            }
+        }
         return Response.ok().build();
     }
+
     @POST
     @Path("/maandag/clienten/ophalen")
     @Produces("application/json")

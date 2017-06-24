@@ -39,7 +39,7 @@ public class SchoolResource {
     public Response schoolRegistreren(@FormParam("naam") String naam,
                                       @FormParam("adres") String adres,
                                       @FormParam("plaats") String plaats,
-                                      @FormParam("telefoonnummer") int telefoonnummer){
+                                      @FormParam("telefoonnummer") long telefoonnummer){
         try {
             School s = new School(naam,adres,plaats,telefoonnummer);
             service.writeSchool(s);

@@ -11,7 +11,7 @@ public class Medewerker extends Persoon implements Serializable {
     public Medewerker() {
     }
 
-    public Medewerker(String voornaam, String achternaam, String adres, String plaats, String email, int telefoonNummer) {
+    public Medewerker(String voornaam, String achternaam, String adres, String plaats, String email, long telefoonNummer) {
         super(voornaam, achternaam, adres, plaats, email, telefoonNummer);
     }
 

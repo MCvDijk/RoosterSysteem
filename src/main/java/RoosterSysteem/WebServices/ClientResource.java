@@ -48,7 +48,7 @@ public class ClientResource {
                                       @FormParam("plaats") String plaats,
                                       @FormParam("medicijnen") String medicijnen,
                                       @FormParam("verzorger") String verzorger,
-                                      @FormParam("telefoonnummer") int telefoonnummer,
+                                      @FormParam("telefoonnummer") long telefoonnummer,
                                       @FormParam("email") String email,
                                       @FormParam("scholen") String school) {
         try {
