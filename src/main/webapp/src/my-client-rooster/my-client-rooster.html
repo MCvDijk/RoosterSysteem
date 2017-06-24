@@ -22,287 +22,390 @@
             }
         </style>
 
-        <input type="week" id="date" value="[[DateToday]]"/>
-        <div class="my-title">Week Overzicht</div>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <input type="week" id="dateCrooster" value="{{date}}" on-change="rooster_ophalen"/>
+        <div class="my-title">Week Overzicht Cliënten {{date}}</div>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_maandag]]">
             <vaadin-grid-column-group>
                 <template class="header" style="text-align: center"> Maandag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.naam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrek</template>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrektijd</template>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">medicatie</template>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_dinsdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Dinsdag</template>
+                <template class="header" style="text-align: center"> Dinsdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.naam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrek</template>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrektijd</template>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">medicatie</template>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_woensdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Woensdag</template>
+                <template class="header" style="text-align: center"> Woensdag</template>
+                <vaadin-grid-column>
+                    <template class="header">Naam</template>
+                    <template>[[item.naam]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
+                </vaadin-grid-column>
+
+            </vaadin-grid-column-group>
+
+        </vaadin-grid>
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_donderdag]]">
+            <vaadin-grid-column-group>
+                <template class="header" style="text-align: center">Donderdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.naam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrek</template>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrektijd</template>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">medicatie</template>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
-
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_vrijdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Donderdag</template>
+                <template class="header" style="text-align: center">Vrijdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.naam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrek</template>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrektijd</template>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">medicatie</template>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_zaterdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Vrijdag</template>
+                <template class="header" style="text-align: center">Zaterdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.naam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrek</template>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrektijd</template>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">medicatie</template>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
         </vaadin-grid>
-
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
+        <br>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_zondag]]">
             <vaadin-grid-column-group>
-                <template class="header">Zaterdag</template>
+                <template class="header" style="text-align: center">Zondag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
+                    <template>[[item.naam]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrek</template>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">vertrektijd</template>
-                </vaadin-grid-column>
-
-                <vaadin-grid-column>
-                    <template class="header">Slapen</template>
-                </vaadin-grid-column>
-
-                <vaadin-grid-column>
-                    <template class="header">medicatie</template>
-                </vaadin-grid-column>
-
-                <vaadin-grid-column>
-                    <template class="header">Afwezig</template>
-                </vaadin-grid-column>
-
-            </vaadin-grid-column-group>
-
-        </vaadin-grid>
-
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;">
-            <vaadin-grid-column-group>
-                <template class="header">Zondag</template>
-
-                <vaadin-grid-column>
-                    <template class="header">Naam</template>
-                </vaadin-grid-column>
-
-                <vaadin-grid-column>
-                    <template class="header">Aankomst</template>
-                </vaadin-grid-column>
-
-                <vaadin-grid-column>
-                    <template class="header">Aankomsttijd</template>
-                </vaadin-grid-column>
-
-                <vaadin-grid-column>
-                    <template class="header">vertrek</template>
-                </vaadin-grid-column>
-
-                <vaadin-grid-column>
-                    <template class="header">vertrektijd</template>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
-                    <template class="header">medicatie</template>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
-
         </vaadin-grid>
+
+        <iron-ajax
+                id="ajax_rooster_maandag_ophalen"
+                method="POST"
+                url="/services/rooster/maandag/clienten/ophalen"
+                handle-as="json"
+                last-response="{{rooster_maandag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_dinsdag_ophalen"
+                method="POST"
+                url="/services/rooster/dinsdag/clienten/ophalen"
+                handle-as="json"
+                last-response="{{rooster_dinsdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_woensdag_ophalen"
+                method="POST"
+                url="/services/rooster/woensdag/clienten/ophalen"
+                handle-as="json"
+                last-response="{{rooster_woensdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_donderdag_ophalen"
+                method="POST"
+                url="/services/rooster/donderdag/clienten/ophalen"
+                handle-as="json"
+                last-response="{{rooster_donderdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_vrijdag_ophalen"
+                method="POST"
+                url="/services/rooster/vrijdag/clienten/ophalen"
+                handle-as="json"
+                last-response="{{rooster_vrijdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_zaterdag_ophalen"
+                method="POST"
+                url="/services/rooster/zaterdag/clienten/ophalen"
+                handle-as="json"
+                last-response="{{rooster_zaterdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_zondag_ophalen"
+                method="POST"
+                url="/services/rooster/zondag/clienten/ophalen"
+                handle-as="json"
+                last-response="{{rooster_zondag}}">
+        </iron-ajax>
+
     </template>
     <script>
         Polymer({
@@ -315,16 +418,82 @@
                      regel in de functie dat er niets gebeurd
                      als c_visible false is */
                 },
-                DateToday:{
-                    type: String,
-                    value:"2017-W23"
-                }
+                date:String,
+                rooster_maandag:Object,
+                rooster_dinsdag:Object,
+                rooster_woensdag:Object,
+                rooster_donderdag:Object,
+                rooster_vrijdag:Object,
+                rooster_zaterdag:Object,
+                rooster_zondag:Object,
             },
 
             _initializing: function() {
                 if (this.c_visible) {
                     this.getDateToday();
+                    this.rooster_ophalen;
                 }
+            },
+            _roosters_maandag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_maandag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_maandag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_maandag_ophalen'].generateRequest();
+            },
+            _roosters_dinsdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_dinsdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_dinsdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_dinsdag_ophalen'].generateRequest();
+            },
+            _roosters_woensdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_woensdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_woensdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_woensdag_ophalen'].generateRequest();
+            },
+            _roosters_donderdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_donderdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_donderdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_donderdag_ophalen'].generateRequest();
+            },
+            _roosters_vrijdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_vrijdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_vrijdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_vrijdag_ophalen'].generateRequest();
+            },
+            _roosters_zaterdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_zaterdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_zaterdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_zaterdag_ophalen'].generateRequest();
+            },
+            _roosters_zondag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_zondag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_zondag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_zondag_ophalen'].generateRequest();
+            },
+
+            rooster_ophalen : function () {
+                var datum = document.querySelector("#dateCrooster").value;
+                this.date = datum ;
+                this._roosters_maandag_ophalen_request_handler();
+                this._roosters_dinsdag_ophalen_request_handler();
+                this._roosters_woensdag_ophalen_request_handler();
+                this._roosters_donderdag_ophalen_request_handler();
+                this._roosters_vrijdag_ophalen_request_handler();
+                this._roosters_zaterdag_ophalen_request_handler();
+                this._roosters_zondag_ophalen_request_handler();
             },
             getDateToday: function () {
                 d = new Date();
@@ -337,7 +506,7 @@
                 // Calculate full weeks to nearest Thursday
                 var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
                 // Return array of year and week number
-                this.DateToday = d.getFullYear()+'-W'+weekNo;
+                this.date = d.getFullYear()+'-W'+weekNo;
                 console.log(d.getFullYear()+"-W"+weekNo);
             }
         });

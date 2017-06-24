@@ -1,6 +1,7 @@
 package RoosterSysteem.Service;
 
 import RoosterSysteem.Model.mRooster.MRooster;
+import RoosterSysteem.Model.persoon.Medewerker;
 import RoosterSysteem.Persistence.DAO.BaseDAO;
 import RoosterSysteem.Persistence.DAO.MRoosterDAO;
 
@@ -11,8 +12,10 @@ public class MRoosterService {
     private MRoosterDAO dao = BaseDAO.getMRoosterDAO();
 
     public List<MRooster> getAllMRooster(){
-        return dao.getMedewerkerRooster();
+        return dao.getAllMedewerkerRooster();
     }
+
+    public List<MRooster> getMedewerkerRooster(Medewerker m){return dao.getMedewerkerRooster(m);}
 
     public void writeMRooster(MRooster m){dao.writeDAO(m);}
 

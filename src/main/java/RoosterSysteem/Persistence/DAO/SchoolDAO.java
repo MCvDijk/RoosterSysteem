@@ -12,7 +12,6 @@ import java.util.List;
  * Created by slettebak on 19-Jun-17.
  */
 public class SchoolDAO extends SharedDAO{
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public ArrayList<School> getScholen(){
         ArrayList<School> results = new ArrayList<School>();
@@ -23,4 +22,12 @@ public class SchoolDAO extends SharedDAO{
         session.close();
         return results;
     }
+    public School getSchool(String naam){
+        Session session = sessionFactory.openSession();
+        School s = (School) session.createQuery("FROM School where naam=:naam")
+                .setParameter("naam",naam).getSingleResult();
+        session.close();
+        return s;
+    }
+
 }

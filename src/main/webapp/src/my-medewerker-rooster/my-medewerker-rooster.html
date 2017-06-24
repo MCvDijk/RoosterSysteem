@@ -31,12 +31,12 @@
         <table>
             <tr>
                 <td>
-                    <input type="week" id="dateMrooster" value="2017-W26" on-change="_rooster_ophalen"/>
+                    <input type="week" id="dateMrooster" value="{{date}}" on-change="rooster_ophalen"/>
                 </td>
             </tr>
         </table>
-        <div class="my-title">Week Overzicht</div>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
+        <div class="my-title">Week Overzicht medewerkers {{date}}</div>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_maandag]]">
             <vaadin-grid-column-group>
                 <template class="header" style="text-align: center"> Maandag</template>
 
@@ -62,13 +62,14 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
+                    <template><paper-button></paper-button></template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_dinsdag]]">
             <vaadin-grid-column-group>
                 <template class="header">Dinsdag</template>
 
@@ -94,13 +95,14 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
+                    <template><paper-button></paper-button></template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_woensdag]]">
             <vaadin-grid-column-group>
                 <template class="header">Woensdag</template>
 
@@ -126,13 +128,14 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
+                    <template><paper-button></paper-button></template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_donderdag]]">
             <vaadin-grid-column-group>
                 <template class="header">Donderdag</template>
 
@@ -158,13 +161,14 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
+                    <template><paper-button></paper-button></template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_vrijdag]]">
             <vaadin-grid-column-group>
                 <template class="header">Vrijdag</template>
 
@@ -190,12 +194,13 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
+                    <template><paper-button></paper-button></template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
         </vaadin-grid>
         <br>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_zaterdag]]">
             <vaadin-grid-column-group>
                 <template class="header">Zaterdag</template>
 
@@ -221,13 +226,14 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
+                    <template><paper-button></paper-button></template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
-        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[_rooster]]">
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_zondag]]">
             <vaadin-grid-column-group>
                 <template class="header">Zondag</template>
 
@@ -253,6 +259,7 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
+                    <template><paper-button></paper-button></template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
@@ -260,12 +267,55 @@
         </vaadin-grid>
 
         <iron-ajax
-                id="ajax_rooster_ophalen"
+                id="ajax_rooster_maandag_ophalen"
                 method="POST"
-                url="/services/rooster/rooster/ophalen"
+                url="/services/rooster/maandag/medewerkers/ophalen"
                 handle-as="json"
-                on-response="_rooster_ophalen_response_handler">
+                last-response="{{rooster_maandag}}">
         </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_dinsdag_ophalen"
+                method="POST"
+                url="/services/rooster/dinsdag/medewerkers/ophalen"
+                handle-as="json"
+                last-response="{{rooster_dinsdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_woensdag_ophalen"
+                method="POST"
+                url="/services/rooster/woensdag/medewerkers/ophalen"
+                handle-as="json"
+                last-response="{{rooster_woensdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_donderdag_ophalen"
+                method="POST"
+                url="/services/rooster/donderdag/medewerkers/ophalen"
+                handle-as="json"
+                last-response="{{rooster_donderdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_vrijdag_ophalen"
+                method="POST"
+                url="/services/rooster/vrijdag/medewerkers/ophalen"
+                handle-as="json"
+                last-response="{{rooster_vrijdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_zaterdag_ophalen"
+                method="POST"
+                url="/services/rooster/zaterdag/medewerkers/ophalen"
+                handle-as="json"
+                last-response="{{rooster_zaterdag}}">
+        </iron-ajax>
+        <iron-ajax
+                id="ajax_rooster_zondag_ophalen"
+                method="POST"
+                url="/services/rooster/zondag/medewerkers/ophalen"
+                handle-as="json"
+                last-response="{{rooster_zondag}}">
+        </iron-ajax>
+
 
     </template>
     <script>
@@ -279,40 +329,96 @@
                      regel in de functie dat er niets gebeurd
                      als c_visible false is */
                 },
-                datum:{
-                    type: String
-                },
-                _rooster:{
-                    type:Array
-                }
+                date:String,
+                rooster_maandag:Object,
+                rooster_dinsdag:Object,
+                rooster_woensdag:Object,
+                rooster_donderdag:Object,
+                rooster_vrijdag:Object,
+                rooster_zaterdag:Object,
+                rooster_zondag:Object,
             },
             _initializing: function() {
                 if (this.c_visible) {
-                    this._rooster_ophalen();
+                    this.getDateToday();
+                    this.rooster_ophalen;
                 }
             },
-
-            _rooster_ophalen_request_handler: function () {
-                this.$['ajax_rooster_ophalen'].contentType = "application/json";
-                this.$['ajax_rooster_ophalen'].body = {
-                    "datum": this.datum,
+            _roosters_maandag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_maandag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_maandag_ophalen'].body = {
+                    "date": this.date
                 };
-                console.log(this.datum);
-                this.$['ajax_rooster_ophalen'].generateRequest();
+                this.$['ajax_rooster_maandag_ophalen'].generateRequest();
             },
-            _rooster_ophalen_response_handler: function (request) {
-                this._rooster = request.detail.response;
-                console.log(this._rooster)
-
+            _roosters_dinsdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_dinsdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_dinsdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_dinsdag_ophalen'].generateRequest();
+            },
+            _roosters_woensdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_woensdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_woensdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_woensdag_ophalen'].generateRequest();
+            },
+            _roosters_donderdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_donderdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_donderdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_donderdag_ophalen'].generateRequest();
+            },
+            _roosters_vrijdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_vrijdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_vrijdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_vrijdag_ophalen'].generateRequest();
+            },
+            _roosters_zaterdag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_zaterdag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_zaterdag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_zaterdag_ophalen'].generateRequest();
+            },
+            _roosters_zondag_ophalen_request_handler: function () {
+                this.$['ajax_rooster_zondag_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_zondag_ophalen'].body = {
+                    "date": this.date
+                };
+                this.$['ajax_rooster_zondag_ophalen'].generateRequest();
             },
 
-            _rooster_ophalen : function () {
-                var date = document.querySelector("#dateMrooster").value;
-                this.datum = date ;
-                console.log("blabla");
-                this._rooster_ophalen_request_handler()
+            rooster_ophalen : function () {
+                var datum = document.querySelector("#dateMrooster").value;
+                this.date = datum ;
+                this._roosters_maandag_ophalen_request_handler();
+                this._roosters_dinsdag_ophalen_request_handler();
+                this._roosters_woensdag_ophalen_request_handler();
+                this._roosters_donderdag_ophalen_request_handler();
+                this._roosters_vrijdag_ophalen_request_handler();
+                this._roosters_zaterdag_ophalen_request_handler();
+                this._roosters_zondag_ophalen_request_handler();
+            },
+            getDateToday: function () {
+                d = new Date();
+                d.setHours(0, 0, 0, 0);
+                // Set to nearest Thursday: current date + 4 - current day number
+                // Make Sunday's day number 7
+                d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+                // Get first day of year
+                var yearStart = new Date(d.getFullYear(), 0, 1);
+                // Calculate full weeks to nearest Thursday
+                var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
+                // Return array of year and week number
+                this.date = d.getFullYear()+'-W'+weekNo;
+                console.log(d.getFullYear()+"-W"+weekNo);
             }
-
         });
     </script>
 </dom-module>

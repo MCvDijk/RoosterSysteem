@@ -9,7 +9,7 @@
 <link rel="import" href="../../bower_components/neon-animation/web-animations.html">
 
 
-<dom-module id="my-medewerker-toevoegen">
+<dom-module id="my-school-toevoegen">
     <template>
         <style>
             :host {
@@ -25,18 +25,25 @@
                 text-align: center;
             }
 
+            gold-phone-input {
+                text-align: center;
+            }
+
+            gold-gebruikersnaam-input {
+                text-align: center;
+            }
+
+
         </style>
-        <form is="iron-form" id="medewerker_registreren" method="post" action="/services/medewerker/registreren">
+        <form is="iron-form" id="school_registreren" method="post" action="/services/school/registreren">
             <div class="card">
-                <paper-input required label="Voornaam" id="voornaaam" name="voornaam"></paper-input>
-                <paper-input required label="Achternaam" id="achternaam" name="achternaam"></paper-input>
+                <paper-input required label="Naam" id="naam" name="naam"></paper-input>
                 <paper-input required label="Adres" id="adres" name="adres"></paper-input>
                 <paper-input required label="Plaats" id="plaats" name="plaats"></paper-input>
                 <paper-input required label="Telefoonnummer" id="telefoonnummer" name="telefoonnummer"></paper-input>
-                <paper-input required label="Email" id="email" name="email"></paper-input>
 
                 <paper-button id="registreren" on-click="_registreren_handler" raised>
-                    Medewerker Registreren
+                    School Registreren
                 </paper-button>
 
             </div>
@@ -44,12 +51,12 @@
     </template>
     <script>
         Polymer({
-            is: "my-medewerker-toevoegen",
+            is: "my-school-toevoegen",
             properties: {},
 
             _registreren_handler() {
-                if (this.$.medewerker_registreren.validate()) {
-                    this.$.medewerker_registreren.submit();
+                if (this.$.school_registreren.validate()) {
+                    this.$.school_registreren.submit();
                 }
             },
 

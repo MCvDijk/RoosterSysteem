@@ -7,13 +7,33 @@ import RoosterSysteem.Service.ServiceProvider;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/medewerker")
 public class MedewerkerResource {
     private MedewerkerService service = ServiceProvider.getMedewerkerService();
+
+    @POST
+    @Path("/registreren")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response schoolRegistreren(@FormParam("voornaam") String voornaam,
+                                      @FormParam("achternaam") String achternaam,
+                                      @FormParam("adres") String adres,
+                                      @FormParam("plaats") String plaats,
+                                      @FormParam("telefoonnummer") int telefoonnummer,
+                                      @FormParam("email") String email){
+        try {
+
+            Medewerker m = new Medewerker(voornaam,achternaam,adres,plaats,email,telefoonnummer);
+            service.writeMedewerker(m);
+            return Response.ok().build();
+
+        } catch (Exception e) {
+            return Response.status(500).build();
+        }
+    }
 
     @GET
     @Path("/medewerkers/ophalen")
@@ -24,7 +44,6 @@ public class MedewerkerResource {
         for (Medewerker m : service.getAllMedewerkers()) {
             arrayBuilder.add(MedewerkerToJson(m));
         }
-        System.out.println( arrayBuilder.build().toString());
         return arrayBuilder.build().toString();
     }
 

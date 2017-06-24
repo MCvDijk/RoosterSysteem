@@ -12,8 +12,8 @@ public class Client extends Persoon implements Serializable {
     public Client() {
     }
 
-    public Client(String voornaam, String achternaam, String adres, String plaats, String wachtwoord, String gebruikersnaam, String email, int telefoonNummer, String medicijn, String verzorger, School school) {
-        super(voornaam, achternaam, adres, plaats, wachtwoord, gebruikersnaam, email, telefoonNummer);
+    public Client(String voornaam, String achternaam, String adres, String plaats, String email, int telefoonNummer, String medicijn, String verzorger, School school) {
+        super(voornaam, achternaam, adres, plaats, email, telefoonNummer);
         this.medicijn = medicijn;
         this.verzorger = verzorger;
         this.school = school;

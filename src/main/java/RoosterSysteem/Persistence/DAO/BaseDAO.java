@@ -7,6 +7,7 @@ public class BaseDAO {
     private static MedewerkerDAO medewerkerDAO = new MedewerkerDAO();
     private static MRoosterDAO mRoosterDAO = new MRoosterDAO();
     private static SchoolDAO schoolDAO = new SchoolDAO();
+    private static GebruikerDAO gebruikerDAO = new GebruikerDAO();
 
     public static CRoosterDAO getCRoosterDAO(){
         return cRoosterDAO;
@@ -27,4 +28,6 @@ public class BaseDAO {
     public static SchoolDAO getSchoolDAO(){
         return schoolDAO;
     }
+
+    public static GebruikerDAO getGebruikerDAO(){return gebruikerDAO;}
 }

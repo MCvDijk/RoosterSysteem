@@ -18,12 +18,11 @@ public class MRooster implements Serializable {
     private boolean ziek;
     private String voornaam;
     private String achternaam;
-    private boolean vast;
 
     public MRooster() {
     }
 
-    public MRooster(Medewerker medewerker, String weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek, String voornaam, String achternaam, boolean vast) {
+    public MRooster(Medewerker medewerker, String weekNummer, String dag, LocalTime beginTijd, LocalTime eindTijd, LocalTime pauze, boolean ziek, String voornaam, String achternaam) {
         this.medewerker = medewerker;
         this.weekNummer = weekNummer;
         this.dag = dag;
@@ -33,7 +32,6 @@ public class MRooster implements Serializable {
         this.ziek = ziek;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
-        this.vast = vast;
     }
 
     public String getVoornaam() {
@@ -108,14 +106,6 @@ public class MRooster implements Serializable {
         this.ziek = ziek;
     }
 
-    public boolean isVast() {
-        return vast;
-    }
-
-    public void setVast(boolean vast) {
-        this.vast = vast;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,7 +114,6 @@ public class MRooster implements Serializable {
         MRooster mRooster = (MRooster) o;
 
         if (ziek != mRooster.ziek) return false;
-        if (vast != mRooster.vast) return false;
         if (medewerker != null ? !medewerker.equals(mRooster.medewerker) : mRooster.medewerker != null) return false;
         if (weekNummer != null ? !weekNummer.equals(mRooster.weekNummer) : mRooster.weekNummer != null) return false;
         if (dag != null ? !dag.equals(mRooster.dag) : mRooster.dag != null) return false;
@@ -146,7 +135,6 @@ public class MRooster implements Serializable {
         result = 31 * result + (ziek ? 1 : 0);
         result = 31 * result + (voornaam != null ? voornaam.hashCode() : 0);
         result = 31 * result + (achternaam != null ? achternaam.hashCode() : 0);
-        result = 31 * result + (vast ? 1 : 0);
         return result;
     }
 }

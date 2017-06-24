@@ -11,7 +11,15 @@ public class Medewerker extends Persoon implements Serializable {
     public Medewerker() {
     }
 
-    public Medewerker(String voornaam, String achternaam, String adres, String plaats, String wachtwoord, String gebruikersnaam, String email, int telefoonNummer) {
-        super(voornaam, achternaam, adres, plaats, wachtwoord, gebruikersnaam, email, telefoonNummer);
+    public Medewerker(String voornaam, String achternaam, String adres, String plaats, String email, int telefoonNummer) {
+        super(voornaam, achternaam, adres, plaats, email, telefoonNummer);
+    }
+
+    public ArrayList<MRooster> getmRoosters() {
+        return mRoosters;
+    }
+
+    public void setmRoosters(ArrayList<MRooster> mRoosters) {
+        this.mRoosters = mRoosters;
     }
 }

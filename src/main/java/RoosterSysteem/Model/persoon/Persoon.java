@@ -14,7 +14,7 @@ public abstract class Persoon implements Serializable {
     public Persoon() {
     }
 
-    public Persoon(String voornaam, String achternaam, String adres, String plaats, String wachtwoord, String gebruikersnaam, String email, int telefoonNummer) {
+    public Persoon(String voornaam, String achternaam, String adres, String plaats, String email, int telefoonNummer) {
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.adres = adres;

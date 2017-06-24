@@ -6,9 +6,6 @@ import RoosterSysteem.Persistence.DAO.MedewerkerDAO;
 
 import java.util.List;
 
-/**
- * Created by slettebak on 22-Jun-17.
- */
 public class MedewerkerService {
     private MedewerkerDAO dao = BaseDAO.getMedewerkerDAO();
 

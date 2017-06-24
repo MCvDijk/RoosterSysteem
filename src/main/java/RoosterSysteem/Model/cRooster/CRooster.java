@@ -7,19 +7,21 @@ import java.time.LocalTime;
 
 public class CRooster implements Serializable {
     private Client client;
-    private int weekNummer;
+    private String weekNummer;
     private String dag;
     private String aankomst;
     private LocalTime aankomstTijd;
     private String vertrek;
     private LocalTime vertrekTijd;
     private boolean slapen;
-    private String medicijn;
     private boolean afwezig;
     private String voornaam;
     private String achternaam;
 
-    public CRooster(Client client, int weekNummer, String dag, String aankomst, LocalTime aankomstTijd, String vertrek, LocalTime vertrekTijd, boolean slapen, String medicijn, boolean afwezig, String voornaam, String achternaam) {
+    public CRooster() {
+    }
+
+    public CRooster(Client client, String weekNummer, String dag, String aankomst, LocalTime aankomstTijd, String vertrek, LocalTime vertrekTijd, boolean slapen, boolean afwezig, String voornaam, String achternaam) {
         this.client = client;
         this.weekNummer = weekNummer;
         this.dag = dag;
@@ -28,14 +30,11 @@ public class CRooster implements Serializable {
         this.vertrek = vertrek;
         this.vertrekTijd = vertrekTijd;
         this.slapen = slapen;
-        this.medicijn = medicijn;
         this.afwezig = afwezig;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
     }
 
-    public CRooster() {
-    }
 
     public String getVoornaam() {
         return voornaam;
@@ -61,11 +60,11 @@ public class CRooster implements Serializable {
         this.client = client;
     }
 
-    public int getWeekNummer() {
+    public String getWeekNummer() {
         return weekNummer;
     }
 
-    public void setWeekNummer(int weekNummer) {
+    public void setWeekNummer(String weekNummer) {
         this.weekNummer = weekNummer;
     }
 
@@ -117,14 +116,6 @@ public class CRooster implements Serializable {
         this.slapen = slapen;
     }
 
-    public String getMedicijn() {
-        return medicijn;
-    }
-
-    public void setMedicijn(String medicijn) {
-        this.medicijn = medicijn;
-    }
-
     public boolean isAfwezig() {
         return afwezig;
     }
@@ -140,10 +131,10 @@ public class CRooster implements Serializable {
 
         CRooster cRooster = (CRooster) o;
 
-        if (weekNummer != cRooster.weekNummer) return false;
         if (slapen != cRooster.slapen) return false;
         if (afwezig != cRooster.afwezig) return false;
         if (client != null ? !client.equals(cRooster.client) : cRooster.client != null) return false;
+        if (weekNummer != null ? !weekNummer.equals(cRooster.weekNummer) : cRooster.weekNummer != null) return false;
         if (dag != null ? !dag.equals(cRooster.dag) : cRooster.dag != null) return false;
         if (aankomst != null ? !aankomst.equals(cRooster.aankomst) : cRooster.aankomst != null) return false;
         if (aankomstTijd != null ? !aankomstTijd.equals(cRooster.aankomstTijd) : cRooster.aankomstTijd != null)
@@ -151,7 +142,6 @@ public class CRooster implements Serializable {
         if (vertrek != null ? !vertrek.equals(cRooster.vertrek) : cRooster.vertrek != null) return false;
         if (vertrekTijd != null ? !vertrekTijd.equals(cRooster.vertrekTijd) : cRooster.vertrekTijd != null)
             return false;
-        if (medicijn != null ? !medicijn.equals(cRooster.medicijn) : cRooster.medicijn != null) return false;
         if (voornaam != null ? !voornaam.equals(cRooster.voornaam) : cRooster.voornaam != null) return false;
         return achternaam != null ? achternaam.equals(cRooster.achternaam) : cRooster.achternaam == null;
     }
@@ -159,14 +149,13 @@ public class CRooster implements Serializable {
     @Override
     public int hashCode() {
         int result = client != null ? client.hashCode() : 0;
-        result = 31 * result + weekNummer;
+        result = 31 * result + (weekNummer != null ? weekNummer.hashCode() : 0);
         result = 31 * result + (dag != null ? dag.hashCode() : 0);
         result = 31 * result + (aankomst != null ? aankomst.hashCode() : 0);
         result = 31 * result + (aankomstTijd != null ? aankomstTijd.hashCode() : 0);
         result = 31 * result + (vertrek != null ? vertrek.hashCode() : 0);
         result = 31 * result + (vertrekTijd != null ? vertrekTijd.hashCode() : 0);
         result = 31 * result + (slapen ? 1 : 0);
-        result = 31 * result + (medicijn != null ? medicijn.hashCode() : 0);
         result = 31 * result + (afwezig ? 1 : 0);
         result = 31 * result + (voornaam != null ? voornaam.hashCode() : 0);
         result = 31 * result + (achternaam != null ? achternaam.hashCode() : 0);

@@ -1,18 +1,23 @@
 package RoosterSysteem.Persistence.DAO;
 
-import RoosterSysteem.Persistence.HibernateUtil;
+
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import RoosterSysteem.Model.persoon.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by slettebak on 19-Jun-17.
- */
+
 public class ClientDAO extends SharedDAO {
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+    public  Client getClient(String voornaam,String achternaam){
+        Session session = sessionFactory.openSession();
+        Client c = (Client) session.createQuery("FROM Client where voornaam=:voornaam and achternaam=:achternaam")
+                .setParameter("voornaam",voornaam)
+                .setParameter("achternaam",achternaam).getSingleResult();
+        session.close();
+        return c;
+    }
 
     public ArrayList<Client> getClienten(){
         ArrayList<Client> results = new ArrayList<Client>();

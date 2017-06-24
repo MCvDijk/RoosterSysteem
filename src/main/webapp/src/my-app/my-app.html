@@ -184,16 +184,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <span>Medewerker inroosteren</span>
             </a>
 
-            <a name="client_toevoegen" href$="[[_c_baseURL]]client_toevoegen">
+            <a name="client_registreren" href$="[[_c_baseURL]]client_registreren">
               <iron-icon icon="social:group"></iron-icon>
-              <span>Cliënt Toevoegen</span>
+              <span>Cliënt Registeren</span>
             </a>
 
-            <a name="medewerker_toevoegen" href$="[[_c_baseURL]]medewerker_toevoegen">
+            <a name="medewerker_registreren" href$="[[_c_baseURL]]medewerker_registreren">
               <iron-icon icon="social:group"></iron-icon>
-              <span>Medewerker Toevoegen</span>
+              <span>Medewerker Registeren</span>
             </a>
 
+            <a name="school_registreren" href$="[[_c_baseURL]]school_registreren">
+              <iron-icon icon="social:group"></iron-icon>
+              <span>School Registeren</span>
+            </a>
 
           </iron-selector>
 
@@ -303,23 +307,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-material>
           </section>
 
-          <section name="client_toevoegen"
-                   title="CLIENT-TOEVOEGEN"
+          <section name="client_registreren"
+                   title="CLIENT-REGISTREREN"
                    element$="my-client-toevoegen">
             <paper-material elevation="1">
               <my-client-toevoegen
-                      c_visible="[[_are_strings_equal(_ar_page, 'client_toevoegen')]]">
+                      c_visible="[[_are_strings_equal(_ar_page, 'client_registreren')]]">
               </my-client-toevoegen>
             </paper-material>
           </section>
 
-          <section name="medewerker_toevoegen"
-                   title="MEDEWERKER-TOEVOEGEN"
+          <section name="medewerker_registreren"
+                   title="MEDEWERKER-REGISTREREN"
                    element$="my-medewerker-toevoegen">
             <paper-material elevation="1">
               <my-medewerker-toevoegen
-                      c_visible="[[_are_strings_equal(_ar_page, 'medewerker_toevoegen')]]">
+                      c_visible="[[_are_strings_equal(_ar_page, 'medewerker_registreren')]]">
               </my-medewerker-toevoegen>
+            </paper-material>
+          </section>
+
+          <section name="school_registreren"
+                   title="SCHOOL-REGISTrEREN"
+                   element$="my-school-toevoegen">
+            <paper-material elevation="1">
+              <my-school-toevoegen>
+              </my-school-toevoegen>
             </paper-material>
           </section>
 

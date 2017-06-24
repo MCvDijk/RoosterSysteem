@@ -41,7 +41,7 @@
         <property name="hbm2ddl.auto">validate</property>
 
         <!-- Bind the getCurrentSession() method to the thread. -->
-        <!--<property name="current_session_context_class">thread</property>-->
+        <property name="current_session_context_class">thread</property>
 
         <!-- Hibernate mapping file -->
         <mapping resource="Mapping.hbm.xml"/>

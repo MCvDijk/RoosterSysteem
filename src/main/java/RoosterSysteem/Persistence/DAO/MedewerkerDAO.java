@@ -12,7 +12,7 @@ import java.util.List;
  * Created by slettebak on 19-Jun-17.
  */
 public class MedewerkerDAO extends SharedDAO {
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
 
     public  Medewerker getMedewerker(String voornaam,String achternaam){
         Session session = sessionFactory.openSession();

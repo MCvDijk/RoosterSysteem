@@ -16,6 +16,8 @@ public class SchoolService {
         return dao.getScholen();
     }
 
+    public School getSchool(String naam){return dao.getSchool(naam);}
+
     public void writeSchool(School c){dao.writeDAO(c);}
 
     public void updateSchool(School c){

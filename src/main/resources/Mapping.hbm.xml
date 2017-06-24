@@ -23,6 +23,7 @@
         <property name="telefoonNummer" column="telefoonnummer"/>
         <property name="medicijn" column="medicijn"/>
         <property name="verzorger" column="verzorger"/>
+        <many-to-one name="school" class="RoosterSysteem.Model.school.School" column="school"/>
     </class>
 
     <class name="RoosterSysteem.Model.persoon.Medewerker" table="medewerker">
@@ -38,24 +39,33 @@
 
     <class name="RoosterSysteem.Model.mRooster.MRooster" table="medewerkerrooster">
         <composite-id>
-            <key-property name="voornaam" column="voornaam"/>
-            <key-property name="achternaam" column="achternaam"/>
+            <key-many-to-one name="medewerker">
+            <column name="voornaam"/>
+            <column name="achternaam"/>
+            </key-many-to-one>
             <key-property name="weekNummer" column="weeknummer"/>
             <key-property name="dag" column="dag"/>
         </composite-id>
+        <property name="voornaam" column="voornaam" insert="false" update="false"/>
+        <property name="achternaam" column="achternaam" insert="false" update="false"/>
         <property name="beginTijd" column="begintijd"/>
         <property name="pauze" column="pauze"/>
         <property name="eindTijd" column="eindtijd"/>
         <property name="ziek" column="ziek"/>
+
     </class>
 
     <class name="RoosterSysteem.Model.cRooster.CRooster" table="clientrooster">
         <composite-id>
-            <key-property name="voornaam" column="voornaam"/>
-            <key-property name="achternaam" column="achternaam"/>
+            <key-many-to-one name="client">
+                <column name="voornaam"/>
+                <column name="achternaam"/>
+            </key-many-to-one>
             <key-property name="weekNummer" column="weeknummer"/>
             <key-property name="dag" column="dag"/>
         </composite-id>
+        <property name="voornaam" column="voornaam" insert="false" update="false"/>
+        <property name="achternaam" column="achternaam" insert="false" update="false"/>
         <property name="aankomst" column="aankomst"/>
         <property name="aankomstTijd" column="aankomsttijd"/>
         <property name="vertrek" column="vertrek"/>
@@ -64,4 +74,9 @@
         <property name="afwezig" column="afwezig"/>
     </class>
 
+    <class name="RoosterSysteem.Model.gebruiker.Gebruiker" table="gebruiker">
+        <id name="gebruikersnaam" column="gebruikersnaam"/>
+        <property name="wachtwoord" column="password"/>
+        <property name="role" column="rol"/>
+    </class>
 </hibernate-mapping>

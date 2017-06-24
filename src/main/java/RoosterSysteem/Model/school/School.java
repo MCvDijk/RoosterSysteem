@@ -9,6 +9,9 @@ public class School implements Serializable {
     private String plaats;
     private int telefoonNummer;
 
+    public School() {
+    }
+
     public School(String naam, String adres, String plaats, int telefoonNummer) {
         this.naam = naam;
         this.adres = adres;
@@ -16,8 +19,7 @@ public class School implements Serializable {
         this.telefoonNummer = telefoonNummer;
     }
 
-    public School() {
-    }
+
 
     public String getNaam() {
         return naam;

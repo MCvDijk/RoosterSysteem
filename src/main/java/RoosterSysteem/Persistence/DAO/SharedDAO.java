@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
  * Created by Silvermage on 21-6-2017.
  */
 public class SharedDAO {
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public void writeDAO(Object o){
         Session session = sessionFactory.openSession();

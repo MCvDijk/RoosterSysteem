@@ -10,6 +10,8 @@ import java.util.List;
 public class ClientService {
     private ClientDAO dao = BaseDAO.getClientDAO();
 
+    public Client getClient(String voornaam,String achternaam){return dao.getClient(voornaam,achternaam);}
+
     public List<Client> getClienten (){return dao.getClienten();}
 
     public void writeClient(Client c){dao.writeDAO(c);}
