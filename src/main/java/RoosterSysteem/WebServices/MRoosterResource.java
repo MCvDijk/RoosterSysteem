@@ -5,6 +5,9 @@ import RoosterSysteem.Model.persoon.Medewerker;
 import RoosterSysteem.Service.MRoosterService;
 import RoosterSysteem.Service.MedewerkerService;
 import RoosterSysteem.Service.ServiceProvider;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.ISODateTimeFormat;
 
 import javax.json.*;
 import javax.ws.rs.*;
@@ -17,112 +20,6 @@ import java.time.LocalTime;
 public class MRoosterResource {
     private MRoosterService service = ServiceProvider.getmRoosterService();
     private MedewerkerService mservice = ServiceProvider.getMedewerkerService();
-
-    @POST
-    @Path("/medewerker/ophalen")
-    @Produces("application/json")
-    public String roosterOphalen(String jsonBody) {
-        JsonObject lJsonObjectIn = (JsonObject) Json.createReader(new ByteArrayInputStream(jsonBody.getBytes())).read();
-        String naam = lJsonObjectIn.getString("naam");
-        String datum = lJsonObjectIn.getString("datum");
-        String[] parts = naam.split(" ", 2);
-        String voornaam = parts[0];
-        String achternaam = parts[1];
-
-        Medewerker medewerker = mservice.getMedewerker(voornaam, achternaam);
-        JsonArrayBuilder lJsonArrayBuilder = Json.createArrayBuilder();
-        JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
-        lJsonObjectBuilder.add("naam", naam);
-        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
-            if (m.getWeekNummer().equals(datum) && m.getDag().equals("maandag")) {
-                lJsonObjectBuilder
-                        .add("mabegintijdh", m.getBeginTijd().getHour())
-                        .add("mabegintijdm", m.getBeginTijd().getMinute())
-                        .add("maeindtijdh", m.getEindTijd().getHour())
-                        .add("maeindtijdm", m.getEindTijd().getMinute())
-                        .add("mapauzeh", m.getPauze().getHour())
-                        .add("mapauzem", m.getPauze().getMinute());
-                break;
-            }
-        }
-        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
-            if (m.getWeekNummer().equals(datum) && m.getDag().equals("dinsdag")) {
-                lJsonObjectBuilder
-                        .add("dibegintijdh", m.getBeginTijd().getHour())
-                        .add("dibegintijdm", m.getBeginTijd().getMinute())
-                        .add("dieindtijdh", m.getEindTijd().getHour())
-                        .add("dieindtijdm", m.getEindTijd().getMinute())
-                        .add("dipauzeh", m.getPauze().toString())
-                        .add("dipauzem", m.getPauze().getMinute());
-                break;
-            }
-
-        }
-        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
-            if (m.getWeekNummer().equals(datum) && m.getDag().equals("woensdag")) {
-                lJsonObjectBuilder
-                        .add("wobegintijdh", m.getBeginTijd().getHour())
-                        .add("wobegintijdm", m.getBeginTijd().getMinute())
-                        .add("woeindtijdh", m.getEindTijd().getHour())
-                        .add("woeindtijdm", m.getEindTijd().getMinute())
-                        .add("wopauzeh", m.getPauze().toString())
-                        .add("wopauzem", m.getPauze().getMinute());
-                break;
-            }
-        }
-        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
-            if (m.getWeekNummer().equals(datum) && m.getDag().equals("donderdag")) {
-                lJsonObjectBuilder
-                        .add("dobegintijdh", m.getBeginTijd().getHour())
-                        .add("dobegintijdm", m.getBeginTijd().getMinute())
-                        .add("doeindtijdh", m.getEindTijd().getHour())
-                        .add("doeindtijdm", m.getEindTijd().getMinute())
-                        .add("dopauzeh", m.getPauze().toString())
-                        .add("dopauzem", m.getPauze().getMinute());
-                break;
-            }
-        }
-        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
-            if (m.getWeekNummer().equals(datum) && m.getDag().equals("vrijdag")) {
-                lJsonObjectBuilder
-                        .add("vrbegintijdh", m.getBeginTijd().getHour())
-                        .add("vrbegintijdm", m.getBeginTijd().getMinute())
-                        .add("vreindtijdh", m.getEindTijd().getHour())
-                        .add("vreindtijdm", m.getEindTijd().getMinute())
-                        .add("vrpauzeh", m.getPauze().toString())
-                        .add("vrpauzem", m.getPauze().getMinute());
-                break;
-            }
-        }
-        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
-            if (m.getWeekNummer().equals(datum) && m.getDag().equals("zaterdag")) {
-                lJsonObjectBuilder
-                        .add("zabegintijdh", m.getBeginTijd().getHour())
-                        .add("zabegintijdm", m.getBeginTijd().getMinute())
-                        .add("zaeindtijdh", m.getEindTijd().getHour())
-                        .add("zaeindtijdm", m.getEindTijd().getMinute())
-                        .add("zapauzeh", m.getPauze().toString())
-                        .add("zapauzem", m.getPauze().getMinute());
-                break;
-            }
-        }
-        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
-            if (m.getWeekNummer().equals(datum) && m.getDag().equals("zondag")) {
-                lJsonObjectBuilder
-                        .add("zobegintijdh", m.getBeginTijd().getHour())
-                        .add("zobegintijdm", m.getBeginTijd().getMinute())
-                        .add("zoeindtijdh", m.getEindTijd().getHour())
-                        .add("zoeindtijdm", m.getEindTijd().getMinute())
-                        .add("zopauzeh", m.getPauze().toString())
-                        .add("zopauzem", m.getPauze().getMinute());
-
-                break;
-            }
-        }
-        lJsonArrayBuilder.add(lJsonObjectBuilder);
-        String lJsonOutStr = lJsonArrayBuilder.build().toString();
-        return lJsonOutStr;
-    }
 
     @POST
     @Path("/medewerker/opslaan")
@@ -156,7 +53,7 @@ public class MRoosterResource {
                     match = true;
                 }
             }
-            if(service.getMedewerkerRooster(medewerker).size() == 0){
+            if (service.getMedewerkerRooster(medewerker).size() == 0) {
                 match = true;
             }
             if (match) {
@@ -194,7 +91,7 @@ public class MRoosterResource {
                         match = true;
                     }
                 }
-                if(service.getMedewerkerRooster(medewerker).size() == 0){
+                if (service.getMedewerkerRooster(medewerker).size() == 0) {
                     match = true;
                 }
                 if (match) {
@@ -219,12 +116,17 @@ public class MRoosterResource {
         for (MRooster m : service.getAllMRooster()) {
             if (datum.equals(m.getWeekNummer()) && m.getDag().equals("maandag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                Medewerker medewerker = mservice.getMedewerker(m.getVoornaam(), m.getAchternaam());
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
                 lJsonObjectBuilder
-                        .add("mavoornaam", m.getVoornaam())
-                        .add("maachternaam", m.getAchternaam())
-                        .add("mabegintijd", m.getBeginTijd().toString())
-                        .add("maeindtijd", m.getEindTijd().toString())
-                        .add("mapauze", m.getPauze().toString());
+                        .add("naam", medewerker.getVolledigeNaam(m.getVoornaam(), m.getAchternaam()))
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -245,12 +147,17 @@ public class MRoosterResource {
         for (MRooster m : service.getAllMRooster()) {
             if (datum.equals(m.getWeekNummer()) && m.getDag().equals("dinsdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                Medewerker medewerker = mservice.getMedewerker(m.getVoornaam(), m.getAchternaam());
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
                 lJsonObjectBuilder
-                        .add("divoornaam", m.getVoornaam())
-                        .add("diachternaam", m.getAchternaam())
-                        .add("dibegintijd", m.getBeginTijd().toString())
-                        .add("dieindtijd", m.getEindTijd().toString())
-                        .add("dipauze", m.getPauze().toString());
+                        .add("naam", medewerker.getVolledigeNaam(m.getVoornaam(), m.getAchternaam()))
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
 
@@ -273,12 +180,17 @@ public class MRoosterResource {
         for (MRooster m : service.getAllMRooster()) {
             if (datum.equals(m.getWeekNummer()) && m.getDag().equals("woensdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                Medewerker medewerker = mservice.getMedewerker(m.getVoornaam(), m.getAchternaam());
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
                 lJsonObjectBuilder
-                        .add("wovoornaam", m.getVoornaam())
-                        .add("woachternaam", m.getAchternaam())
-                        .add("wobegintijd", m.getBeginTijd().toString())
-                        .add("woeindtijd", m.getEindTijd().toString())
-                        .add("wopauze", m.getPauze().toString());
+                        .add("naam", medewerker.getVolledigeNaam(m.getVoornaam(), m.getAchternaam()))
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -299,12 +211,17 @@ public class MRoosterResource {
         for (MRooster m : service.getAllMRooster()) {
             if (datum.equals(m.getWeekNummer()) && m.getDag().equals("donderdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                Medewerker medewerker = mservice.getMedewerker(m.getVoornaam(), m.getAchternaam());
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
                 lJsonObjectBuilder
-                        .add("dovoornaam", m.getVoornaam())
-                        .add("doachternaam", m.getAchternaam())
-                        .add("dobegintijd", m.getBeginTijd().toString())
-                        .add("doeindtijd", m.getEindTijd().toString())
-                        .add("dopauze", m.getPauze().toString());
+                        .add("naam", medewerker.getVolledigeNaam(m.getVoornaam(), m.getAchternaam()))
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -327,12 +244,17 @@ public class MRoosterResource {
         for (MRooster m : service.getAllMRooster()) {
             if (datum.equals(m.getWeekNummer()) && m.getDag().equals("vrijdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                Medewerker medewerker = mservice.getMedewerker(m.getVoornaam(), m.getAchternaam());
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
                 lJsonObjectBuilder
-                        .add("vrvoornaam", m.getVoornaam())
-                        .add("vrachternaam", m.getAchternaam())
-                        .add("vrbegintijd", m.getBeginTijd().toString())
-                        .add("vreindtijd", m.getEindTijd().toString())
-                        .add("vrpauze", m.getPauze().toString());
+                        .add("naam", medewerker.getVolledigeNaam(m.getVoornaam(), m.getAchternaam()))
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -354,12 +276,17 @@ public class MRoosterResource {
         for (MRooster m : service.getAllMRooster()) {
             if (datum.equals(m.getWeekNummer()) && m.getDag().equals("zaterdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                Medewerker medewerker = mservice.getMedewerker(m.getVoornaam(), m.getAchternaam());
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
                 lJsonObjectBuilder
-                        .add("zavoornaam", m.getVoornaam())
-                        .add("zaachternaam", m.getAchternaam())
-                        .add("zabegintijd", m.getBeginTijd().toString())
-                        .add("zaeindtijd", m.getEindTijd().toString())
-                        .add("zapauze", m.getPauze().toString());
+                        .add("naam", medewerker.getVolledigeNaam(m.getVoornaam(), m.getAchternaam()))
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -381,12 +308,17 @@ public class MRoosterResource {
         for (MRooster m : service.getAllMRooster()) {
             if (datum.equals(m.getWeekNummer()) && m.getDag().equals("zondag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                Medewerker medewerker = mservice.getMedewerker(m.getVoornaam(), m.getAchternaam());
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
                 lJsonObjectBuilder
-                        .add("zovoornaam", m.getVoornaam())
-                        .add("zoachternaam", m.getAchternaam())
-                        .add("zobegintijd", m.getBeginTijd().toString())
-                        .add("zoeindtijd", m.getEindTijd().toString())
-                        .add("zopauze", m.getPauze().toString());
+                        .add("naam", medewerker.getVolledigeNaam(m.getVoornaam(), m.getAchternaam()))
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -395,6 +327,37 @@ public class MRoosterResource {
         return lJsonOutStr;
     }
 
+    @POST
+    @Path("/medewerker/ophalen")
+    @Produces("application/json")
+    public String medewerkerRoosterOphalen(String jsonBody) {
+        JsonObject lJsonObjectIn = (JsonObject) Json.createReader(new ByteArrayInputStream(jsonBody.getBytes())).read();
+        String datum = lJsonObjectIn.getString("date");
+        String naam = lJsonObjectIn.getString("name");
+        String[] parts = naam.split(" ", 2);
+        String voornaam = parts[0];
+        String achternaam = parts[1];
+        Medewerker medewerker = mservice.getMedewerker(voornaam,achternaam);
+        JsonArrayBuilder lJsonArrayBuilder = Json.createArrayBuilder();
+
+        for (MRooster m : service.getMedewerkerRooster(medewerker)) {
+            if (datum.equals(m.getWeekNummer())) {
+                JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                String ziek = "nee";
+                if(m.isZiek() == true){
+                    ziek = "ja";
+                }
+                lJsonObjectBuilder
+                        .add("dag", m.getDag())
+                        .add("begintijd", m.getBeginTijd().toString())
+                        .add("eindtijd", m.getEindTijd().toString())
+                        .add("pauze", m.getPauze().toString())
+                        .add("ziek", ziek);
+                lJsonArrayBuilder.add(lJsonObjectBuilder);
+            }
+        }
+
+        String lJsonOutStr = lJsonArrayBuilder.build().toString();
+        return lJsonOutStr;
+    }
 }
-
-

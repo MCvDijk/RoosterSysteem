@@ -1,0 +1,315 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="my-client-stats">
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                padding: 10px 20px;
+            }
+
+            .my-title {
+                font-size: 20px;
+                color: #1a9fd9;
+                font-weight: bold;
+                border-bottom: 1px solid #E62F2B;
+                padding-bottom: 2px;
+            }
+
+            body {
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 1.471
+            }
+
+            .tile_count {
+                margin-bottom: 20px;
+                margin-top: 20px
+            }
+
+            .tile_count .tile_stats_count {
+                border-bottom: 1px solid #D9DEE4;
+                padding: 0 10px 0 20px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                position: relative
+            }
+
+            @media (min-width: 992px) {
+                .tile_count .tile_stats_count {
+                    margin-bottom: 10px;
+                    border-bottom: 0;
+                    padding-bottom: 10px
+                }
+            }
+
+            .tile_count .tile_stats_count:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                height: 65px;
+                border-left: 2px solid #ADB2B5;
+                margin-top: 10px
+            }
+
+            @media (min-width: 992px) {
+                .tile_count .tile_stats_count:first-child:before {
+                    border-left: 0
+                }
+            }
+
+            .tile_count .tile_stats_count .count {
+                font-size: 30px;
+                line-height: 47px;
+                font-weight: 600
+            }
+
+            @media (min-width: 768px) {
+                .tile_count .tile_stats_count .count {
+                    font-size: 40px
+                }
+            }
+
+            @media (min-width: 992px) and (max-width: 1100px) {
+                .tile_count .tile_stats_count .count {
+                    font-size: 30px
+                }
+            }
+
+            .tile_count .tile_stats_count span {
+                font-size: 12px
+            }
+
+            .tile_count .tile_stats_count .count_bottom i {
+                width: 12px
+            }
+
+            .row {
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+
+            .col-md-2, .col-sm-4, .col-xs-6 {
+                position: relative;
+                min-height: 1px;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+
+            .col-xs-6 {
+                float: left;
+            }
+
+            .col-xs-6 {
+                width: 33%;
+            }
+
+            @media (min-width: 768px) {
+                .col-sm-4 {
+                    float: left;
+                }
+
+                .col-sm-4 {
+                    width: 30%;
+                }
+            }
+
+            @media (min-width: 992px) {
+                .col-md-2 {
+                    float: left;
+                }
+
+                .col-md-2 {
+                    width: 13%;
+                }
+            }
+
+            .row:before,
+            .row:after {
+                display: table;
+                content: " ";
+            }
+
+            .row:after {
+                clear: both;
+            }
+        </style>
+
+        <div class="my-title">Statestieken van cliënt [[c_clientname]]</div>
+        <template is="dom-repeat" items="{{stats}}">
+            <div class="right_col" role="main">
+                <div class="row tile_count">
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-user"></i> Totaal Dagen</span>
+                        <div class="count">{{item.totaaldagen}}</div>
+                        <span class="count_bottom"><i class="green">{{item.dagenaanwezigheid}}%</i> Aanwezigheid</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-user"></i> Totaal Dagen Aanwezig</span>
+                        <div class="count green">{{item.dagenaanweizg}}</div>
+                        <span class="count_bottom"><i class="green"><i
+                                class="fa fa-sort-asc"></i>{{item.dagenaanwezigheid}}%</i> Aanwezigheid</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-clock-o"></i> Totaal Dagen Afwezig</span>
+                        <div class="count">{{item.totaaldagenafwezig}}</div>
+                        <span class="count_bottom"><i class="green"><i
+                                class="fa fa-sort-asc"></i>{{item.totaaldagenafwezig}}%</i> Afwezigheid</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-user"></i> Totaal Uren</span>
+                        <div class="count green">{{item.totaaluren}}</div>
+                        <span class="count_bottom"><i class="green"><i
+                                class="fa fa-sort-asc"></i>{{item.urenaanwezigheid}}%</i> Aanwezigheid</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-user"></i> Totaal uren aanwezig</span>
+                        <div class="count">{{item.urenaanwezig}}</div>
+                        <span class="count_bottom"><i class="red"><i
+                                class="fa fa-sort-desc"></i>{{item.urenaanwezigheid}}%</i> Aanwezigheid</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                        <span class="count_top"><i class="fa fa-user"></i> Totaal uren afwezig</span>
+                        <div class="count">{{item.urenafwezig}}</div>
+                        <span class="count_bottom"><i class="red"><i
+                                class="fa fa-sort-desc"></i>{{item.totaalurenafwezig}}%</i> Afwezigheid</span>
+                    </div>
+
+                </div>
+            </div>
+        </template>
+        <table>
+            <tr>
+                <td>
+                    <input type="week" id="dateclientrooster" value="{{date}}" on-change="rooster_ophalen"/>
+                </td>
+            </tr>
+        </table>
+        <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster]]">
+                <vaadin-grid-column>
+                    <template class="header">Dag</template>
+                    <template>[[item.dag]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Aankomst</template>
+                    <template>[[item.aankomst]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Aankomsttijd</template>
+                    <template>[[item.aankomsttijd]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Vertrek</template>
+                    <template>[[item.vertrek]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Vertrektijd</template>
+                    <template>[[item.vertrektijd]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Slapen</template>
+                    <template>[[item.slapen]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Medicatie</template>
+                    <template>[[item.medicatie]]</template>
+                </vaadin-grid-column>
+
+                <vaadin-grid-column>
+                    <template class="header">Afwezig</template>
+                    <template>[[item.afwezig]]</template>
+                </vaadin-grid-column>
+
+        </vaadin-grid>
+
+
+        <iron-ajax
+                id="ajax_rooster_ophalen"
+                method="POST"
+                url="/services/rooster/client/ophalen"
+                handle-as="json"
+                last-response="{{rooster}}">
+        </iron-ajax>
+        <iron-ajax id="statsOphalen_handler"
+                   method="POST"
+                   url="/services/client/stats/ophalen"
+                   handle-as="json"
+                   last-response="{{stats}}">
+
+        </iron-ajax>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'my-client-stats',
+            properties: {
+                stats: Object,
+                c_clientname: {
+                    type: String,
+                },
+                date:String,
+                c_visible: {
+                    type: Boolean, /* true when element is the active visible item */
+                    value: false,
+                    observer: '_initializing', /* wordt ook aangeroepen bijwisseling van true naar false.
+                     regel in de functie dat er niets gebeurd
+                     als c_visible false is */
+                },
+                rooster:Object,
+            },
+            _initializing: function () {
+                if (this.c_visible) {
+                    console.log(this.c_clientname);
+                    this.getDateToday();
+                    this.statsOphalen();
+                    this._roosters_ophalen_request_handler();
+                }
+            },
+            rooster_ophalen : function () {
+                var datum = document.querySelector("#dateclientrooster").value;
+                this.date = datum ;
+                this._roosters_ophalen_request_handler();
+            },
+
+            statsOphalen: function () {
+                this.$['statsOphalen_handler'].contentType = "application/json";
+                this.$['statsOphalen_handler'].body = {
+                    "name": this.c_clientname
+                };
+                this.$['statsOphalen_handler'].generateRequest();
+            },
+            _roosters_ophalen_request_handler: function () {
+                this.$['ajax_rooster_ophalen'].contentType = "application/json";
+                this.$['ajax_rooster_ophalen'].body = {
+                    "date": this.date,
+                    "name": this.c_clientname
+                };
+                this.$['ajax_rooster_ophalen'].generateRequest();
+            },
+            getDateToday: function () {
+                d = new Date();
+                d.setHours(0, 0, 0, 0);
+                // Set to nearest Thursday: current date + 4 - current day number
+                // Make Sunday's day number 7
+                d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+                // Get first day of year
+                var yearStart = new Date(d.getFullYear(), 0, 1);
+                // Calculate full weeks to nearest Thursday
+                var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
+                // Return array of year and week number
+                this.date = d.getFullYear()+'-W'+weekNo;
+            },
+        });
+    </script>
+</dom-module>

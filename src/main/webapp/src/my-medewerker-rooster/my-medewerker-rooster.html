@@ -42,228 +42,235 @@
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.mavoornaam]] [[item.maachternaam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
-                    <template>[[item.mabegintijd]]</template>
+                    <template>[[item.begintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
-                    <template>[[item.maeindtijd]]</template>
+                    <template>[[item.eindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
-                    <template>[[item.mapauze]]</template>
+                    <template>[[item.pauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template><paper-button></paper-button></template>
+                    <template>[[item.ziek]]</template>
                 </vaadin-grid-column>
-
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
         <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_dinsdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Dinsdag</template>
+                <template class="header" style="text-align: center"> Dinsdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.divoornaam]] [[item.diachternaam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
-                    <template>[[item.dibegintijd]]</template>
+                    <template>[[item.begintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
-                    <template>[[item.dieindtijd]]</template>
+                    <template>[[item.eindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
-                    <template>[[item.dipauze]]</template>
+                    <template>[[item.pauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template><paper-button></paper-button></template>
+                    <template>[[item.ziek]]</template>
                 </vaadin-grid-column>
-
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
         <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_woensdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Woensdag</template>
-
+                <template class="header" style="text-align: center"> Woensdag</template>
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.wovoornaam]] [[item.woachternaam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
-                    <template>[[item.wobegintijd]]</template>
+                    <template>[[item.begintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
-                    <template>[[item.woeindtijd]]</template>
+                    <template>[[item.eindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
-                    <template>[[item.wopauze]]</template>
+                    <template>[[item.pauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template><paper-button></paper-button></template>
+                    <template>[[item.ziek]]</template>
                 </vaadin-grid-column>
-
             </vaadin-grid-column-group>
 
         </vaadin-grid>
         <br>
         <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_donderdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Donderdag</template>
+                <template class="header" style="text-align: center">Donderdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.dovoornaam]] [[item.doachternaam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
-                    <template>[[item.dobegintijd]]</template>
+                    <template>[[item.begintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
-                    <template>[[item.doeindtijd]]</template>
+                    <template>[[item.eindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
-                    <template>[[item.dopauze]]</template>
+                    <template>[[item.pauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template><paper-button></paper-button></template>
+                    <template>[[item.ziek]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
-
         </vaadin-grid>
         <br>
         <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_vrijdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Vrijdag</template>
+                <template class="header" style="text-align: center">Vrijdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.vrvoornaam]] [[item.vrachternaam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
-                    <template>[[item.vrbegintijd]]</template>
+                    <template>[[item.begintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
-                    <template>[[item.vreindtijd]]</template>
+                    <template>[[item.eindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
-                    <template>[[item.vrpauze]]</template>
+                    <template>[[item.pauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template><paper-button></paper-button></template>
+                    <template>[[item.ziek]]</template>
                 </vaadin-grid-column>
-
             </vaadin-grid-column-group>
+
         </vaadin-grid>
         <br>
         <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_zaterdag]]">
             <vaadin-grid-column-group>
-                <template class="header">Zaterdag</template>
+                <template class="header" style="text-align: center">Zaterdag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.zavoornaam]] [[item.zaachternaam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
-                    <template>[[item.zabegintijd]]</template>
+                    <template>[[item.begintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
-                    <template>[[item.zaeindtijd]]</template>
+                    <template>[[item.eindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
-                    <template>[[item.zapauze]]</template>
+                    <template>[[item.pauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template><paper-button></paper-button></template>
+                    <template>[[item.ziek]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
-
         </vaadin-grid>
         <br>
         <vaadin-grid aria-label="Basic Binding Example" style="height:100%;" items="[[rooster_zondag]]">
             <vaadin-grid-column-group>
-                <template class="header">Zondag</template>
+                <template class="header" style="text-align: center">Zondag</template>
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.zovoornaam]] [[item.zoachternaam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Begintijd</template>
-                    <template>[[item.zobegintijd]]</template>
+                    <template>[[item.begintijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Eindtijd</template>
-                    <template>[[item.zoeindtijd]]</template>
+                    <template>[[item.eindtijd]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Pauze</template>
-                    <template>[[item.zopauze]]</template>
+                    <template>[[item.pauze]]</template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template><paper-button></paper-button></template>
+                    <template>[[item.ziek]]</template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
-
         </vaadin-grid>
 
         <iron-ajax
@@ -330,6 +337,10 @@
                      als c_visible false is */
                 },
                 date:String,
+                medewerkername:{
+                    type: String,
+                    notify:true
+                },
                 rooster_maandag:Object,
                 rooster_dinsdag:Object,
                 rooster_woensdag:Object,
@@ -341,7 +352,7 @@
             _initializing: function() {
                 if (this.c_visible) {
                     this.getDateToday();
-                    this.rooster_ophalen;
+                    this.rooster_ophalen();
                 }
             },
             _roosters_maandag_ophalen_request_handler: function () {
@@ -418,6 +429,19 @@
                 // Return array of year and week number
                 this.date = d.getFullYear()+'-W'+weekNo;
                 console.log(d.getFullYear()+"-W"+weekNo);
+            },
+            _button_clicked: function (evt) {
+                var lButton = evt.currentTarget;
+                var id = lButton.id;
+                this.medewerkername = id;
+                this.go_medewerker_stats();
+
+            },
+            go_medewerker_stats: function() {
+                var lApp = document.querySelector('my-app');  //het polymer element <my-app>
+                var lAppRouter = lApp.$.approuter;            // het html-element <app-route> met id=approuter
+                lAppRouter.data={page: "medewerker_stats"};                   // vul het data attribute met de homepage url
+                // door de two way binding in <app-route> en <app-location>// zal ook de url echt wijzigen
             }
         });
     </script>

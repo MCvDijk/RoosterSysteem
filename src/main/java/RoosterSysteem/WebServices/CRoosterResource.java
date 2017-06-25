@@ -127,14 +127,23 @@ public class CRoosterResource {
             if (datum.equals(c.getWeekNummer()) && c.getDag().equals("maandag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
                 Client client = cservice.getClient(c.getVoornaam(),c.getAchternaam());
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
                 lJsonObjectBuilder
                         .add("naam", client.getVolledigeNaam(c.getVoornaam(),c.getAchternaam()))
                         .add("aankomst", c.getAankomst())
                         .add("aankomsttijd", c.getAankomstTijd().toString())
                         .add("vertrek", c.getVertrek())
                         .add("vertrektijd", c.getVertrekTijd().toString())
-                        .add("slapen", c.isSlapen())
-                        .add("medicatie", client.getMedicijn());
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -156,14 +165,23 @@ public class CRoosterResource {
             if (datum.equals(c.getWeekNummer()) && c.getDag().equals("dinsdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
                 Client client = cservice.getClient(c.getVoornaam(),c.getAchternaam());
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
                 lJsonObjectBuilder
                         .add("naam", client.getVolledigeNaam(c.getVoornaam(),c.getAchternaam()))
                         .add("aankomst", c.getAankomst())
                         .add("aankomsttijd", c.getAankomstTijd().toString())
                         .add("vertrek", c.getVertrek())
                         .add("vertrektijd", c.getVertrekTijd().toString())
-                        .add("slapen", c.isSlapen())
-                        .add("medicatie", client.getMedicijn());
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -184,14 +202,23 @@ public class CRoosterResource {
             if (datum.equals(c.getWeekNummer()) && c.getDag().equals("woensdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
                 Client client = cservice.getClient(c.getVoornaam(),c.getAchternaam());
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
                 lJsonObjectBuilder
                         .add("naam", client.getVolledigeNaam(c.getVoornaam(),c.getAchternaam()))
                         .add("aankomst", c.getAankomst())
                         .add("aankomsttijd", c.getAankomstTijd().toString())
                         .add("vertrek", c.getVertrek())
                         .add("vertrektijd", c.getVertrekTijd().toString())
-                        .add("slapen", c.isSlapen())
-                        .add("medicatie", client.getMedicijn());
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -212,14 +239,23 @@ public class CRoosterResource {
             if (datum.equals(c.getWeekNummer()) && c.getDag().equals("donderdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
                 Client client = cservice.getClient(c.getVoornaam(),c.getAchternaam());
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
                 lJsonObjectBuilder
                         .add("naam", client.getVolledigeNaam(c.getVoornaam(),c.getAchternaam()))
                         .add("aankomst", c.getAankomst())
                         .add("aankomsttijd", c.getAankomstTijd().toString())
                         .add("vertrek", c.getVertrek())
                         .add("vertrektijd", c.getVertrekTijd().toString())
-                        .add("slapen", c.isSlapen())
-                        .add("medicatie", client.getMedicijn());
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -240,14 +276,23 @@ public class CRoosterResource {
             if (datum.equals(c.getWeekNummer()) && c.getDag().equals("vrijdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
                 Client client = cservice.getClient(c.getVoornaam(),c.getAchternaam());
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
                 lJsonObjectBuilder
                         .add("naam", client.getVolledigeNaam(c.getVoornaam(),c.getAchternaam()))
                         .add("aankomst", c.getAankomst())
                         .add("aankomsttijd", c.getAankomstTijd().toString())
                         .add("vertrek", c.getVertrek())
                         .add("vertrektijd", c.getVertrekTijd().toString())
-                        .add("slapen", c.isSlapen())
-                        .add("medicatie", client.getMedicijn());
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -268,14 +313,23 @@ public class CRoosterResource {
             if (datum.equals(c.getWeekNummer()) && c.getDag().equals("zaterdag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
                 Client client = cservice.getClient(c.getVoornaam(),c.getAchternaam());
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
                 lJsonObjectBuilder
                         .add("naam", client.getVolledigeNaam(c.getVoornaam(),c.getAchternaam()))
                         .add("aankomst", c.getAankomst())
                         .add("aankomsttijd", c.getAankomstTijd().toString())
                         .add("vertrek", c.getVertrek())
                         .add("vertrektijd", c.getVertrekTijd().toString())
-                        .add("slapen", c.isSlapen())
-                        .add("medicatie", client.getMedicijn());
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }
@@ -296,14 +350,65 @@ public class CRoosterResource {
             if (datum.equals(c.getWeekNummer()) && c.getDag().equals("zondag")) {
                 JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
                 Client client = cservice.getClient(c.getVoornaam(),c.getAchternaam());
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
                 lJsonObjectBuilder
                         .add("naam", client.getVolledigeNaam(c.getVoornaam(),c.getAchternaam()))
                         .add("aankomst", c.getAankomst())
                         .add("aankomsttijd", c.getAankomstTijd().toString())
                         .add("vertrek", c.getVertrek())
                         .add("vertrektijd", c.getVertrekTijd().toString())
-                        .add("slapen", c.isSlapen())
-                        .add("medicatie", client.getMedicijn());
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
+                lJsonArrayBuilder.add(lJsonObjectBuilder);
+            }
+        }
+
+        String lJsonOutStr = lJsonArrayBuilder.build().toString();
+        return lJsonOutStr;
+    }
+
+    @POST
+    @Path("/client/ophalen")
+    @Produces("application/json")
+    public String clientRoosterOphalen(String jsonBody){
+        JsonObject lJsonObjectIn = (JsonObject) Json.createReader(new ByteArrayInputStream(jsonBody.getBytes())).read();
+        String datum = lJsonObjectIn.getString("date");
+        String naam = lJsonObjectIn.getString("name");
+        String[] parts = naam.split(" ", 2);
+        String voornaam = parts[0];
+        String achternaam = parts[1];
+        Client client = cservice.getClient(voornaam,achternaam);
+
+        JsonArrayBuilder lJsonArrayBuilder = Json.createArrayBuilder();
+
+        for (CRooster c : service.getClientRooster(client)) {
+            if (datum.equals(c.getWeekNummer())){
+                JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
+                String afwezig = "nee";
+                if(c.isAfwezig() == true){
+                    afwezig = "ja";
+                }
+                String slapen = "nee";
+                if(c.isSlapen() == true){
+                    slapen = "ja";
+                }
+                lJsonObjectBuilder
+                        .add("dag", c.getDag())
+                        .add("aankomst", c.getAankomst())
+                        .add("aankomsttijd", c.getAankomstTijd().toString())
+                        .add("vertrek", c.getVertrek())
+                        .add("vertrektijd", c.getVertrekTijd().toString())
+                        .add("slapen", slapen)
+                        .add("medicatie", client.getMedicijn())
+                        .add("afwezig", afwezig);
                 lJsonArrayBuilder.add(lJsonObjectBuilder);
             }
         }

@@ -124,6 +124,23 @@ public class CRooster implements Serializable {
         this.afwezig = afwezig;
     }
 
+    public int getUrenPerDag(){
+        int startuur = aankomstTijd.getHour();
+        int startmin = aankomstTijd.getMinute();
+        int einduur = vertrekTijd.getHour();
+        int eindmin = vertrekTijd.getMinute();
+        startmin = ((startmin/60)*100);
+        eindmin = ((einduur/60)*100);
+        startuur = startuur*100;
+        einduur = einduur*100;
+        int starttijd = startuur + startmin;
+        int stoptijd = einduur + eindmin;
+        int uren = stoptijd - starttijd;
+
+        return uren;
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

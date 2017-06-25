@@ -24,12 +24,11 @@
     "paper-toast": "PolymerElements/paper-toast#^1.3.0",
     "iron-icons": "PolymerElements/iron-icons#^1.2.0",
     "vaadin-grid": "vaadin/vaadin-grid#^2.0.0",
-    "paper-dropdown-menu":"PolymerElements/paper-dropdown-menu",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu",
     "paper-listbox": "PolymerElements/paper-listbox",
     "paper-item": "PolymerElements/paper-item",
     "vaadin-combo-box": "vaadin/vaadin-combo-box#^1.3.0",
     "iron-form": "PolymerElements/iron-form#^1.1.5"
-
   },
   "devDependencies": {},
   "ignore": []
