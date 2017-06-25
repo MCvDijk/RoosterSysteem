@@ -30,7 +30,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.naam]]</template>
+                    <template>
+                    <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -78,7 +80,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.naam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -125,7 +129,9 @@
                 <template class="header" style="text-align: center"> Woensdag</template>
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.naam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -173,7 +179,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.naam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -220,7 +228,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.naam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -268,7 +278,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.naam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -315,7 +327,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
-                    <template>[[item.naam]]</template>
+                    <template>
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
                 <vaadin-grid-column>
@@ -418,6 +432,10 @@
                      regel in de functie dat er niets gebeurd
                      als c_visible false is */
                 },
+                clientname:{
+                    type:String,
+                    notify:true
+                },
                 date:String,
                 rooster_maandag:Object,
                 rooster_dinsdag:Object,
@@ -431,7 +449,7 @@
             _initializing: function() {
                 if (this.c_visible) {
                     this.getDateToday();
-                    this.rooster_ophalen;
+                    this.rooster_ophalen();
                 }
             },
             _roosters_maandag_ophalen_request_handler: function () {
@@ -508,6 +526,20 @@
                 // Return array of year and week number
                 this.date = d.getFullYear()+'-W'+weekNo;
                 console.log(d.getFullYear()+"-W"+weekNo);
+            },
+
+            _button_clicked: function (evt) {
+                var lButton = evt.currentTarget;
+                var id = lButton.id;
+                this.clientname = id;
+                this.go_client_stats();
+
+            },
+            go_client_stats: function() {
+                var lApp = document.querySelector('my-app');  //het polymer element <my-app>
+                var lAppRouter = lApp.$.approuter;            // het html-element <app-route> met id=approuter
+                lAppRouter.data={page: "client_stats"};                   // vul het data attribute met de homepage url
+                // door de two way binding in <app-route> en <app-location>// zal ook de url echt wijzigen
             }
         });
     </script>

@@ -272,7 +272,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    element$="my-client-rooster">
             <paper-material elevation="1">
               <my-client-rooster
-                      c_visible="[[_are_strings_equal(_ar_page, 'client_rooster')]]">
+                      c_visible="[[_are_strings_equal(_ar_page, 'client_rooster')]]"
+                      clientname="{{_clientname}}">
               </my-client-rooster>
             </paper-material>
           </section>
@@ -282,7 +283,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    element$="my-medewerker-rooster">
             <paper-material elevation="1">
               <my-medewerker-rooster
-                      c_visible="[[_are_strings_equal(_ar_page, 'medewerker_rooster')]]">
+                      c_visible="[[_are_strings_equal(_ar_page, 'medewerker_rooster')]]"
+                      medewerkername="{{_medewerkername}}">
               </my-medewerker-rooster>
             </paper-material>
           </section>
@@ -328,7 +330,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </section>
 
           <section name="school_registreren"
-                   title="SCHOOL-REGISTrEREN"
+                   title="SCHOOL-REGISTREREN"
                    element$="my-school-toevoegen">
             <paper-material elevation="1">
               <my-school-toevoegen>
@@ -336,6 +338,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-material>
           </section>
 
+          <!--admin only section-->
+          <section name="medewerker_stats"
+                   title="MEDEWERKER-STATS"
+                   element$="my-medewerker-stats">
+            <paper-material elevation="1">
+              <my-medewerker-stats
+                      c_visible="[[_are_strings_equal(_ar_page, 'medewerker_stats')]]"
+                      c_medewerkername="[[_medewerkername]]">
+              </my-medewerker-stats>
+            </paper-material>
+          </section>
+          <section name="client_stats"
+                   title="CLIENT-STATS"
+                   element$="my-client-stats">
+            <paper-material elevation="1">
+              <my-client-stats
+                      c_visible="[[_are_strings_equal(_ar_page, 'client_stats')]]"
+                      c_clientname="[[_clientname]]">
+              </my-client-stats>
+            </paper-material>
+          </section>
 
         </iron-pages>
 
@@ -365,6 +388,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   _rol: {
                       type: String,
                       value: "undefined",  		//zodat login zichtbaar wordt
+                  },
+                  _medewerkername: {
+                      type: String
+                  },
+                  _clientname: {
+                      type: String
                   },
                   _ar_page: {
                       type: String,

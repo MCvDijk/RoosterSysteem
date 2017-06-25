@@ -102,6 +102,23 @@ public class MRooster implements Serializable {
         return ziek;
     }
 
+    public int getGewerktPerDag(){
+        int startuur = beginTijd.getHour();
+        int startmin = beginTijd.getMinute();
+        int einduur = eindTijd.getHour();
+        int eindmin = eindTijd.getMinute();
+        startmin = ((startmin/60)*100);
+        eindmin = ((einduur/60)*100);
+        startuur = startuur*100;
+        einduur = einduur*100;
+        int starttijd = startuur + startmin;
+        int stoptijd = einduur + eindmin;
+        int gewerkt = (stoptijd - (starttijd + 50));
+
+        return gewerkt;
+
+    }
+
     public void setZiek(boolean ziek) {
         this.ziek = ziek;
     }
@@ -137,4 +154,6 @@ public class MRooster implements Serializable {
         result = 31 * result + (achternaam != null ? achternaam.hashCode() : 0);
         return result;
     }
+
+
 }
