@@ -68,6 +68,7 @@ public class ClientResource {
         JsonArrayBuilder lJsonArrayBuilder = Json.createArrayBuilder();
         JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
         String naam = lJsonObjectIn.getString("name");
+        String datum = lJsonObjectIn.getString("date");
         System.out.println(naam);
         String[] parts = naam.split(" ", 2);
         String voornaam = parts[0];
@@ -80,19 +81,44 @@ public class ClientResource {
         int urenaanwezig = 0;
         int urenafwezig = 0;
 
-        for(CRooster c : cservice.getClientRooster(client)){
-            if(c.isAfwezig() == false){
-                aanwezig++;
-                aantalDagen++;
-                urenaanwezig = urenaanwezig + c.getUrenPerDag();
-                totaalUren = totaalUren + c.getUrenPerDag();
+        String[] delen = datum.split("-");
+        String jaar = delen[0];
+        String weeknr = delen[1];
+        weeknr = weeknr.replace("W", "");
+        int weeknummer = Integer.parseInt(weeknr);
+        int controle = weeknummer;
+        weeknummer = weeknummer + 1;
+        String date = "";
+        int jaartal = Integer.parseInt(jaar);
+        int vorigjaar = jaartal;
+        for (int i = 0; i < controle; i++) {
+            weeknummer = weeknummer - 1;
+            if (weeknummer == 0) {
+                vorigjaar = jaartal - 1;
+            }
+            if (!(vorigjaar == jaartal)){
+                break;
             }
 
-            else if (c.isAfwezig() == true){
-                afwezig++;
-                aantalDagen++;
-                urenafwezig = urenafwezig + c.getUrenPerDag();
-                totaalUren = totaalUren + c.getUrenPerDag();
+            if (weeknummer < 10) {
+                date = jaartal + "-W" + 0 + weeknummer;
+            } else if (weeknummer > 9) {
+                date = jaartal + "-W" + weeknummer;
+            }
+
+
+            for (CRooster c : cservice.getClientRooster(client)) {
+                if (c.isAfwezig() == false && c.getWeekNummer().equals(date)) {
+                    aanwezig++;
+                    aantalDagen++;
+                    urenaanwezig = urenaanwezig + c.getUrenPerDag();
+                    totaalUren = totaalUren + c.getUrenPerDag();
+                } else if (c.isAfwezig() == true&& c.getWeekNummer().equals(date)) {
+                    afwezig++;
+                    aantalDagen++;
+                    urenafwezig = urenafwezig + c.getUrenPerDag();
+                    totaalUren = totaalUren + c.getUrenPerDag();
+                }
             }
         }
         System.out.println(totaalUren);

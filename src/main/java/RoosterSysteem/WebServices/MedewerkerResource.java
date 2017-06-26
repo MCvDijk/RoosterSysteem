@@ -66,7 +66,7 @@ public class MedewerkerResource {
         JsonArrayBuilder lJsonArrayBuilder = Json.createArrayBuilder();
         JsonObjectBuilder lJsonObjectBuilder = Json.createObjectBuilder();
         String naam = lJsonObjectIn.getString("name");
-        System.out.println(naam);
+        String datum = lJsonObjectIn.getString("date");
         String[] parts = naam.split(" ", 2);
         String voornaam = parts[0];
         String achternaam = parts[1];
@@ -78,19 +78,43 @@ public class MedewerkerResource {
         int urenaanwezig = 0;
         int urenafwezig = 0;
 
-        for(MRooster m : mservice.getMedewerkerRooster(medewerker)){
-            if(m.isZiek() == false){
-                aanwezig++;
-                aantalDagen++;
-                urenaanwezig = urenaanwezig + m.getGewerktPerDag();
-                totaalUren = totaalUren + m.getGewerktPerDag();
+        String[] delen = datum.split("-");
+        String jaar = delen[0];
+        String weeknr = delen[1];
+        weeknr = weeknr.replace("W", "");
+        int weeknummer = Integer.parseInt(weeknr);
+        int controle = weeknummer;
+        weeknummer = weeknummer + 1;
+        String date = "";
+        int jaartal = Integer.parseInt(jaar);
+        int vorigjaar = jaartal;
+        for (int i = 0; i < controle; i++) {
+            weeknummer = weeknummer - 1;
+            if (weeknummer == 0) {
+                vorigjaar = jaartal - 1;
+            }
+            if (!(vorigjaar == jaartal)) {
+                break;
             }
 
-            else if (m.isZiek() == true){
-                afwezig++;
-                aantalDagen++;
-                urenafwezig = urenafwezig + m.getGewerktPerDag();
-                totaalUren = totaalUren + m.getGewerktPerDag();
+            if (weeknummer < 10) {
+                date = jaartal + "-W" + 0 + weeknummer;
+            } else if (weeknummer > 9) {
+                date = jaartal + "-W" + weeknummer;
+            }
+
+            for (MRooster m : mservice.getMedewerkerRooster(medewerker)) {
+                if (m.isZiek() == false && m.getWeekNummer().equals(date)) {
+                    aanwezig++;
+                    aantalDagen++;
+                    urenaanwezig = urenaanwezig + m.getGewerktPerDag();
+                    totaalUren = totaalUren + m.getGewerktPerDag();
+                } else if (m.isZiek() == true && m.getWeekNummer().equals(date)) {
+                    afwezig++;
+                    aantalDagen++;
+                    urenafwezig = urenafwezig + m.getGewerktPerDag();
+                    totaalUren = totaalUren + m.getGewerktPerDag();
+                }
             }
         }
         System.out.println(totaalUren);

@@ -280,12 +280,14 @@
                 var datum = document.querySelector("#dateclientrooster").value;
                 this.date = datum ;
                 this._roosters_ophalen_request_handler();
+                this.statsOphalen();
             },
 
             statsOphalen: function () {
                 this.$['statsOphalen_handler'].contentType = "application/json";
                 this.$['statsOphalen_handler'].body = {
-                    "name": this.c_clientname
+                    "name": this.c_clientname,
+                    "date": this.date
                 };
                 this.$['statsOphalen_handler'].generateRequest();
             },
