@@ -263,12 +263,14 @@
                 var datum = document.querySelector("#datemedewerkerrooster").value;
                 this.date = datum ;
                 this._roosters_ophalen_request_handler();
+                this.statsOphalen();
             },
 
             statsOphalen: function () {
                 this.$['statsOphalen_handler'].contentType = "application/json";
                 this.$['statsOphalen_handler'].body = {
-                    "name": this.c_medewerkername
+                    "name": this.c_medewerkername,
+                    "date": this.date
                 };
                 this.$['statsOphalen_handler'].generateRequest();
             },
