@@ -35,4 +35,15 @@ public class CRoosterDAO extends SharedDAO {
         return results;
     }
 
+    public CRooster getClientRooster(Client c, String weeknummer,String dag){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        CRooster result = (CRooster) session.createQuery("from CRooster where client=:client and weekNummer=:weeknummer and dag=:dag ")
+                .setParameter("client", c)
+                .setParameter("weeknummer", weeknummer)
+                .setParameter("dag", dag).getSingleResult();
+        session.close();
+        return result;
+    }
+
 }

@@ -164,39 +164,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <span>Uitloggen</span>
             </a>
 
-            <a name="client_rooster" href$="[[_c_baseURL]]client_rooster">
+            <a name="client_rooster" href$="[[_c_baseURL]]client_rooster" verborgen$="[[!_are_strings_equal(_rol, 'gebruiker')]]">
               <iron-icon icon="social:group"></iron-icon>
               <span>Cliënt Rooster</span>
             </a>
 
-            <a name="medwerker_rooster" href$="[[_c_baseURL]]medewerker_rooster">
+            <a name="medwerker_rooster" href$="[[_c_baseURL]]medewerker_rooster"  verborgen$="[[!_are_strings_equal(_rol, 'gebruiker')]]">
               <iron-icon icon="social:group"></iron-icon>
               <span>Medewerker Rooster</span>
             </a>
 
-            <a name="client_inroosteren" href$="[[_c_baseURL]]client_inroosteren">
+            <!--admin only section-->
+            <a name="client_rooster_admin" href$="[[_c_baseURL]]client_rooster_admin" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
+              <iron-icon icon="social:group"></iron-icon>
+              <span>Cliënt Rooster</span>
+            </a>
+
+            <a name="medwerker_rooster_admin" href$="[[_c_baseURL]]medewerker_rooster_admin" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
+              <iron-icon icon="social:group"></iron-icon>
+              <span>Medewerker Rooster</span>
+            </a>
+
+            <a name="client_inroosteren" href$="[[_c_baseURL]]client_inroosteren" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
               <iron-icon icon="social:group"></iron-icon>
               <span>Cliënt inroosteren</span>
             </a>
 
-            <a name="medewerker_inroosteren" href$="[[_c_baseURL]]medewerker_inroosteren">
+            <a name="medewerker_inroosteren" href$="[[_c_baseURL]]medewerker_inroosteren" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
               <iron-icon icon="social:group"></iron-icon>
               <span>Medewerker inroosteren</span>
             </a>
 
-            <a name="client_registreren" href$="[[_c_baseURL]]client_registreren">
+            <a name="client_registreren" href$="[[_c_baseURL]]client_registreren" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
               <iron-icon icon="social:group"></iron-icon>
               <span>Cliënt Registeren</span>
             </a>
 
-            <a name="medewerker_registreren" href$="[[_c_baseURL]]medewerker_registreren">
+            <a name="medewerker_registreren" href$="[[_c_baseURL]]medewerker_registreren" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
               <iron-icon icon="social:group"></iron-icon>
               <span>Medewerker Registeren</span>
             </a>
 
-            <a name="school_registreren" href$="[[_c_baseURL]]school_registreren">
+            <a name="school_registreren" href$="[[_c_baseURL]]school_registreren" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
               <iron-icon icon="social:group"></iron-icon>
               <span>School Registeren</span>
+            </a>
+
+            <a name="client_stats" href$="[[_c_baseURL]]client_stats" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
+              <iron-icon icon="social:group"></iron-icon>
+              <span>Cliënt stats</span>
+            </a>
+
+            <a name="medewerker_stats" href$="[[_c_baseURL]]medewerker_stats" verborgen$="[[!_are_strings_equal(_rol, 'admin')]]">
+              <iron-icon icon="social:group"></iron-icon>
+              <span>Medewerker stats</span>
             </a>
 
           </iron-selector>
@@ -289,6 +310,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-material>
           </section>
 
+          <!--admin only section-->
+          <section name="client_rooster_admin"
+                   title="CLIENT-ROOSTER-ADMIN"
+                   element$="my-client-rooster-admin">
+            <paper-material elevation="1">
+              <my-client-rooster-admin
+                      c_visible="[[_are_strings_equal(_ar_page, 'client_rooster_admin')]]"
+                      clientname="{{_clientname}}">
+              </my-client-rooster-admin>
+            </paper-material>
+          </section>
+
+          <section name="medewerker_rooster_admin"
+                   title="MEDEWERKER_ROOSTER_ADMIN"
+                   element$="my-medewerker-rooster-admin">
+            <paper-material elevation="1">
+              <my-medewerker-rooster-admin
+                      c_visible="[[_are_strings_equal(_ar_page, 'medewerker_rooster_admin')]]"
+                      medewerkername="{{_medewerkername}}">
+              </my-medewerker-rooster-admin>
+            </paper-material>
+          </section>
+
           <section name="client_inroosteren"
                    title="CLIENT-INROOSTEREN"
                    element$="my-client-inroosteren">
@@ -338,7 +382,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-material>
           </section>
 
-          <!--admin only section-->
+
           <section name="medewerker_stats"
                    title="MEDEWERKER-STATS"
                    element$="my-medewerker-stats">

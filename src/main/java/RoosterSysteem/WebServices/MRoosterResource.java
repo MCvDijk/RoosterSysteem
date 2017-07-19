@@ -360,4 +360,37 @@ public class MRoosterResource {
         String lJsonOutStr = lJsonArrayBuilder.build().toString();
         return lJsonOutStr;
     }
+
+    @POST
+    @Path("/medewerker/ziek")
+    @Produces("application/json")
+    public Response medewerkerafwezig(String jsonBody){
+        JsonObject lJsonObjectIn = (JsonObject) Json.createReader(new ByteArrayInputStream(jsonBody.getBytes())).read();
+        String datum = lJsonObjectIn.getString("date");
+        String status = lJsonObjectIn.getString("status");
+        String[] list = status.split(",");
+        String afwezig = list[0].toLowerCase();
+        String naam = list[1];
+        String dag = list[2];
+        String[] parts = naam.split(" ", 2);
+        String voornaam = parts[0];
+        String achternaam = parts[1];
+        Medewerker m  = mservice.getMedewerker(voornaam,achternaam);
+
+
+        if(afwezig.equals("nee")){
+            MRooster mr = service.getOneMedewerkerRooster(m,datum,dag);
+            mr.setZiek(true);
+            service.updateMRooster(mr);
+        }
+        else if(afwezig.equals("ja")){
+            MRooster mr = service.getOneMedewerkerRooster(m,datum,dag);
+            mr.setZiek(false);
+            service.updateMRooster(mr);
+        }
+
+        return Response.ok().build();
+    }
+
+
 }

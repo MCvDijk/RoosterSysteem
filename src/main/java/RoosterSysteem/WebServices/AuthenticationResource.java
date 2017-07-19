@@ -1,10 +1,8 @@
 package RoosterSysteem.WebServices;
 
 import RoosterSysteem.Model.gebruiker.Gebruiker;
-import RoosterSysteem.Persistence.DAO.GebruikerDAO;
 import RoosterSysteem.Service.GebruikerService;
 import RoosterSysteem.Service.ServiceProvider;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -27,7 +25,7 @@ public class AuthenticationResource {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces("application/json")
-    public Response authenticateUser(@FormParam("username") String username,
+    public String authenticateUser(@FormParam("username") String username,
                                    @FormParam("password") String password) {
         JsonObjectBuilder job = Json.createObjectBuilder();
 // Get user from database
@@ -37,19 +35,23 @@ public class AuthenticationResource {
 // Check if user is active
             if (g.getRole() == null) { throw new IllegalArgumentException("No user found!"); }
 // If match, issue token
-            Calendar expiration = Calendar.getInstance();
-            expiration.add(Calendar.MINUTE, 30);
-            String token = Jwts.builder()
-                    .setSubject(username)
-                    .claim("role", g.getRole())
-                    .setExpiration(expiration.getTime())
-                    .signWith(SignatureAlgorithm.HS512, key)
-                    .compact();
-
-            return Response.ok(token).build();
+            if (password.equals(g.getWachtwoord())) {
+                Calendar expiration = Calendar.getInstance();
+                expiration.add(Calendar.MINUTE, 30);
+                String token = Jwts.builder()
+                        .setSubject(username)
+                        .claim("role", g.getRole())
+                        .setExpiration(expiration.getTime())
+                        .signWith(SignatureAlgorithm.HS512, key)
+                        .compact();
+                job.add("token",token);
+                job.add("role", g.getRole());
+            }
+            return job.build().toString();
 
         } catch (JwtException | IllegalArgumentException e) {
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            job.add("message","Gebruikersnaam of wachtwoord incorrect");
+            return job.build().toString();
         }
     }
 }

@@ -20,6 +20,10 @@
                 border-bottom: 1px solid #E62F2B;
                 padding-bottom: 2px;
             }
+            .medewerker_box{
+                width:200px;
+
+            }
 
             body {
                 font-size: 13px;
@@ -139,6 +143,9 @@
             .row:after {
                 clear: both;
             }
+            .space{
+                width:10px;
+            }
         </style>
 
         <div class="my-title">Statestieken van medewerker [[c_medewerkername]]</div>
@@ -186,7 +193,17 @@
         </template>
         <table>
             <tr>
-                <td>
+                <td class="space">
+                    <paper-dropdown-menu class="medewerker_box" id="mederwerkerstats" label="Mederwerker" name="medewerker" on-click="rooster_ophalen">
+                        <paper-listbox slot="dropdown-content">
+                            <template is="dom-repeat" items="{{medewerkers}}">
+                                <paper-item>{{item.naam}}</paper-item>
+                            </template>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </td>
+                <td class="space"></td>
+                <td class="space">
                     <input type="week" id="datemedewerkerrooster" value="{{date}}" on-change="rooster_ophalen"/>
                 </td>
             </tr>
@@ -232,6 +249,11 @@
                    last-response="{{stats}}">
 
         </iron-ajax>
+        <iron-ajax
+                id="ajax_medewerkers_ophalen"
+                url="/services/medewerker/medewerkers/ophalen"
+                last-response="{{medewerkers}}">
+        </iron-ajax>
     </template>
 
     <script>
@@ -242,6 +264,7 @@
                 c_medewerkername: {
                     type: String,
                 },
+                medewerkers:Object,
                 date:String,
                 c_visible: {
                     type: Boolean, /* true when element is the active visible item */
@@ -254,6 +277,7 @@
             },
             _initializing: function () {
                 if (this.c_visible) {
+                    this.$.ajax_medewerkers_ophalen.generateRequest();
                     this.getDateToday();
                     this.statsOphalen();
                     this._roosters_ophalen_request_handler();
@@ -262,6 +286,8 @@
             rooster_ophalen : function () {
                 var datum = document.querySelector("#datemedewerkerrooster").value;
                 this.date = datum ;
+                var medewerker = document.querySelector("#mederwerkerstats").value;
+                this.c_medewerkername = medewerker;
                 this._roosters_ophalen_request_handler();
                 this.statsOphalen();
             },

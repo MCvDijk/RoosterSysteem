@@ -14,7 +14,7 @@ public class GebruikerDAO extends SharedDAO {
     public Gebruiker getGebruiker(String gebruikersnaam, String password){
         String role = null;
         Session session = sessionFactory.openSession();
-        Gebruiker g = (Gebruiker) session.createQuery("FROM Medewerker where gebruikersnaam=:gebruikersnaam and password=:password")
+        Gebruiker g = (Gebruiker) session.createQuery("FROM Gebruiker where gebruikersnaam=:gebruikersnaam and wachtwoord=:password")
                 .setParameter("gebruikersnaam",gebruikersnaam)
                 .setParameter("password",password).getSingleResult();
         session.close();

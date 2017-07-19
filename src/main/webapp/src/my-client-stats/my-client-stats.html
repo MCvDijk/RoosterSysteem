@@ -19,6 +19,10 @@
                 border-bottom: 1px solid #E62F2B;
                 padding-bottom: 2px;
             }
+            .clienten{
+                width:200px;
+
+            }
 
             body {
                 font-size: 13px;
@@ -138,6 +142,10 @@
             .row:after {
                 clear: both;
             }
+
+            .space {
+                padding: 5px;
+            }
         </style>
 
         <div class="my-title">Statestieken van cliënt [[c_clientname]]</div>
@@ -185,7 +193,17 @@
         </template>
         <table>
             <tr>
-                <td>
+                <td class="space">
+                    <paper-dropdown-menu class="clienten" id="clienten_box" label="clienten" name="client" on-click="rooster_ophalen">
+                        <paper-listbox slot="dropdown-content">
+                            <template is="dom-repeat" items="{{clienten}}">
+                                <paper-item>{{item.naam}}</paper-item>
+                            </template>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </td>
+                <td class="space"></td>
+                <td class="space">
                     <input type="week" id="dateclientrooster" value="{{date}}" on-change="rooster_ophalen"/>
                 </td>
             </tr>
@@ -248,6 +266,12 @@
                    last-response="{{stats}}">
 
         </iron-ajax>
+
+        <iron-ajax
+                id="ajax_clienten_ophalen"
+                url="/services/client/clienten/ophalen"
+                last-response="{{clienten}}">
+        </iron-ajax>
     </template>
 
     <script>
@@ -258,6 +282,7 @@
                 c_clientname: {
                     type: String,
                 },
+                clienten:Object,
                 date:String,
                 c_visible: {
                     type: Boolean, /* true when element is the active visible item */
@@ -270,7 +295,7 @@
             },
             _initializing: function () {
                 if (this.c_visible) {
-                    console.log(this.c_clientname);
+                    this.$.ajax_clienten_ophalen.generateRequest();
                     this.getDateToday();
                     this.statsOphalen();
                     this._roosters_ophalen_request_handler();
@@ -279,6 +304,7 @@
             rooster_ophalen : function () {
                 var datum = document.querySelector("#dateclientrooster").value;
                 this.date = datum ;
+                this.c_clientname = document.querySelector("#clienten_box").value;
                 this._roosters_ophalen_request_handler();
                 this.statsOphalen();
             },

@@ -13,7 +13,7 @@
 
 
 
-<dom-module id="my-medewerker-rooster">
+<dom-module id="my-medewerker-rooster-admin">
     <template>
         <style>
             :host {
@@ -31,7 +31,7 @@
         <table>
             <tr>
                 <td>
-                    <input type="week" id="dateMrooster" value="{{date}}" on-change="rooster_ophalen"/>
+                    <input type="week" id="dateMroosteradmin" value="{{date}}" on-change="rooster_ophalen"/>
                 </td>
             </tr>
         </table>
@@ -43,7 +43,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        [[item.naam]]
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
                     </template>
                 </vaadin-grid-column>
 
@@ -64,7 +64,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template>[[item.ziek]]</template>
+                    <template>
+                        <paper-button id="[[item.ziek]],[[item.naam]],maandag" class="my-button" on-click="ziek">[[item.ziek]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
             </vaadin-grid-column-group>
 
@@ -77,7 +79,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        [[item.naam]]
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
                     </template>
                 </vaadin-grid-column>
 
@@ -98,7 +100,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template>[[item.ziek]]</template>
+                    <template>
+                        <paper-button id="[[item.ziek]],[[item.naam]],dinsdag" class="my-button" on-click="ziek">[[item.ziek]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
             </vaadin-grid-column-group>
 
@@ -110,7 +114,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        [[item.naam]]
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
                     </template>
                 </vaadin-grid-column>
 
@@ -131,7 +135,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template>[[item.ziek]]</template>
+                    <template>
+                        <paper-button id="[[item.ziek]],[[item.naam]],woensdag" class="my-button" on-click="ziek">[[item.ziek]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
             </vaadin-grid-column-group>
 
@@ -144,7 +150,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        [[item.naam]]
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
                     </template>
                 </vaadin-grid-column>
 
@@ -165,7 +171,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template>[[item.ziek]]</template>
+                    <template>
+                        <paper-button id="[[item.ziek]],[[item.naam]],donderdag" class="my-button" on-click="ziek">[[item.ziek]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
@@ -178,7 +186,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                      [[item.naam]]
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
                     </template>
                 </vaadin-grid-column>
 
@@ -199,8 +207,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template>[[item.ziek]]</template>
-                </vaadin-grid-column>
+                    <template>
+                        <paper-button id="[[item.ziek]],[[item.naam]],vrijdag" class="my-button" on-click="ziek">[[item.ziek]]</paper-button>
+                    </template>                </vaadin-grid-column>
             </vaadin-grid-column-group>
 
         </vaadin-grid>
@@ -212,7 +221,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        [[item.naam]]
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
                     </template>
                 </vaadin-grid-column>
 
@@ -233,7 +242,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template>[[item.ziek]]</template>
+                    <template>
+                        <paper-button id="[[item.ziek]],[[item.naam]],zaterdag" class="my-button" on-click="ziek">[[item.ziek]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
@@ -246,7 +257,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        [[item.naam]]
+                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
                     </template>
                 </vaadin-grid-column>
 
@@ -267,7 +278,9 @@
 
                 <vaadin-grid-column>
                     <template class="header">Ziek</template>
-                    <template>[[item.ziek]]</template>
+                    <template>
+                        <paper-button id="[[item.ziek]],[[item.naam]],zondag" class="my-button" on-click="ziek">[[item.ziek]]</paper-button>
+                    </template>
                 </vaadin-grid-column>
 
             </vaadin-grid-column-group>
@@ -322,12 +335,20 @@
                 handle-as="json"
                 last-response="{{rooster_zondag}}">
         </iron-ajax>
+        <iron-ajax
+                id="ajax_ziek_melden"
+                method="POST"
+                url="/services/rooster/medewerker/ziek"
+                handle-as="json"
+                on-response="rooster_ophalen">
+        </iron-ajax>
+
 
 
     </template>
     <script>
         Polymer({
-            is: 'my-medewerker-rooster',
+            is: 'my-medewerker-rooster-admin',
             properties:{
                 c_visible: {
                     type: Boolean, /* true when element is the active visible item */
@@ -404,9 +425,18 @@
                 };
                 this.$['ajax_rooster_zondag_ophalen'].generateRequest();
             },
+            ziek_melden : function () {
+                this.$['ajax_ziek_melden'].contentType = "application/json";
+                this.$['ajax_ziek_melden'].body = {
+                    "status": this.status,
+                    "date": this.date
+                };
+                this.$['ajax_ziek_melden'].generateRequest();
+
+            },
 
             rooster_ophalen : function () {
-                var datum = document.querySelector("#dateMrooster").value;
+                var datum = document.querySelector("#dateMroosteradmin").value;
                 this.date = datum ;
                 this._roosters_maandag_ophalen_request_handler();
                 this._roosters_dinsdag_ophalen_request_handler();
@@ -430,12 +460,24 @@
                 this.date = d.getFullYear()+'-W'+weekNo;
                 console.log(d.getFullYear()+"-W"+weekNo);
             },
+            ziek: function (evt) {
+                var lButton = evt.currentTarget;
+                var id = lButton.id;
+                this.status = id;
+                this.ziek_melden();
+            },
             _button_clicked: function (evt) {
                 var lButton = evt.currentTarget;
                 var id = lButton.id;
                 this.medewerkername = id;
                 this.go_medewerker_stats();
 
+            },
+            go_medewerker_stats: function() {
+                var lApp = document.querySelector('my-app');  //het polymer element <my-app>
+                var lAppRouter = lApp.$.approuter;            // het html-element <app-route> met id=approuter
+                lAppRouter.data={page: "medewerker_stats"};                   // vul het data attribute met de homepage url
+                // door de two way binding in <app-route> en <app-location>// zal ook de url echt wijzigen
             }
         });
     </script>

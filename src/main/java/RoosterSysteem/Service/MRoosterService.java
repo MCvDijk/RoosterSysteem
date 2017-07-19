@@ -17,6 +17,8 @@ public class MRoosterService {
 
     public List<MRooster> getMedewerkerRooster(Medewerker m){return dao.getMedewerkerRooster(m);}
 
+    public MRooster getOneMedewerkerRooster(Medewerker m, String weeknummer,String dag){return dao.getMedewerkerRooster(m,weeknummer,dag);}
+
     public void writeMRooster(MRooster m){dao.writeDAO(m);}
 
     public void updateMRooster(MRooster m){

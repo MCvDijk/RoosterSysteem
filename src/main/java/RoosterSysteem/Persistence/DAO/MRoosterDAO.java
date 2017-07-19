@@ -33,6 +33,16 @@ public class MRoosterDAO extends SharedDAO {
         session.close();
         return results;
     }
+    public MRooster getMedewerkerRooster(Medewerker m, String weeknummer,String dag){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        MRooster result = (MRooster) session.createQuery("from MRooster where medewerker=:medewerker and weekNummer=:weeknummer and dag=:dag ")
+                .setParameter("medewerker", m)
+                .setParameter("weeknummer", weeknummer)
+                .setParameter("dag", dag).getSingleResult();
+        session.close();
+        return result;
+    }
 
 
 }
