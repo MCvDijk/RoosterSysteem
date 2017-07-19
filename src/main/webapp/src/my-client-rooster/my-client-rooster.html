@@ -31,7 +31,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                    <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                        [[item.naam]]
                     </template>
                 </vaadin-grid-column>
 
@@ -81,7 +81,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                        [[item.naam]]
                     </template>
                 </vaadin-grid-column>
 
@@ -130,7 +130,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                        [[item.naam]]
                     </template>
                 </vaadin-grid-column>
 
@@ -180,7 +180,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                        [[item.naam]]
                     </template>
                 </vaadin-grid-column>
 
@@ -229,7 +229,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                        [[item.naam]]
                     </template>
                 </vaadin-grid-column>
 
@@ -279,7 +279,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                        [[item.naam]]
                     </template>
                 </vaadin-grid-column>
 
@@ -328,7 +328,7 @@
                 <vaadin-grid-column>
                     <template class="header">Naam</template>
                     <template>
-                        <paper-button id=[[item.naam]] class="my-button" on-click="_button_clicked">[[item.naam]]</paper-button>
+                        [[item.naam]]
                     </template>
                 </vaadin-grid-column>
 
@@ -534,12 +534,6 @@
                 this.clientname = id;
                 this.go_client_stats();
 
-            },
-            go_client_stats: function() {
-                var lApp = document.querySelector('my-app');  //het polymer element <my-app>
-                var lAppRouter = lApp.$.approuter;            // het html-element <app-route> met id=approuter
-                lAppRouter.data={page: "client_stats"};                   // vul het data attribute met de homepage url
-                // door de two way binding in <app-route> en <app-location>// zal ook de url echt wijzigen
             }
         });
     </script>

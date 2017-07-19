@@ -416,4 +416,36 @@ public class CRoosterResource {
         String lJsonOutStr = lJsonArrayBuilder.build().toString();
         return lJsonOutStr;
     }
+
+    @POST
+    @Path("/client/afwezig")
+    @Produces("application/json")
+    public Response clientafwezig(String jsonBody){
+        JsonObject lJsonObjectIn = (JsonObject) Json.createReader(new ByteArrayInputStream(jsonBody.getBytes())).read();
+        String datum = lJsonObjectIn.getString("date");
+        String status = lJsonObjectIn.getString("status");
+        String[] list = status.split(",");
+        String afwezig = list[0].toLowerCase();
+        String naam = list[1];
+        String dag = list[2];
+        String[] parts = naam.split(" ", 2);
+        String voornaam = parts[0];
+        String achternaam = parts[1];
+        Client c = cservice.getClient(voornaam,achternaam);
+
+
+        if(afwezig.equals("nee")){
+            CRooster cr = service.getOneClientRooster(c,datum,dag);
+            cr.setAfwezig(true);
+            service.updateCRooster(cr);
+        }
+        else if(afwezig.equals("ja")){
+            CRooster cr = service.getOneClientRooster(c,datum,dag);
+            cr.setAfwezig(false);
+            service.updateCRooster(cr);
+        }
+
+        return Response.ok().build();
+    }
+
 }

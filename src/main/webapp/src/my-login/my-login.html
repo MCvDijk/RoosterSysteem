@@ -90,7 +90,7 @@
           },
           rol: {
                 type: String,
-            notify: true,
+                notify: true,
           },
           username: {
             type: String,
@@ -114,44 +114,25 @@
           }
         },
 
-        _go_home: function() {
-          var lApp = document.querySelector('my-app');  //het polymer element <my-app>
-          var lAppRouter = lApp.$.approuter;            // het html-element <app-route> met id=approuter
-          lAppRouter.data={page: ""};                   // vul het data attribute met de homepage url
-                                                        // door de two way binding in <app-route> en <app-location>
-                                                        // zal ook de url echt wijzigen
-         },
+          _go_home: function() {
+              var lApp = document.querySelector('my-app');  //het polymer element <my-app>
+              var lAppRouter = lApp.$.approuter;            // het html-element <app-route> met id=approuter
+              lAppRouter.data={page: "my-app"};                   // vul het data attribute met de homepage url
+              // door de two way binding in <app-route> en <app-location>// zal ook de url echt wijzigen
+          },
 
-         _ophalen_login_request_handler: function() {
-          console.log("_ophalen_login_request_handler username=" + this.username);
-          if (this.rol == "undefined") {
-            this.$.ajax_login.contentType="application/json";
-            this.$.ajax_login.body={
-              "username":this.username,
-              "password":this._password
-            };
-            this.$.ajax_login.generateRequest();
-          } else {
-            var lToast = this.$.toast_reeds_aangelogd;     // meldt reeds aangelogd
-            lToast.open();                                  /* het sluiten van deze error verwijst  */
-                                                            /* terug naar home page */
-          }
-        },
+          _login_handler() {
+              if (this.$.login_form.validate()) {
+                  this.$.login_form.submit();
+              }
+          },
 
-        _ophalen_login_response_handler: function(request) {
-          console.log("_ophalen_login_response_handler username="+this.username);
-          this.rol = request.detail.response.rol;
-          /* this._password = ""; /* om snel te kunnen testen is dit verwijderd */
-          if (this.rol == "undefined") {                    //als aanloggen mislukt
-            this.$.email_element.invalid = true;                // markeer gebruikersnaam-element
-            this.$.wachtwoord_element.invalid = true;           // markeer wachtwoord-element
-
-          } else {                                            // als aanloggen ok
-            this.$.email_element.invalid = false;               // verwijder fout markering
-            this.$.wachtwoord_element.invalid = false;          // verwijder fout markering
-            this._go_home();                                    // ga naar de home page.
-          }
-        },
+          responseHandler(event) {
+              let data = event.detail.response;
+              sessionStorage.setItem("sessionToken", data.token);
+              this.rol = data.role;
+              this._go_home()
+          },
 
         _toast_clicked: function(e) {
           var lToast = e.path[1];       //path[0] is de button. path[1] is de owner etc.

@@ -16,6 +16,8 @@ public class CRoosterService {
 
     public List<CRooster> getClientRooster(Client c){return dao.getClientRooster(c);}
 
+    public CRooster getOneClientRooster(Client c, String weeknummer,String dag){return dao.getClientRooster(c,weeknummer,dag);}
+
     public void writeCRooster(CRooster c){dao.writeDAO(c);}
 
     public void updateCRooster(CRooster c){
